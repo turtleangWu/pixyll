@@ -36,6 +36,7 @@
 .meta,
 .post-meta {
   width: auto;
+  font-size:16pt;
   font-weight: 300;
   margin: 0;
   padding: .25em 0;
@@ -46,3 +47,11 @@
 .related-post-title {
   border-bottom: thin solid #f3f3f3;
 }
+
+.generic-box {
+ text-align: center;
+ border: 1px solid #eee;
+ padding: 10px;
+ background: #f9f9f9;
+ margin: 30px;
+ }
