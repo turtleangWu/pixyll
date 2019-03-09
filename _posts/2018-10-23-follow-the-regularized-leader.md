@@ -4,6 +4,7 @@ title: follow-the-regularized-leader
 date: 2018-10-23 12:00
 summary: Follow the Regularized Leader (FTRL) 是解 Online Convex Optimization 問題非常常用的方法。以下將簡單介紹 Online Convex Optimization (OCO)，並從 Follow the Leader 的角度解釋為什麼需要 Regularizer。
 categories: Online-Learning
+Author: Yi-Shan Wu
 visible: True
 ---
 
