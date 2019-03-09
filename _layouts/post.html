@@ -31,6 +31,12 @@ layout: default
   {{ content }}
 </article>
 
+<div class="generic-box">
+Subscribe to our <a href="/feed.xml">RSS feed</a>.
+{% if site.show_sharing_icons %}
+  {% include share_buttons.html %}
+{% endif %}
+</div>
 
 {% if site.show_post_footers %}
   {% include post_footer.html %}
