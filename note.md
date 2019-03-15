@@ -15,6 +15,9 @@ tags: note
 * 2019/07/06 : <a href="{{ site.baseurl }}/pdf/seminar/0810_SGD.pdf" class="blue">SGD at saddle points</a>
 * 2019/05/25 : <a href="{{ site.baseurl }}/pdf/seminar/0525_data-dependent-prior.pdf" class="blue">Data-dependent PAC-Bayes priors via differential privacy/a>
 
+## Lecture Note
+* Topic 2 : <a href="{{ site.baseurl }}/pdf/note/topic-2-linear.pdf" class="blue">linear predictors</a>
+* Topic 1 : <a href="{{ site.baseurl }}/pdf/note/topic-1-learnability.pdf" class="blue">PAC learnable</a>
 
 
 
