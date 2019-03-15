@@ -4,4 +4,4 @@ title: Note
 permalink: /note/
 tags: note
 ---
-[Project Presentation](/pdf/seminar/understand_DNN2.pdf "Project Presentation PDF")
+<a target='_blank' href={require('turtleangwu.github.io/pdf/seminar/understand_DNN2.pdf?raw=true')}>PDF Doc</a>
