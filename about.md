@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 tags: about
 ---
-![desk](https://cloud.githubusercontent.com/assets/1424573/3378137/abac6d7c-fbe6-11e3-8e09-55745b6a8176.png)
+![desk](https://cloud.githubusercontent.com/assets/1424573/3378137/abac6d7c-fbe6-11e3-8e09-55745b6a8176.png){:height="50%" width="50%"}
 
 I’m Yi-Shan Wu, currently a research assistant under the supervision of Dr. [Chi-Jen Lu](https://www.iis.sinica.edu.tw/pages/cjlu/) at [Institute of Information Science (IIS), Academia Sinica](https://www.iis.sinica.edu.tw/index_zh.html). My research interest is theoretical machine learning, and in particular, online learning and some generalization issues in deep learning.
 
