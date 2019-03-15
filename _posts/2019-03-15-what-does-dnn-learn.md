@@ -22,13 +22,19 @@ visible: True
 \[\mbox{Generalization gap}:=L_D(A_S)-L_S(A_S)\]
 $S$ 是從 $D$ 這個資料分布選出來的訓練資料，$A$ 是演算法，$A_S$ 是演算法看了訓練資料後選出來的最佳函數，而 $L_S$ 和 $L_D$ 分別代表訓練錯誤率和真實錯誤率。
 
-機器學習的目標是希望能夠估計以及最小化 $L_D(A_S)$ ，而研究 generalization gap 的目的就是希望能夠回答和解釋，什麼樣的情況下，最小化 $L_S(A_S)$ 是一個有效降低 $L_D(A_S)$ 的方法。以往我們通常希望這個 gap 只會跟演算法 $\mathcal{A}$ 以及 Hypothesis class $\mathcal{H}$ 有關，而跟資料的分佈無關，也就是希望面對任何分佈的資料都能有相同好的預測。
+機器學習的目標是希望能夠估計以及最小化 $L_D(A_S)$ ，而研究 generalization gap 的目的就是希望能夠回答和解釋，什麼樣的情況下，我們對 $L_S(A_S)$ 的估計離 $L_D(A_S)$ 不遠？以往的理論通常希望這個 gap 只會跟演算法 $\mathcal{A}$ 以及 Hypothesis class $\mathcal{H}$ 有關，而跟資料的分佈無關，也就是希望面對任何分佈的資料都能有相同好的預測。
 
 * Overfitting ：
-指的是雖然有很低的 training error $latex L_S(A_S)$﹝常常幾乎是零﹞，但是 generalization gap 很大。
+指的是雖然有很低的 training error $L_S(A_S)$（常常幾乎是零），但是 generalization gap 很大。
 
 * Memorization（記憶、背誦）：
 指把看過的資料背下來，建立一一對應的關係。舉個例子，當導師第一次踏進一個新接的班級時，在黑板上建立一個表格，把坐在位置上的同學的名字一一紀錄上去，而把那個表和對應的同學的臉記下來就是背誦。
 
 * Learning（學習）：
-目前大家理想上希望的『學習』是真實錯誤率可以很低，而這奠基在訓練錯誤率以及 generalization gap 都要很低，只有其中一項很低是不夠的。直觀上，我們希望一個成功的學習，除了可以學會看過的資料﹝training error 低﹞，而且要能夠舉一反三﹝generalization gap 低﹞。
+目前大家理想上希望的『學習』是真實錯誤率可以很低，而這奠基在訓練錯誤率以及 generalization gap 都要很低，只有其中一項很低是不夠的。直觀上，我們希望一個成功的學習，除了可以學會看過的資料（training error 低），而且要能夠舉一反三（generalization gap 低）。
+
+目前大家普遍相信，只會靠『背誦』是沒有辦法成功學習的，因為雖然訓練錯誤率很低，但是不能舉一反三的話 generalization gap 可能很高。而要怎麼樣決定一個 neural network 是否只是『背誦』呢？現在常被採用的方式是餵給機器隨機的資料，而隨機的方式大致上可分成兩種：資料 $latex X$ 本身就是一團隨機的資訊、或者是對應的標籤 $latex Y$ 是隨機給的。後面那個可能稍微好理解一點，也就是例如給你一隻狗用不同角度拍下的 10 張照片，可是跟你說第一張是『狗』，第二張是『貓』，第三張是『老鼠』......等等，此時要將他們全部學起來，大概就只能把他們全部用背的背下來了。
+
+### Randomization tests
+
+今天的故事從一個令人震驚的實驗開始。這些實驗用的是一些實務上能夠成功學習真實資料(true data)的模型。但是下面這個實驗結果卻令人震驚：(a) (b) 圖告訴我們，同一個模型甚至對完全隨機的資料(random data)的訓練錯誤率都能夠達到 0，只要時間夠長。(圖中的 label corruption 是指有多少比例的資料被換成隨機資料。)且 (c) 圖又說，對於真實資料 testing error 很小，但隨著隨機資料的比例越高， testing error 就越大。(因為全部都可被 overfit，所以 testing error 就等於 generalization gap 的大小。)
