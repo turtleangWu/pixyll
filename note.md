@@ -4,4 +4,4 @@ title: Note
 permalink: /note/
 tags: note
 ---
-<a href="turtleangwu.github.io/pdf/seminar/understand_DNN2.pdf" target="_blank">Understand DNN (2)</a>
+<embed src="https://turtleangwu.github.io/pdf/seminar/understand_DNN2.pdf" type="application/pdf" />
