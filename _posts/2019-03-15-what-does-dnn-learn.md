@@ -18,7 +18,7 @@ visible: True
 
 在這些文章中，主要被討論、以及重複提及的概念先在這裡稍微做一下區別，以避免之後的閱讀有一些誤會。
 
-*Generalization（普遍化）：
+  * Generalization（普遍化）：
 \[\mbox{Generalization gap}:=L_D(A_S)-L_S(A_S)\]
 $S$ 是從 $D$ 這個資料分布選出來的訓練資料，$A$ 是演算法，$A_S$ 是演算法看了訓練資料後選出來的最佳函數，而 $L_S$ 和 $L_D$ 分別代表訓練錯誤率和真實錯誤率。
 
