@@ -18,8 +18,14 @@ visible: True
 
 在這些文章中，主要被討論、以及重複提及的概念先在這裡稍微做一下區別，以避免之後的閱讀有一些誤會。
 
-  * Generalization（普遍化）：
+* Generalization（普遍化）：
 \[\mbox{Generalization gap}:=L_D(A_S)-L_S(A_S)\]
 $S$ 是從 $D$ 這個資料分布選出來的訓練資料，$A$ 是演算法，$A_S$ 是演算法看了訓練資料後選出來的最佳函數，而 $L_S$ 和 $L_D$ 分別代表訓練錯誤率和真實錯誤率。
 
 機器學習的目標是希望能夠估計以及最小化 $L_D(A_S)$ ，而研究 generalization gap 的目的就是希望能夠回答和解釋，什麼樣的情況下，最小化 $L_S(A_S)$ 是一個有效降低 $L_D(A_S)$ 的方法。以往我們通常希望這個 gap 只會跟演算法 $\mathcal{A}$ 以及 Hypothesis class $\mathcal{H}$ 有關，而跟資料的分佈無關，也就是希望面對任何分佈的資料都能有相同好的預測。
+
+* Overfitting ：
+指的是雖然有很低的 training error $latex L_S(A_S)$﹝常常幾乎是零﹞，但是 generalization gap 很大。
+
+* Memorization（記憶、背誦）：
+指把看過的資料背下來，建立一一對應的關係。舉個例子，當導師第一次踏進一個新接的班級時，在黑板上建立一個表格，把坐在位置上的同學的名字一一紀錄上去，而把那個表和對應的同學的臉記下來就是背誦。
