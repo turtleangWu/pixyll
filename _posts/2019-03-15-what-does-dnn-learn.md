@@ -39,7 +39,7 @@ $S$ 是從 $D$ 這個資料分布選出來的訓練資料，$A$ 是演算法，$
 
 今天的故事從一個令人震驚的實驗開始。這些實驗用的是一些實務上能夠成功學習真實資料(true data)的模型。但是下面這個實驗結果卻令人震驚：(a) (b) 圖告訴我們，同一個模型甚至對完全隨機的資料(random data)的訓練錯誤率都能夠達到 0，只要時間夠長。(圖中的 label corruption 是指有多少比例的資料被換成隨機資料。)且 (c) 圖又說，對於真實資料 testing error 很小，但隨著隨機資料的比例越高， testing error 就越大。(因為全部都可被 overfit，所以 testing error 就等於 generalization gap 的大小。)
 
-<img src="/images/DNN/memorize.png" align="middle" width="800" height="400" />
+<img src="/images/DNN/memorize.png" align="middle" width="600" height="250" />
 
 實驗使用的 dataset 為 CIFAR-10。(a) 中除了藍線，其他都是經過各種不同 random 方式處理的資料。(c) 中的 testing error 之所以收斂到 0.9 是因為 CIFAR-10 是有 10 個類別的資料。
 
@@ -83,7 +83,7 @@ Regularization 主要又可以分為兩大類，一是『Implicit regularization
 
 除了上述的方法，也可以透過直接加入 regularizer，把一些不可能是好的 hypothesis 剔除掉，而得以縮小那些『有效 hypothesis』的個數。常用的 regularization 像是 weight decay，或是 dropout。Weight decay 其實就等同於對 weights 做 $\ell_2$ regularization；而常用的 dropout 就是在訓練時對每個 neural network 的 node 各別以一定的機率遮住。但以下實驗說明這些方法都不足以解釋。
 
-<img src="/images/DNN/dropout.png" align="middle" width="500" height="400" />
+<img src="/images/DNN/dropout.png" align="middle" width="400" height="250" />
 
 由上圖可以發現，對於 original labels，加入 regularizers 後獲得的解的確有更好的 generalization 性質；但是對於 random labels，就算加入 regularizers ，對於 overfitting 的現象也沒有太大的幫助，testing 的結果仍然跟隨意亂猜差不多。也就是說，weight decay、dropout 等等的 regularizer 可能對於 generalization 有一些幫助，但是仍然有許多其他因素是我們未知的。
 
