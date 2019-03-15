@@ -4,4 +4,4 @@ title: Note
 permalink: /note/
 tags: note
 ---
-<a target='_blank' href={require('/pdf/seminar/understand_DNN2.pdf')}>PDF Doc</a>
+<a href="turtleangwu.github.io/pdf/seminar/understand_DNN2.pdf" target="_blank">PDF</a>
