@@ -1,7 +1,7 @@
 ---
 layout: post
 title: What does DNN learn?
-date: 2018-06-21 12:00
+date: 2019-03-15 12:00
 summary: 大家發現不管是使用哪種 dataset， neural network 在前面幾層學到的東西似乎都很相像、而且型態都偏簡單。這讓我們好奇：是不是前面幾層的學到的資訊其實普遍到是可以共用的？
 categories: generalization
 author: Yi-Shan Wu
@@ -16,8 +16,15 @@ visible: True
 
 # Transfer learning
 
-這種 pretrain 看似只是一個簡單的手段，但是背後的原理也大到自成一門學問，通常大家會稱為 **transfer learning** ，也就是把在 $A$ dataset 學到的資訊轉移（transfer）給 $B$ dataset，而這兩個 dataset 是沒有重複的。Transfer learning 其實也可以視為更 general 的 generalization 問題。在前幾篇文章討論的 generalization 問題中，只希望在 training data 學到的資訊，可以成功給同樣來自於同一個 distribution 的 testing data 使用；而現在的 transfer learning，則是更進一步希望可以用在不一樣的 dataset。
+這種 pretrain 看似只是一個簡單的手段，但是背後的原理也大到自成一門學問，通常大家會稱為 **transfer learning** ，也就是把在 $A$ dataset 學到的資訊轉移（transfer）給 $B$ dataset，而這兩個 dataset 是沒有重複的。Transfer learning 其實也可以視為更 general 的 generalization 問題。在前幾篇文章討論的 generalization 問題中，只希望在 training data 學到的資訊，可以成功給同樣來自於同一個 distribution 的 testing data 使用；而現在的 transfer learning，則是更進一步希望可以用在不一樣的 dataset。一般來說一個成功的 transfer learning 會希望至少要表現的比直接重新學還要好，也就是說，如果重新學 dataset $B$ 可以達到 77% testing accuracy，那麼把 dataset $A$ 的資訊 transfer 到 $B$ 也要至少那麼好。
 
+
+這種 pretrain 看似只是一個簡單的手段，但是背後的原理也大到自成一門學問，通常大家會稱為 **transfer learning** ，也就是把在 $A$ dataset 學到的資訊轉移（transfer）給 $B$ dataset，而這兩個 dataset 是沒有重複的。Transfer learning 其實也可以視為更 general 的 generalization 問題。在前幾篇文章討論的 generalization 問題中，只希望在 training data 學到的資訊，可以成功給同樣來自於同一個 distribution 的 testing data 使用；而現在的 transfer learning，則是更進一步希望可以用在不一樣的 dataset。一般來說一個成功的 transfer learning 會希望至少要表現的比直接重新學還要好，也就是說，如果重新學 dataset $B$ 可以達到 77% testing accuracy，那麼把 dataset $A$ 的資訊 transfer 到 $B$ 也要至少那麼好。
+這種 pretrain 看似只是一個簡單的手段，但是背後的原理也大到自成一門學問，通常大家會稱為 **transfer learning** ，也就是把在 $A$ dataset 學到的資訊轉移（transfer）給 $B$ dataset，而這兩個 dataset 是沒有重複的。Transfer learning 其實也可以視為更 general 的 generalization 問題。在前幾篇文章討論的 generalization 問題中，只希望在 training data 學到的資訊，可以成功給同樣來自於同一個 distribution 的 testing data 使用；而現在的 transfer learning，則是更進一步希望可以用在不一樣的 dataset。一般來說一個成功的 transfer learning 會希望至少要表現的比直接重新學還要好，也就是說，如果重新學 dataset $B$ 可以達到 77% testing accuracy，那麼把 dataset $A$ 的資訊 transfer 到 $B$ 也要至少那麼好。
+
+## 實驗
+
+2014 年的一個實驗
 
 
 
