@@ -43,7 +43,7 @@ $S$ 是從 $D$ 這個資料分布選出來的訓練資料，$A$ 是演算法，$
 
 實驗使用的 dataset 為 CIFAR-10。(a) 中除了藍線，其他都是經過各種不同 random 方式處理的資料。(c) 中的 testing error 之所以收斂到 0.9 是因為 CIFAR-10 是有 10 個類別的資料。
 
-以前大家普遍相信，*Hypothesis class 的性質*，或是一些 *regularization 的方法*是決定 generalization gap 的因素。但在 2017 年初，這個實驗告訴我們，用以往的方法已經不足以解釋這個現象，許許多多的新方法以及實驗證據被提出，不過直到今日依然沒有個定論。
+以前大家普遍相信，**Hypothesis class 的性質**，或是一些 **regularization 的方法**是決定 generalization gap 的因素。但在 2017 年初，這個實驗告訴我們，用以往的方法已經不足以解釋這個現象，許許多多的新方法以及實驗證據被提出，不過直到今日依然沒有個定論。
 
 # Regularization
 
@@ -55,7 +55,7 @@ Regularization 主要又可以分為兩大類，一是『Implicit regularization
 
 # Implicit regularization
 
-其實上面提到的*hypothesis 的性質*也是一種 Implicit regularization 的方式，它畫了一個範圍告訴機器應該在哪裡尋找答案。而為什麼這目前會被分在『Implicit』呢，筆者目前猜測是因為到底是函數的什麼性質影響了選擇的好壞其實並不是那麼清楚的，尤其是對於 Deep neural network，這樣大的 network 給我們的其實不只是一組參數，而是一堆超級複雜的參數，那究竟是 network 的總參數量影響好壞呢、還是 network 的深度影響好壞、還是其實都不是，這就是近年大家努力探討的問題了。
+其實上面提到的**hypothesis 的性質**也是一種 Implicit regularization 的方式，它畫了一個範圍告訴機器應該在哪裡尋找答案。而為什麼這目前會被分在『Implicit』呢，筆者目前猜測是因為到底是函數的什麼性質影響了選擇的好壞其實並不是那麼清楚的，尤其是對於 Deep neural network，這樣大的 network 給我們的其實不只是一組參數，而是一堆超級複雜的參數，那究竟是 network 的總參數量影響好壞呢、還是 network 的深度影響好壞、還是其實都不是，這就是近年大家努力探討的問題了。
 
 ## 1. Capacity
 
@@ -89,10 +89,10 @@ Regularization 主要又可以分為兩大類，一是『Implicit regularization
 
 ### 主要參考文章
 
-  1. Understanding deep learning requires rethinking generalization. (Zhang, et al. 2017 ICLR)
-  1. Exploring generalization in deep learning (Neyshabur, 2017 NIPS)
-  1. A  Closer Look at Memorization in Deep Networks (Arpit, 2017 ICML)
-  1. Learning and memorization (Chatterjee, 2018 ICLR)
+  1. [Understanding deep learning requires rethinking generalization. (Zhang, et al. 2017 ICLR)](https://openreview.net/forum?id=Sy8gdB9xx)
+  1. [Exploring generalization in deep learning (Neyshabur, 2017 NIPS)](https://papers.nips.cc/paper/7176-exploring-generalization-in-deep-learning.pdf)
+  1. [A Closer Look at Memorization in Deep Networks (Arpit, 2017 ICML)](https://arxiv.org/pdf/1706.05394.pdf)
+  1. [Learning and memorization (Chatterjee, 2018 ICLR)](https://openreview.net/forum?id=S1XFzYyPM)
 
 
 
