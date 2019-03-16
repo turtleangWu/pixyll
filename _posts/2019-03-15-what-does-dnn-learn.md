@@ -11,7 +11,7 @@ visible: True
 # 簡介
 
 大家發現不管是使用哪種 dataset， neural network 在前面幾層學到的東西似乎都很相像、而且型態都偏簡單。
-<img src="/images/DNN/memorize.png" align="center" width="850" height="250" />
+<img src="/images/DNN/base_NN.png" align="center" width="850" height="250" />
 
 這讓我們好奇：是不是前面幾層的學到的資訊其實普遍到是可以共用的？也就是說，如果每個 network 在不同 dataset 學到的東西有某一部份是非常普遍存在的，那麼我是不是能夠重複利用這些資訊，去幫助學習別的 dataset 呢？
 
@@ -24,7 +24,8 @@ visible: True
 ## 實驗
 
 2014 有人在 ImageNet 上做了這麼一個實驗：把 ImageNet 隨機分成一半當作 dataset $A$, dataset $B$，並讓兩個同樣架構的 network 分別學這兩個 dataset，train 在 dataset $A$ 的稱作『 base $A$』而 train 在 dataset $B$ 的稱作『 base $B$』。
-<img src="/images/DNN/Gabor_filter.png" width="300" height="250" /> <img src="/images/DNN/colorblobs.png" width="300" height="250" />
+<img src="/images/DNN/Gabor_filter.png" width="300" height="250" /> 
+<img src="/images/DNN/colorblobs.png" width="300" height="250" />
 
 
 
