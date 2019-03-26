@@ -16,7 +16,7 @@ visible: True
 
 \[Regret_T(u)=\sum\limits_{t=1}^T \ell_t(p_t)-\ell_t(u)  --(1)\]
 
-<center><img src="/images/online/online-6.png" width="280" height="200" /></center>
+<center><img src="/images/online/online-6.png" width="320" height="200" /></center>
 
 顧名思義，在 OCO 中 $S$ 是 convex set，且對於所有的 $t\in [T]$，loss function $\ell_t$ 都是 convex function。那這個 loss function 為什麼有下標？而且為什麼這裡不是像《Online learning — introduction (1)》會收到一個標準答案 $y_t\in \mathcal{Y}$ ，而是收到一個 loss function？其實這是一樣的。如果現在 loss 是像 introduction 一樣是 $\ell:\mathcal{S}\times\mathcal{Y}\rightarrow \mathbb{R}$  ，可以發現當在時間  $t$ 收到標準答案 $y_t$ 後，loss function $\ell(p_t,y_t)$ 也就變成一個單變數函數：$\ell_t(p_t)=\ell(p_t,y_t)$。所以收到標準答案，跟收到 loss function 是一樣的。而 regret 可以寫成
 
@@ -36,11 +36,13 @@ visible: True
 
 也就是看看那個 $p$ 對 $t-1$ 步前的 total loss 看起來是最好的。這個方法乍看之下超棒，不過看看下面這個例子會發現，竟然發生悲劇了！
 
-### Example( by reference [1])
+### Example( by reference 1.)
 
 令 $S=[-1,1]\subset \mathbb{R}$ 是一個 convex set ，且 $\ell_t(p)=z_t p$ 是 linear function ，其中
 
-\[z_t=\left\{\begin{array}{cc}-0.5 & \mbox{if }t=1\\ 1&\mbox{ if }t \mbox{ is even}\\ -1& \mbox{if }t>1 \mbox{ and } t\mbox{ is odd} \end{array}\right.\]
+\[
+z_t=\left\{\begin{array}{cc}-0.5 & \mbox{if }t=1\\ 1&\mbox{ if }t \mbox{ is even}\\ -1& \mbox{if }t>1 \mbox{ and } t\mbox{ is odd} \end{array}\right.
+\]
 
 很明顯的，如果跑 FTL ，那麼當時間是奇數時， $p_t=1$，反之是 $p_t=-1$。但其實最好的後見之明，是 $p^*=0$。這下子 FTL 的 regret 就是 $ \mathcal{O}(T)$ 了！
 
@@ -70,13 +72,15 @@ FTRL 其實有很多種解釋方式，以下介紹的這一種應該是需要最
 
 最左式是說，當時間 $t$ ，我就選 $p_{t+1}$，每一步都是根據這種規則選；而最右式是說，不管哪一步，我都選擇 $p_{T+1}$ 這個固定的後見之明，而它也正好是
 
-$arg\min_u \sum\limits_{t=1}^T \ell_t(u)$
+\[arg\min_u \sum\limits_{t=1}^T \ell_t(u)\]
 
 而這個不等式既然對於最好的後見之明是對的，那麼當然對於所有 $u\in \mathcal{S}$ 都是對的，所以就證完了。
 
 這個證明告訴我們，每一步都都偷看 $\ell_t$ 然後選 $p_{t+1}$ ，其實比一直都玩任何單一的後見之明還好。但是實際上不知道 $\ell_t$ 的話我該怎麼辦？就猜吧！怎麼猜呢？首先，因為所有的 loss function 都是 convex function，所以我當然是猜一個 convex function，先令他叫做 $R:\mathcal{S}\rightarrow \mathbb{R}$。也就是現在在時間 $t$，我希望猜一個 $R(p)$ ，使得下面兩式很像
 
-\[\tilde{p}_t=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)\]
+\[
+\tilde{p}_t=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)
+\]
 
 \[p_{t+1}=arg\min_{p}\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+\ell_t(p)  -- (4)\]
 
@@ -95,7 +99,7 @@ $arg\min_u \sum\limits_{t=1}^T \ell_t(u)$
 給了一堆不嚴謹的解釋後，筆者只是想引出 FTRL 演算法一個可能的解釋方向。而它的演算法：
 
 > \[\tilde{p}_t=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)\]
->其中 $latex R:\mathcal{S}\rightarrow \mathbb{R}$ 是一個 strongly-convex function。
+> 其中 $latex R:\mathcal{S}\rightarrow \mathbb{R}$ 是一個 strongly-convex function。
 
 ### Analysis of FTRL
 
@@ -145,4 +149,4 @@ $arg\min_u \sum\limits_{t=1}^T \ell_t(u)$
 這個分析幾乎是將整個 FTRL 的分析模組化了，無論如何，任何 OCO 問題都可以藉由 sub-gradient 簡化成 OLO 問題，而配上不同的 Regularizer 或是不用 $\ell_2$-norm 而是用其他的 norm，那形成的 regret bound 就會不同，不過分析都可以藉由同一個脈絡。
 
 # Reference
-- Online Learning and Online Convex Optimization, by Shai Shalev-Shwartz
+1. Online Learning and Online Convex Optimization, by Shai Shalev-Shwartz
