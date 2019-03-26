@@ -5,7 +5,7 @@ date: 2018-10-23 12:00
 summary: Follow the Regularized Leader (FTRL) 是解 Online Convex Optimization 問題非常常用的方法。以下將簡單介紹 Online Convex Optimization (OCO)，並從 Follow the Leader 的角度解釋為什麼需要 Regularizer。
 categories: Online-Learning
 author: Yi-Shan Wu
-visible: True
+visible: 
 ---
 
 # Online Convex Optimization (OCO)
@@ -50,7 +50,7 @@ begin{array}{cc}
 \right.
 \]
 
-很明顯的，如果跑 FTL ，那麼當時間是奇數時， $p_t=1$，反之是 $p_t=-1$。但其實最好的後見之明，是 $p^*=0$。這下子 FTL 的 regret 就是 $ \mathcal{O}(T)$ 了！
+很明顯的，如果跑 FTL ，那麼當時間是奇數時， $p_t=1$，反之是 $p_t=-1$。但其實最好的後見之明，是 $p^{*}=0$。這下子 FTL 的 regret 就是 $ \mathcal{O}(T)$ 了！
 
 由這個例子知道，單純用 FTL 是不可行的，會被 adversary 騙，傻傻的在 $\pm 1$ 之間橫衝直撞。因此大家改用另一個演算法 Follow the Regularized Leader，跟 Follow the Leader 很像，不過在 (2) 式的 objective function 中要再多加 Regularizer，以下將說明為什麼加了 regularizer，以及要加怎麼樣的 regularizer 後，我們就不會像 FTL 一樣預測值在每一回合差異都很大，好像在瞎猜、橫衝直撞。
 
@@ -72,7 +72,7 @@ FTRL 其實有很多種解釋方式，以下介紹的這一種應該是需要最
 假設到 $T-1$ 時都對，那麼 $\forall u\in S$，
 \[\sum\limits_{t=1}^{T-1}\ell_t(p_{t+1})+\ell_T(p_{T+1})\leq \sum\limits_{t=1}^{T-1}\ell_t(u)+\ell_T(p_{T+1})\]
 
-右式對所有 $ u$ 都對，所以當然包含 $ u=p_{T+1}$ 的時候，因此
+右式對所有 $u$ 都對，所以當然包含 $ u=p_{T+1}$ 的時候，因此
 
 \[\Rightarrow \sum\limits_{t=1}^{T}\ell_t(p_{t+1})\leq \sum\limits_{t=1}^{T-1}\ell_t(u)+\ell_T(p_{T+1})=\sum\limits_{t=1}^T\ell_t(p_{T+1})\]
 
@@ -86,33 +86,33 @@ FTRL 其實有很多種解釋方式，以下介紹的這一種應該是需要最
 
 $$ \tilde{p}_t=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)$$ 
 
-\[p_{t+1}=arg\min_{p}\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+\ell_t(p)  -- (4)\]
+\[p_{t+1}=arg\min_{p}\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+\ell_{t}(p)  -- (4)\]
 
-(3)、(4) 要求的是 argmin 要很接近，這點蠻比較不 trivial 的，因為就算兩式右邊的函數值差不多，$\tilde{p}_t$ 也不一定會跟 $p_{t+1}$ 接近。如圖
+(3)、(4) 要求的是 argmin 要很接近，這點蠻比較不 trivial 的，因為就算兩式右邊的函數值差不多，$\tilde{p}_{t}$ 也不一定會跟 $p_{t+1}$ 接近。如圖
 
-<center><img src="/images/online/ftrl.png" width="300" height="200" /></center>
-若藍色是 $\ell_t$，那麼無論比它彎曲，還是比它平滑，要達到同樣 y 值對應到的 x 不一樣。如果 $R(p)$ 比 $\ell_t(p)$ 還要平滑（如黃線），那麼若要達到同樣的函數值，$\tilde{p}_t$ 可能比 $ p_{t+1}$ 還大。但若是選較彎曲的函數（如紅線），那麼$\tilde{p}_t$ 可能比 $ p_{t+1}$ 還小。看起來選黃的或選紅的都不好。
+<center><img src="/images/online/ftrl.png" width="450" height="300" /></center>
+若藍色是 $\ell_t$，那麼無論比它彎曲，還是比它平滑，要達到同樣 y 值對應到的 x 不一樣。如果 $R(p)$ 比 $\ell_t(p)$ 還要平滑（如黃線），那麼若要達到同樣的函數值，$\tilde{p}_{t}$ 可能比 $ p_{t+1}$ 還大。但若是選較彎曲的函數（如紅線），那麼$\tilde{p}_{t}$ 可能比 $ p_{t+1}$ 還小。看起來選黃的或選紅的都不好。
 
 所以到目前為止，我只知道要選一個 convex function $R$，而且 $R(p)$ 夠大，大到大概就是 loss 的那個 order 。
 
 ## 2. FTRL 的 update 要夠平滑
 
-前面也提到一個問題，如果從 $p_t\rightarrow p_{t+1}$ 改變很大，我們可能就很容易被騙。所以我希望我加了 regularizer 後的 update 方式 ：$ \tilde{p}_t\rightarrow \tilde{p}_{t+1}$ 可以不要變化那麼大。意思就是我比較傾向選彎曲一點的線，這樣 $x$ 值改變一點點 $y$ 值就可以有蠻大的改變。在嚴謹一點的證明中，其實會發現可以有好的 regret bound 的 regularizer 必須要求是 strongly-convex function。
+前面也提到一個問題，如果從 $p_t\rightarrow p_{t+1}$ 改變很大，我們可能就很容易被騙。所以我希望我加了 regularizer 後的 update 方式 ：\[\tilde{p}_{t}\rightarrow \tilde{p}_{t+1}\] 可以不要變化那麼大。意思就是我比較傾向選彎曲一點的線，這樣 $x$ 值改變一點點 $y$ 值就可以有蠻大的改變。在嚴謹一點的證明中，其實會發現可以有好的 regret bound 的 regularizer 必須要求是 strongly-convex function。
 
 給了一堆不嚴謹的解釋後，筆者只是想引出 FTRL 演算法一個可能的解釋方向。而它的演算法：
 
-> \[\tilde{p}_t=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)\]
+> \[\tilde{p}_{t}=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)\]
 > 其中 $R:\mathcal{S}\rightarrow \mathbb{R}$ 是一個 strongly-convex function。
 
 ### Analysis of FTRL
 
 有了以上的材料，再加上 convex function 的一些性質，就很容易可以寫下 FTRL 的 regret bound。也就是：
 
-\[Regret_T(u)=\sum\limits_{t=1}^T \ell_t(\tilde{p}_t)-\ell_t(u)\]
+\[Regret_T(u)=\sum\limits_{t=1}^T \ell_t(\tilde{p}_{t})-\ell_{t}(u)\]
 
-\[\leq R(u)-R(\tilde{p}_1)+\sum\limits_{t=1}^T \ell_t(\tilde{p}_t)-\ell_t(\tilde{p}_{t+1})  -- (5)\]
+\[\leq R(u)-R(\tilde{p}_{1})+\sum\limits_{t=1}^{T} \ell_{t}(\tilde{p}_{t})-\ell_t(\tilde{p}_{t+1})  -- (5)\]
 
-\[\leq R(u)-R(\tilde{p}_1)+\sum\limits_{t=1}^T \langle \tilde{p}_t-\tilde{p}_{t+1},z_t\rangle , \mbox{ where } z_t\in \partial\ell_t(\tilde{p}_t) -- (6)\]
+\[\leq R(u)-R(\tilde{p}_{1})+\sum\limits_{t=1}^T \langle \tilde{p}_t-\tilde{p}_{t+1},z_t\rangle , \mbox{ where } z_t\in \partial\ell_t(\tilde{p}_t) -- (6)\]
 
 \[=\frac{1}{2\eta}\|u\|_2^2+\eta\sum\limits_{t=1}^T\|z_t\|_2^2  -- \mbox{ if } R(x)=\frac{1}{2\eta}\|x\|_2^2 -- (7)\]
 
