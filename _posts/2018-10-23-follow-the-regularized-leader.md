@@ -40,9 +40,9 @@ visible: True
 
 令 $S=[-1,1]\subset \mathbb{R}$ 是一個 convex set ，且 $\ell_t(p)=z_t p$ 是 linear function ，其中
 
-\[
+$
 z_t=\left\{\begin{array}{cc}-0.5 & \mbox{if }t=1\\ 1&\mbox{ if }t \mbox{ is even}\\ -1& \mbox{if }t>1 \mbox{ and } t\mbox{ is odd} \end{array}\right.
-\]
+$
 
 很明顯的，如果跑 FTL ，那麼當時間是奇數時， $p_t=1$，反之是 $p_t=-1$。但其實最好的後見之明，是 $p^*=0$。這下子 FTL 的 regret 就是 $ \mathcal{O}(T)$ 了！
 
