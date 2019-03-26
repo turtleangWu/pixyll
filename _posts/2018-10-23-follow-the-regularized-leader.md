@@ -40,9 +40,15 @@ visible: True
 
 令 $S=[-1,1]\subset \mathbb{R}$ 是一個 convex set ，且 $\ell_t(p)=z_t p$ 是 linear function ，其中
 
-$
-z_t=\left\{\begin{array}{cc}-0.5 & \mbox{if }t=1\\ 1&\mbox{ if }t \mbox{ is even}\\ -1& \mbox{if }t>1 \mbox{ and } t\mbox{ is odd} \end{array}\right.
-$
+\[
+z_t=\left\{\
+begin{array}{cc} 
+-0.5 & \mbox{if }t=1\\ 
+1&\mbox{ if }t \mbox{ is even}\\ 
+-1& \mbox{if }t>1 \mbox{ and } t\mbox{ is odd} 
+\end{array} 
+\right.
+\]
 
 很明顯的，如果跑 FTL ，那麼當時間是奇數時， $p_t=1$，反之是 $p_t=-1$。但其實最好的後見之明，是 $p^*=0$。這下子 FTL 的 regret 就是 $ \mathcal{O}(T)$ 了！
 
@@ -78,17 +84,14 @@ FTRL 其實有很多種解釋方式，以下介紹的這一種應該是需要最
 
 這個證明告訴我們，每一步都都偷看 $\ell_t$ 然後選 $p_{t+1}$ ，其實比一直都玩任何單一的後見之明還好。但是實際上不知道 $\ell_t$ 的話我該怎麼辦？就猜吧！怎麼猜呢？首先，因為所有的 loss function 都是 convex function，所以我當然是猜一個 convex function，先令他叫做 $R:\mathcal{S}\rightarrow \mathbb{R}$。也就是現在在時間 $t$，我希望猜一個 $R(p)$ ，使得下面兩式很像
 
-\[
-\tilde{p}_t=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)
-\]
+$$ \tilde{p}_t=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)$$ 
 
 \[p_{t+1}=arg\min_{p}\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+\ell_t(p)  -- (4)\]
 
 (3)、(4) 要求的是 argmin 要很接近，這點蠻比較不 trivial 的，因為就算兩式右邊的函數值差不多，$\tilde{p}_t$ 也不一定會跟 $p_{t+1}$ 接近。如圖
 
-<center><img src="/images/online/ftrl.png" width="300" height="200" /></center>*若藍色是 $latex \ell_t$，那麼無論比它彎曲，還是比它平滑，要達到同樣 y 值對應到的 x 不一樣。*
-
-如果 $R(p)$ 比 $\ell_t(p)$ 還要平滑﹝如黃線﹞，那麼若要達到同樣的函數值，$\tilde{p}_t$ 可能比 $ p_{t+1}$ 還大。但若是選較彎曲的函數﹝如紅線﹞，那麼$\tilde{p}_t$ 可能比 $ p_{t+1}$ 還小。看起來選黃的或選紅的都不好。
+<center><img src="/images/online/ftrl.png" width="300" height="200" /></center>
+若藍色是 $\ell_t$，那麼無論比它彎曲，還是比它平滑，要達到同樣 y 值對應到的 x 不一樣。如果 $R(p)$ 比 $\ell_t(p)$ 還要平滑（如黃線），那麼若要達到同樣的函數值，$\tilde{p}_t$ 可能比 $ p_{t+1}$ 還大。但若是選較彎曲的函數（如紅線），那麼$\tilde{p}_t$ 可能比 $ p_{t+1}$ 還小。看起來選黃的或選紅的都不好。
 
 所以到目前為止，我只知道要選一個 convex function $R$，而且 $R(p)$ 夠大，大到大概就是 loss 的那個 order 。
 
@@ -99,7 +102,7 @@ FTRL 其實有很多種解釋方式，以下介紹的這一種應該是需要最
 給了一堆不嚴謹的解釋後，筆者只是想引出 FTRL 演算法一個可能的解釋方向。而它的演算法：
 
 > \[\tilde{p}_t=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)\]
-> 其中 $latex R:\mathcal{S}\rightarrow \mathbb{R}$ 是一個 strongly-convex function。
+> 其中 $R:\mathcal{S}\rightarrow \mathbb{R}$ 是一個 strongly-convex function。
 
 ### Analysis of FTRL
 
