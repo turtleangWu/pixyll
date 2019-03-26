@@ -145,5 +145,4 @@ $arg\min_u \sum\limits_{t=1}^T \ell_t(u)$
 這個分析幾乎是將整個 FTRL 的分析模組化了，無論如何，任何 OCO 問題都可以藉由 sub-gradient 簡化成 OLO 問題，而配上不同的 Regularizer 或是不用 $\ell_2$-norm 而是用其他的 norm，那形成的 regret bound 就會不同，不過分析都可以藉由同一個脈絡。
 
 # Reference
-
 - Online Learning and Online Convex Optimization, by Shai Shalev-Shwartz
