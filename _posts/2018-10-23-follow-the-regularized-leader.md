@@ -5,7 +5,7 @@ date: 2018-10-23 12:00
 summary: Follow the Regularized Leader (FTRL) 是解 Online Convex Optimization 問題非常常用的方法。以下將簡單介紹 Online Convex Optimization (OCO)，並從 Follow the Leader 的角度解釋為什麼需要 Regularizer。
 categories: Online-Learning
 author: Yi-Shan Wu
-visible: 
+visible: True
 ---
 
 # Online Convex Optimization (OCO)
@@ -29,7 +29,6 @@ visible:
 而 (1) 式的 $u$ 也包含了當 $u=u^{*}$ 的狀況，只是這樣寫起來比較 general 一點，表示以任何人當比較對象，這個 $Regret_T(u)$ 都成立。
 
 # Follow the Leader (FTL)
-
 做 online convex optimization 問題，關鍵都在怎麼在每一步做出好的預測，使得每一步的 regret 都不會太大。因為在時間 $t$ ，我最多就只有 $\ell_1,\ell_2,\cdots \ell_{t-1}$ 那麼多資訊，因此一個很直覺的預測就是找一個 $p_t$ ：
 
 \[p_t=arg\min_{p\in \mathcal{S}}\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)  --(2)\]
@@ -46,7 +45,6 @@ visible:
 由這個例子知道，單純用 FTL 是不可行的，會被 adversary 騙，傻傻的在 $\pm 1$ 之間橫衝直撞。因此大家改用另一個演算法 Follow the Regularized Leader，跟 Follow the Leader 很像，不過在 (2) 式的 objective function 中要再多加 Regularizer，以下將說明為什麼加了 regularizer，以及要加怎麼樣的 regularizer 後，我們就不會像 FTL 一樣預測值在每一回合差異都很大，好像在瞎猜、橫衝直撞。
 
 # Follow the Regularized Leader (FTRL)
-
 FTRL 其實有很多種解釋方式，以下介紹的這一種應該是需要最少背景知識的，雖然不是很精確。1. 2. 3. 的標號表示這個方法直覺上蠻合理的一些關鍵。
 
 ## 1. 希望可以偷看下個時間的 loss function
