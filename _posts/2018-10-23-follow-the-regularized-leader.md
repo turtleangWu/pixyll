@@ -59,8 +59,8 @@ FTRL 其實有很多種解釋方式，以下介紹的這一種應該是需要最
 
 ### Proof: 用數學歸納法
 
-當 $T=1$ 時，根據定義可以知道是對的。
-假設到 $T-1$ 時都對，那麼 $\forall u\in S$，
+- 當 $T=1$ 時，根據定義可以知道是對的。
+- 假設到 $T-1$ 時都對，那麼 $\forall u\in S$，
 \[\sum\limits_{t=1}^{T-1}\ell_t(p_{t+1})+\ell_T(p_{T+1})\leq \sum\limits_{t=1}^{T-1}\ell_t(u)+\ell_T(p_{T+1})\]
 
 右式對所有 $u$ 都對，所以當然包含 $ u=p_{T+1}$ 的時候，因此
@@ -79,17 +79,18 @@ $$ \tilde{p}_t=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)$$
 
 \[p_{t+1}=arg\min_{p}\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+\ell_{t}(p)  -- (4)\]
 
-(3)、(4) 要求的是 argmin 要很接近，這點蠻比較不 trivial 的，因為就算兩式右邊的函數值差不多，$\tilde{p}_{t}$ 也不一定會跟 $p_{t+1}$ 接近。如圖
+(3)、(4) 要求的是 argmin 要很接近，這點蠻比較不 trivial 的，因為就算兩式右邊的函數值差不多，$\tilde{p}_t$ 和 $\tilde{p}_{t+1}$ 也不一定接近。如圖
 
 <center><img src="/images/online/ftrl.png" width="450" height="300" /></center>
-
-若藍色是 $\ell_t$，那麼無論比它彎曲，還是比它平滑，要達到同樣 y 值對應到的 x 不一樣。如果 $R(p)$ 比 $\ell_t(p)$ 還要平滑（如黃線），那麼若要達到同樣的函數值，$\tilde{p}_{t}$ 可能比 $ p_{t+1}$ 還大。但若是選較彎曲的函數（如紅線），那麼$\tilde{p}_{t}$ 可能比 $ p_{t+1}$ 還小。看起來選黃的或選紅的都不好。
+若藍色是 $\ell_t$，那麼無論比它彎曲，還是比它平滑，要達到同樣 $y$ 值對應到的 $x$ 不一樣。如果 $ R(p)$ 比 $\ell_{t}(p)$ 還要平滑（如黃線），那麼若要達到同樣的函數值，$\tilde{p}_t$ 可能比 $p_{t+1}$ 還大。但若是選較彎曲的函數（如紅線），那麼$\tilde{p}_t$ 可能比 $p_{t+1}$ 還小。看起來選黃的或選紅的都不好。
 
 所以到目前為止，我只知道要選一個 convex function $R$，而且 $R(p)$ 夠大，大到大概就是 loss 的那個 order 。
 
 ## 2. FTRL 的 update 要夠平滑
 
-前面也提到一個問題，如果從 $p_t\rightarrow p_{t+1}$ 改變很大，我們可能就很容易被騙。所以我希望我加了 regularizer 後的 update 方式 ：\[\tilde{p}_{t}\rightarrow \tilde{p}_{t+1}\] 可以不要變化那麼大。意思就是我比較傾向選彎曲一點的線，這樣 $x$ 值改變一點點 $y$ 值就可以有蠻大的改變。在嚴謹一點的證明中，其實會發現可以有好的 regret bound 的 regularizer 必須要求是 strongly-convex function。
+前面也提到一個問題，如果從 $p_t\rightarrow p_{t+1}$ 改變很大，我們可能就很容易被騙。所以我希望我加了 regularizer 後的 update 方式：
+\[\tilde{p}_{t}\rightarrow \tilde{p}_{t+1}\]
+可以不要變化那麼大。意思就是我比較傾向選彎曲一點的線，這樣 $x$ 值改變一點點 $y$ 值就可以有蠻大的改變。在嚴謹一點的證明中，其實會發現可以有好的 regret bound 的 regularizer 必須要求是 strongly-convex function。
 
 給了一堆不嚴謹的解釋後，筆者只是想引出 FTRL 演算法一個可能的解釋方向。而它的演算法：
 
