@@ -16,7 +16,7 @@ visible: True
 
 \[Regret_T(u)=\sum\limits_{t=1}^T \ell_t(p_t)-\ell_t(u)  --(1)\]
 
-<center><img src="/images/online/online-6.png" width="320" height="200" /></center>
+<center><img src="/images/online/online-6.png" width="400" height="200" /></center>
 
 顧名思義，在 OCO 中 $S$ 是 convex set，且對於所有的 $t\in [T]$，loss function $\ell_t$ 都是 convex function。那這個 loss function 為什麼有下標？而且為什麼這裡不是像《Online learning — introduction (1)》會收到一個標準答案 $y_t\in \mathcal{Y}$ ，而是收到一個 loss function？其實這是一樣的。如果現在 loss 是像 introduction 一樣是 $\ell:\mathcal{S}\times\mathcal{Y}\rightarrow \mathbb{R}$  ，可以發現當在時間  $t$ 收到標準答案 $y_t$ 後，loss function $\ell(p_t,y_t)$ 也就變成一個單變數函數：$\ell_t(p_t)=\ell(p_t,y_t)$。所以收到標準答案，跟收到 loss function 是一樣的。而 regret 可以寫成
 
@@ -30,13 +30,13 @@ visible: True
 
 # Follow the Leader (FTL)
 
-做 online convex optimization 問題，關鍵都在怎麼在每一步做出好的預測，使得每一步的 regret 都不會太大。因為在時間 $t$ ，我最多就只有 $latex \ell_1,\ell_2,\cdots \ell_{t-1}$ 那麼多資訊，因此一個很直覺的預測就是找一個 $p_t$ ：
+做 online convex optimization 問題，關鍵都在怎麼在每一步做出好的預測，使得每一步的 regret 都不會太大。因為在時間 $t$ ，我最多就只有 $\ell_1,\ell_2,\cdots \ell_{t-1}$ 那麼多資訊，因此一個很直覺的預測就是找一個 $p_t$ ：
 
 \[p_t=arg\min_{p\in \mathcal{S}}\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)  --(2)\]
 
 也就是看看那個 $p$ 對 $t-1$ 步前的 total loss 看起來是最好的。這個方法乍看之下超棒，不過看看下面這個例子會發現，竟然發生悲劇了！
 
-### Example( by reference 1.)
+### Example ( 參考資料 1 )
 
 令 $S=[-1,1]\subset \mathbb{R}$ 是一個 convex set ，且 $\ell_t(p)=z_t p$ 是 linear function ，其中
 
