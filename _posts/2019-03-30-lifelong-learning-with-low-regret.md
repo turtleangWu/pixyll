@@ -10,13 +10,14 @@ visible: False
 
 # Introduction
 
-Machine learning algorithms can now solve many problems even better than humans. However, machines are still far from being intelligent that they typically need to relearn when facing new tasks, while humans are able to learn new things efficiently by ultilizing learned knowledge. This motivates the study called lifelong learning (Thrun and Pratt, 1998), which aims to perform better over time by transferring information learned from previously tasks to later ones, under the belief that there are some commonalities across tasks.
+Machine learning algorithms can now solve many problems even better than humans. However, machines are still far from being intelligent that they typically need to relearn when facing new tasks, while humans are able to learn new things efficiently by ultilizing learned knowledge. This motivates the study called lifelong learning (Thrun and Pratt, 1998), which aims to perform better over time by transferring information learned from previously tasks to later ones, under the belief that there are some commonalities across tasks. There are 
 
 <center class="half">
   <img src="/images/lifelong/Lifelong.png" width="780" height="200" />
 </center>
 
-In this paper, we face tasks and samples sequence by sequence as usual online learning settings. As introduced above, tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation. We let $\mathcal{G}$ and $\mathcal{H}$ be the space of representation and predictor respectively. As learning the representations is typically much more costly than learning predictors in lifelong learning, we would like to understand if it is possible to learn them continuously through time across different tasks, instead of relearning them in different tasks.
+In this paper, we study the lifelong learning problem from theoretical perspective. 
+we face tasks and samples sequence by sequence as usual online learning settings. As introduced above, tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation. We let $\mathcal{G}$ and $\mathcal{H}$ be the space of representation and predictor respectively. As learning the representations is typically much more costly than learning predictors in lifelong learning, we would like to understand if it is possible to learn them continuously through time across different tasks, instead of relearning them in different tasks.
 
 # Notations and Settings
 
