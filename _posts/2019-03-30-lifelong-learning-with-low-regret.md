@@ -42,14 +42,14 @@ Before dive into details, here we give a simple example to show possible advanta
 We start from the case that $|\mathcal{G}|$ and $|\mathcal{H}|$ are finite but the loss functions are arbitrary. 
 For this, we provide an efficient algorithm achieving a regret of 
 $\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$,
-while relearning the representation for each task has a regret of 
+while relearning the representation results in regret of
 
+\[\sum\limits_{k=1}^{K}\mathcal{O}\left(\sqrt{T_{k}\log |\mathcal{G}|}+\sqrt{T_{k}\log |\mathcal{H}|}\right)\leq\mathcal{O}\left(\sqrt{KT\log |\mathcal{G}|}+\sqrt{KT\log |\mathcal{H}|}\right)\]
 
-\[\sum\limits_{k=1}^K\mathcal{O}\left(\sqrt{T_k\log |\mathcal{G}|}+\sqrt{T_k\log |\mathcal{H}|}\right)\leq\mathcal{O}\left(\sqrt{KT\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right).\]
 
 As mentioned above, learning representations is usually more costly than learning predictors. Our bound prevents the number of tasks from affecting the learning of representations. That is to say, the cost of learning the representations doesn't grow with the number of tasks.
 
-#
+abc
 
 
 
