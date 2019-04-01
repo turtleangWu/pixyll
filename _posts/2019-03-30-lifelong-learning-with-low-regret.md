@@ -31,6 +31,12 @@ Both the tasks and their samples arrive sequentially so that in each time step, 
 
 As introduced above, tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation. As learning the representations is typically much more costly than learning predictors in lifelong learning, we would like to understand if it is possible to learn them continuously through time across different tasks, instead of relearning.
 
+To measure the performance of a learning algorithm, different settings have their own natural choices. Since the samples of each task arrive one after one, an often adopted measure is the regret.
+
+\[sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_K}\sum\limits_{k,s}\ell_{k,s}(g, h_k) \]
+
+
+
 
 
 
