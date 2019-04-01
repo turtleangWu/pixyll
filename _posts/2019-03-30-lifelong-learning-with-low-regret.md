@@ -5,7 +5,7 @@ date: 2019-03-30 12:00
 summary: Lifelong learning comes from online learning and multi-task learning. We face tasks and samples sequence by sequence as usual online learning settings. However, there are more than one task which makes learning more difficult.
 categories: lifelong
 author: Yi-Shan Wu
-visible: False
+visible: True
 ---
 
 # Introduction
