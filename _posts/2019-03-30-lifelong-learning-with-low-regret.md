@@ -37,6 +37,7 @@ To measure the performance of a learning algorithm, different settings have thei
 
 # Example
 
+
 Before dive into details, here we give a simple example to show possible advantages of lifelong learning over relearning tasks.
 We start from the case that $|\mathcal{G}|$ and $|\mathcal{H}|$ are finite but the loss functions are arbitrary. 
 For this, we provide an efficient algorithm achieving a regret of 
