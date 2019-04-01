@@ -35,6 +35,9 @@ To measure the performance of a learning algorithm, different settings have thei
 
 \[ \sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_K}\sum\limits_{k,s}\ell_{k,s}(g, h_k) \]
 
+# Example
+
+Before dive into details, here we give a simple example to show possible advantages of lifelong learning over relearning tasks. We start from the case that $|\mathcal{G}|$ and $|\mathcal{H}|$ are finite but the loss functions are arbitrary. For this, we provide an efficient algorithm achieving a regret of $\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$.
 
 
 
