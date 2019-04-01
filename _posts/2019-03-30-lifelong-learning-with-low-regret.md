@@ -44,10 +44,11 @@ For this, we provide an efficient algorithm achieving a regret of
 $\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$,
 while relearning the representation results in regret of
 
+
 \[\sum\limits_{k=1}^{K}\mathcal{O}\left(\sqrt{T_{k}\log \mathcal{G}}+\sqrt{T_{k}\log \mathcal{H}}\right)\leq\mathcal{O}\left(\sqrt{KT\log \mathcal{G}}+\sqrt{KT\log \mathcal{H}}\right)\]
 
 
-First of all, our bound prevents the number of tasks from affecting the learning of representations. That is to say, the regret of learning the representations doesn't grow with the number of tasks (for a fixed $T$). Since $|\mathcal{G}|$ is usually large, this benefit makes our bound attractive for large $K$.
+First of all, our bound prevents the number of tasks from affecting the learning of representations. That is to say, the regret of learning the representations doesn't grow with the number of tasks (for a fixed $T$). Since $\mathcal{G}$ is usually large, this benefit makes our bound attractive for large $K$.
 
 Moreover, as learning the representations is typically much more costly than learning predictors in lifelong learning, if under some conditions it is then possible to identify the best representation $g^{*}$ for all tasks at some step $t<T$, this would allow us to learn new tasks faster, by saving the time for learning the representation.
 
