@@ -16,9 +16,10 @@ visible: True
 
 Machine learning algorithms can now solve many problems even better than humans. However, machines are still far from being intelligent that they typically need to relearn when facing new tasks, while humans are able to learn new things efficiently by ultilizing learned knowledge. This motivates the study called lifelong learning (Thrun and Pratt, 1998), which aims to perform better over time by **transferring** information learned from previously tasks to later ones, *under the belief that there are some commonalities across tasks*. 
 
-To formulate the commonalities across tasks, we assume that tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation.
+To formulate the commonalities across tasks, we assume that 
+>tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation to form a classifier.
 
-There were some other empirical studies on the possibility of evolving the network structures over different tasks to do lifelong learning (Rusu et al., 2016; Lee et al., 2017). For theoretical studies, we, and most prior works as well, focused on learning with fixed architectures. That is, the representation and the predictor spaces are chosen before receiving samples. 
+There were some empirical studies on the possibility of evolving the network structures over different tasks to do lifelong learning (Rusu et al., 2016; Lee et al., 2017). For theoretical studies, we, and most prior works as well, focused on learning with fixed architectures. That is, the representation and the predictor spaces are fixed before receiving samples. 
 
 In this paper, we consider the following learning problem: 
 
