@@ -35,10 +35,10 @@ To measure the performance of a learning algorithm, different settings have thei
 
 \[ \sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_K}\sum\limits_{k,s}\ell_{k,s}(g, h_k) \]
 
-# Example
+## Example
 
 
-Before dive into details, here we give a simple example to show possible advantages of lifelong learning over relearning tasks.
+Before going to details, here we give a simple example to show possible advantages of lifelong learning over relearning tasks.
 We start from the case that $|\mathcal{G}|$ and $|\mathcal{H}|$ are finite but the loss functions are arbitrary. 
 For this, we provide an efficient algorithm achieving a regret of 
 $\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$,
@@ -46,10 +46,12 @@ while relearning the representation results in regret of
 
 \[\sum\limits_{k=1}^{K}\mathcal{O}\left(\sqrt{T_{k}\log \mathcal{G}}+\sqrt{T_{k}\log \mathcal{H}}\right)\leq\mathcal{O}\left(\sqrt{KT\log \mathcal{G}}+\sqrt{KT\log \mathcal{H}}\right)\]
 
-
 As mentioned above, learning representations is usually more costly than learning predictors. Our bound prevents the number of tasks from affecting the learning of representations. That is to say, the cost of learning the representations doesn't grow with the number of tasks.
 
-def
+# Full-Information Adversarial Setting
+
+To achieve our regret bound, recall that we hope to learn the representations continuously through time using all the data across different tasks, while we still have to relearn predictors for different tasks. To do that, we would like to decouple the learning of representations from that of predictors, for them to have different learning algorithms as well as different learning schedules.
+
 
 
 
