@@ -10,17 +10,19 @@ visible: True
 
 # Introduction
 
-Machine learning algorithms can now solve many problems even better than humans. However, machines are still far from being intelligent that they typically need to relearn when facing new tasks, while humans are able to learn new things efficiently by ultilizing learned knowledge. This motivates the study called lifelong learning (Thrun and Pratt, 1998), which aims to perform better over time by **transferring** information learned from previously tasks to later ones, *under the belief that there are some commonalities across tasks*. 
-
 <center class="half">
   <img src="/images/lifelong/Lifelong.png" width="760" height="200" />
 </center>
 
-There were some empirical studies on the possibility of evolving the network structures over different tasks to do lifelong learning (Rusu et al., 2016; Lee et al., 2017). For theoretical studies, we, and most prior works as well, focused on learning with fixed architectures. That is, the classifier space is chosen before receiving samples. In this paper, we consider the following learning problem: 
+Machine learning algorithms can now solve many problems even better than humans. However, machines are still far from being intelligent that they typically need to relearn when facing new tasks, while humans are able to learn new things efficiently by ultilizing learned knowledge. This motivates the study called lifelong learning (Thrun and Pratt, 1998), which aims to perform better over time by **transferring** information learned from previously tasks to later ones, *under the belief that there are some commonalities across tasks*. 
+
+To formulate the commonalities across tasks, we assume that tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation.
+
+There were some other empirical studies on the possibility of evolving the network structures over different tasks to do lifelong learning (Rusu et al., 2016; Lee et al., 2017). For theoretical studies, we, and most prior works as well, focused on learning with fixed architectures. That is, the representation and the predictor spaces are chosen before receiving samples. 
+
+In this paper, we consider the following learning problem: 
 
 # Notations and Settings
-
-As introduced above, we assume that tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation.
 
 * representation space : $\mathcal{G}$ (usually very large)
 * predictor space : $\mathcal{H}$
@@ -31,7 +33,7 @@ Both the tasks and their samples arrive sequentially so that in each time step, 
 
 As learning the representations is typically much more costly than learning predictors in lifelong learning, we would like to understand if it is possible to learn them continuously through time across different tasks, instead of relearning.
 
-To measure the performance of a learning algorithm, different settings have their own natural choices. Since the samples of each task arrive one after one, an often adopted measure is the regret.
+To measure the performance of a learning algorithm, different settings have their own natural choices. Since the samples of each task arrive one after one, an often adopted measure is the regret. To capture this, we measure the regret by comparing against an offline algorithm which must use a fixed representation for all the tasks but is allowed to use different predictors for different tasks.
 
 \[ \sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_K}\sum\limits_{k,s}\ell_{k,s}(g, h_k) \]
 
