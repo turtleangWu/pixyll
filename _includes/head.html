@@ -38,23 +38,6 @@
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     {% endif %}
 
-    <!-- MathJax -->
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        extensions: ["tex2jax.js"],
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-          displayMath: [ ['$$','$$'], ["\[","\]"], ["\\[","\\]"] ],
-          processEscapes: true
-        },
-        messageStyle: "none",
-        "HTML-CSS": { availableFonts: ["TeX"] }
-      });
-    </script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js">
-    </script>
-
     <!-- Verifications -->
     {% if site.google_verification %}
       <meta name="google-site-verification" content="{{ site.google_verification }}" />
