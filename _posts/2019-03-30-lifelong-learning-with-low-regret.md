@@ -33,7 +33,9 @@ Both the tasks and their samples arrive sequentially so that in each time step, 
 
 To measure the performance of a learning algorithm, different settings have their own natural choices. Since the samples of each task arrive one after one, an often adopted measure is the **regret**. Furthermore, to capture the assumption above, we measure the regret by comparing against an offline algorithm which must use a fixed representation for all the tasks but is allowed to use different predictors for different tasks.
 
-\[ Regret(T)=\sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_K}\sum\limits_{k,s}\ell_{k,s}(g, h_k) \]
+\[ 
+Regret(T)=\sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_K}\sum\limits_{k,s}\ell_{k,s}(g, h_k) 
+\]
 
 ## Example
 
@@ -57,7 +59,9 @@ Moreover, as learning the representations is typically much more costly than lea
 In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what the best representation $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when a good representation may look bad if we choose a bad predictor to go with it? A sensible choice seems to be accompany it with its best predictor in a task. That is, 
 
 
-\[ \hat{L}_k(g)=\sum\limits_s \ell_{k,s}(h^{*}(k,g), g) \]
+\[ 
+\hat{L}_k(g)=\sum\limits_s \ell_{k,s}(h^{*}(k,g), g) 
+\]
 
 
 
