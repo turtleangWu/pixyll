@@ -56,7 +56,7 @@ Moreover, as learning the representations is typically much more costly than lea
 
 # Full-Information Adversarial Setting
 
-In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. 
+In learning problems, we always guide the learning by losses. In full-information setting, the whole loss fuction at each step is revealed. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. 
 
 If we already know what the best representation $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when **a good representation may look bad if we choose a bad predictor to go with it**? A sensible choice seems to be accompanying it with its *best predictor in a task *. That is, to measure a representation $g$ in task $k$ by $\hat{L}_k (g)$, where
 
@@ -70,11 +70,24 @@ $$
 \min_{g}\sum\limits_{k=1}^K \hat{L}_k (g).
 $$
 
-Everything goes well so far. Nevertheless, the above method only provides us with measurement at the end of tasks. When learning within a task, we do not know what the best predictor of a representation is as **the predictor which looks best so far may turn out to be bad at the end of the task in the adversarial setting**. This is perhaps one reason why Alquier et al. (2017) chose to update their representations only at the end of each task, where the best predictor of each representation in the task is ensured. This consequently requires a large number of tasks in order to have a good regret bound due to less update.
+Everything goes well so far. Nevertheless, the above method only provides us with measurement at the end of tasks. When learning within a task, we do not know what the best predictor of a representation is as **the predictor which looks best so far may turn out to be bad at the end of the task in the adversarial setting**. This is perhaps one reason why Alquier et al. (2017) chose to update their representations only at the end of each task, where the best predictor of each representation in the task is ensured. This consequently requires a large number of tasks in order to have a good regret bound due to less update. To achieve our regret bound, we have to construct appropriate loss functions so as to update representations more often (we actually update them at every step). 
 
-To achieve our regret bound, we have to construct appropriate loss functions so as to update representations at every step. Recall that we hope to learn the representations continuously through time using all the data across different tasks, while we still have to relearn predictors for different tasks. To do that, we would like to decouple the learning of representations from that of predictors, for them to have different loss functions and different learning algorithms.
+### Construct Loss Functions
+
+Recall that tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation. Therefore, we hope to learn the representations continuously through time using all the data across different tasks, while we still have to relearn predictors for different tasks. To do that, we would like to decouple the learning of representations from that of predictors, for them to have different loss functions and different learning schedules.
 
 
+For finite representations, we describe our solution via a generic algorithm, which can use *any algorithm $alg_G$ for learning representations* and *any algorithm $alg_H$ for learning predictors*, with the resulting regret bound guaranteed by those of these two algorithms.
+
+For learning the representation, we take a single copy of $alg_G$ and have it update continuously through time, across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_H$ for learning the accompanying predictors. When starting a new task $k$, we reset each copy $alg^{(g)}_H$ and redo its learning.
+
+At step s in task k, we sample a representation gk,s according to some distribution Gk,s of algG, followed by sampling a predictor hk,s according to some distri-
+bution H(gk,s) of alg(gk,s) (each distribution can focus k,s H
+all the measure on one element if the algorithm is deter- ministic). The joint action we play is (gk,s,hk,s), and the loss we suffer is lk,s(gk,s,hk,s). Then we update the distribution of algG using the loss function on g defined as
+lˆ (g)= E [l (g,h)], k,s k,s
+h∼H(g) k,s
+and update the distribution of each copy alg(g) using H
+lk,s(g,·) as the loss function on predictors.
 
 There were some empirical studies on the possibility of evolving the network structures over different tasks to do lifelong learning (Rusu et al., 2016; Lee et al., 2017). For theoretical studies, we, and most prior works as well, focused on learning with fixed architectures. That is, the representation and the predictor spaces are fixed before receiving samples. 
 
