@@ -56,10 +56,12 @@ Moreover, as learning the representations is typically much more costly than lea
 
 # Full-Information Adversarial Setting
 
-In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what the best representation $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when a good representation may look bad if we choose a bad predictor to go with it? A sensible choice seems to be accompany it with its best predictor in a task. That is, the best representation in task $k$ should be $\min_{g} \hat{L}_k (g)$, where
+In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. 
+
+If we already know what the best representation $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when a good representation may look bad if we choose a bad predictor to go with it? A sensible choice seems to be accompanying it with its best predictor in a task. That is, it is nature to choose the best representation in task $k$ as $\min_{g} \hat{L}_k (g)$, where
 
 $$ 
-\hat{L}_k(g)=\sum\limits_s \ell_{k,s}(h^{*}(k,g), g) 
+\hat{L}_k(g)=\min_h \sum\limits_{s=1}^{T_k} \ell_{k,s}(h, g). 
 $$
 
 Nevertheless, when learning within a task, we do not know what the best predictor of a representation is as the predictor which looks best so far may turn out to be bad in the end in the adversarial setting. This is perhaps one reason why Alquier et al. (2017) chose to update their representations only at the end of each task (where the best predictor of each representation in the task is )
