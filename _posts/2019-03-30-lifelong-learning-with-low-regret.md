@@ -54,9 +54,11 @@ Moreover, as learning the representations is typically much more costly than lea
 
 # Full-Information Adversarial Setting
 
-In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. Therefore, a good representation may look bad if we choose a bad predictor to go with it. This makes learning harder. 
+In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when a good representation may look bad if we choose a bad predictor to go with it? A sensible choice seems to be accompany it with its best predictor in a task, as it is what we measure regret against to.
 
-If we know what $g^{*}$ is, then it remains to learn predictors for each task
+but we do not know what it is as the predictor which looks best so far may turn out to be bad in the end in the adversarial setting.
+
+
 
 To achieve our regret bound, recall that we hope to learn the representations continuously through time using all the data across different tasks, while we still have to relearn predictors for different tasks. To do that, we would like to decouple the learning of representations from that of predictors, for them to have different learning algorithms as well as different learning schedules.
 
