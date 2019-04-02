@@ -54,9 +54,12 @@ Moreover, as learning the representations is typically much more costly than lea
 
 # Full-Information Adversarial Setting
 
-In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when a good representation may look bad if we choose a bad predictor to go with it? A sensible choice seems to be accompany it with its best predictor in a task, as it is what we measure regret against to.
+In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what the best representation $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when a good representation may look bad if we choose a bad predictor to go with it? A sensible choice seems to be accompany it with its best predictor in a task. That is, $\hat{L}_{k}(g)=\sum\limits_{s}\ell_{k,s}(h^{*}(k,g), g)$.
 
-but we do not know what it is as the predictor which looks best so far may turn out to be bad in the end in the adversarial setting.
+
+
+Nevertheless, when learning within a task, we do not know what the best predictor of a representation is as the predictor which looks best so far may turn out to be bad in the end in the adversarial setting. This is perhaps one reason why Alquier et al. (2017) chose to update their representations only at the end of each task (where the best predictor of each representation in the task is )
+, but consequently requiring a large number of tasks in order to have a good regret bound due to less update.
 
 
 
