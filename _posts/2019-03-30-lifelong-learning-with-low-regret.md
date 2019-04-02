@@ -57,7 +57,7 @@ Moreover, as learning the representations is typically much more costly than lea
 In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what the best representation $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when a good representation may look bad if we choose a bad predictor to go with it? A sensible choice seems to be accompany it with its best predictor in a task. That is, 
 
 
-\[\hat{L}_{k}(g)=\sum\limits_s \ell_{k,s}(h^{*}(k,g), g)\]
+\[ \hat{L}_k(g)=\sum\limits_s \ell_{k,s}(h^{*}(k,g), g) \]
 
 
 
