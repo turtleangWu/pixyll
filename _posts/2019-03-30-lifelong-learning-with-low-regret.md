@@ -85,7 +85,7 @@ Recall that tasks are related as they share some common representation, but they
 For finite representations, we describe our solution via a generic algorithm. We take $alg_G$ to learn the representation and have it update continuously through time across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_{H}$ for learning the accompanying predictors. When starting a new task $k$, reset each copy $alg^{(g)}_H$ and redo its learning. The resulting regret bound guaranteed by the choose of these two algorithms.
 
 
-At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution \( \mathcal{G}_{k,s} \) of \( alg_G \), followed by sampling a predictor \( h_{k,s} \) according to some distribution \( \mathcal{H}^{(g_{k,s})}_{k,s} \) of \( alg_H^{g_{k,s}}\). The joint action we play is \( (g_{k,s}, h_{k,s}) \). Then we update the distribution of \( alg_G \) using the loss function on \( g \) defined as
+At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution \\( \mathcal{G}_{k,s} \\) of \\( alg_G \\), followed by sampling a predictor \\( h_{k,s} \\) according to some distribution \\( \mathcal{H}^{(g_{k,s})}_{k,s} \\) of \\( alg_H^{g_{k,s}} \\). The joint action we play is \( (g_{k,s}, h_{k,s}) \). Then we update the distribution of \( alg_G \) using the loss function on \( g \) defined as
 
 $$\hat{\ell}(g)=\mathbb{E}_{h\sim \mathcal{H}_{k,s}^{(g_{k,s})}}\left[\ell_{k,s}(g,h) \right] $$
 
