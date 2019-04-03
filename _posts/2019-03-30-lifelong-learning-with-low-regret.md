@@ -82,22 +82,16 @@ To achieve our regret bound, we have to construct appropriate loss functions so 
 Recall that tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation. Therefore, we hope to learn the representations continuously through time using all the data across different tasks, while we still have to relearn predictors for different tasks. To do that, we would like to decouple the learning of representations from that of predictors, for them to have different loss functions and different learning schedules.
 
 
-For finite representations, we describe our solution via a generic algorithm. We take $alg_G$ to learn the representation and have it update continuously through time across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_{H}$ for learning the accompanying predictors. The resulting regret bound guaranteed by the use of these two algorithms.
+For finite representations, we describe our solution via a generic algorithm. We take $alg_G$ to learn the representation and have it update continuously through time across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_{H}$ for learning the accompanying predictors. When starting a new task $k$, reset each copy $alg^{(g)}_H$ and redo its learning. The resulting regret bound guaranteed by the choose of these two algorithms.
 
 
+At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution $\mathcal{G}_{k,s}$ of $alg_G$, followed by sampling a predictor $h_{k,s}$ according to some distribution $\mathcal{H}^{(g_{k,s})}_{k,s}$ of $alg_H^{g_{k,s}}$. The joint action we play is $(g_{k,s}, h_{k,s})$. Then we update the distribution of $alg_G$ using the loss function on $g$ defined as
+
+$$\hat{\ell}(g)=\mathbb{E}_{h\sim \mathcal{H}_{k,s}^{(g_{k,s})}}\left[\ell_{k,s}(g,h) \right] $$
+
+and update the distribution of each copy $alg^{(g)}_H$ using $\ell_{k,s}(g,\cdot)$ as the loss function on predictors.
 
 
-, which can use *any algorithm $alg_G$ for learning representations* and *any algorithm $alg_H$ for learning predictors*, with the resulting regret bound guaranteed by those of these two algorithms.
-
- When starting a new task $k$, we reset each copy $alg^{(g)}_H$ and redo its learning.
-
-At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution $\mathcal{G}_{k,s}$, followed by sampling a predictor $h_{k,s}$ according to some distribution $\mathcal{H}^{(g_{k,s})}_{k,s}$. The joint action we play is $(g_{k,s}, h_{k,s})$, and the loss we suffer is $\ell_{k,s}(g_{k,s}, h_{k,s})$. 
-
-Then we update the distribution of algG using the loss function on g defined as
-lˆ (g)= E [l (g,h)], k,s k,s
-h∼H(g) k,s
-and update the distribution of each copy alg(g) using H
-lk,s(g,·) as the loss function on predictors.
 
 There were some empirical studies on the possibility of evolving the network structures over different tasks to do lifelong learning (Rusu et al., 2016; Lee et al., 2017). For theoretical studies, we, and most prior works as well, focused on learning with fixed architectures. That is, the representation and the predictor spaces are fixed before receiving samples. 
 
