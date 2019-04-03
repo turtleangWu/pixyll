@@ -52,13 +52,16 @@ while relearning the representation results in regret of
 
 First of all, our bound prevents the number of tasks from affecting the learning of representations. That is to say, the regret of learning the representations doesn't grow with the number of tasks (for a fixed $T$). Since $\mathcal{G}$ is usually large, this benefit makes our bound attractive for large $K$.
 
-Moreover, as learning the representations is typically much more costly than learning predictors in lifelong learning, if under some conditions it is then possible to identify the best representation $g^{*}$ for all tasks at some step $t<T$, this would allow us to learn new tasks faster, by saving the time for learning the representation.
+Moreover, as learning the representations is typically much more costly than learning predictors in lifelong learning, if under some conditions it is possible to identify the best representation $g^{*}$ for all tasks at some step $t<T$, this would allow us to learn new tasks faster by saving the time for learning the representation.
 
-# Full-Information Adversarial Setting
+# First Challenge
 
-In learning problems, we always guide the learning by losses. In full-information setting, the whole loss fuction at each step is revealed. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. 
+In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what the best representation $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when **a good representation may look bad if we choose a bad predictor to go with it**? A sensible choice seems to be accompanying it with its *best predictor in a task *. Take the full-information adversarial setting for example.
 
-If we already know what the best representation $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when **a good representation may look bad if we choose a bad predictor to go with it**? A sensible choice seems to be accompanying it with its *best predictor in a task *. That is, to measure a representation $g$ in task $k$ by $\hat{L}_k (g)$, where
+
+## Full-Information Adversarial Setting
+
+In full-information setting, the whole loss fuction at each step is revealed. We can measure a representation $g$ in task $k$ by $\hat{L}_k (g)$, where
 
 $$ 
 \hat{L}_k(g)=\min_h \sum\limits_{s=1}^{T_k} \ell_{k,s}(h, g). 
@@ -70,9 +73,11 @@ $$
 \min_{g}\sum\limits_{k=1}^K \hat{L}_k (g).
 $$
 
-Everything goes well so far. Nevertheless, the above method only provides us with measurement at the end of tasks. When learning within a task, we do not know what the best predictor of a representation is as **the predictor which looks best so far may turn out to be bad at the end of the task in the adversarial setting**. This is perhaps one reason why Alquier et al. (2017) chose to update their representations only at the end of each task, where the best predictor of each representation in the task is ensured. This consequently requires a large number of tasks in order to have a good regret bound due to less update. To achieve our regret bound, we have to construct appropriate loss functions so as to update representations more often (we actually update them at every step). 
+Everything goes well so far. Nevertheless, the above method only provides us with measurement at the end of tasks. When learning within a task, we do not know what the best predictor of a representation is as **the predictor which looks best so far may turn out to be bad at the end of the task in the adversarial setting**. This is perhaps one reason why Alquier et al. (2017) chose to update their representations only at the end of each task, where the best predictor of each representation in the task is ensured. This consequently requires a large number of tasks in order to have a good regret bound due to less update. 
 
-### Construct Loss Functions
+To achieve our regret bound, we have to construct appropriate loss functions so as to update representations more often (we actually update them at every step). 
+
+### Construct Loss Functions for Full-Information Adversarial Setting
 
 Recall that tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation. Therefore, we hope to learn the representations continuously through time using all the data across different tasks, while we still have to relearn predictors for different tasks. To do that, we would like to decouple the learning of representations from that of predictors, for them to have different loss functions and different learning schedules.
 
@@ -81,9 +86,9 @@ For finite representations, we describe our solution via a generic algorithm, wh
 
 For learning the representation, we take a single copy of $alg_G$ and have it update continuously through time, across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_H$ for learning the accompanying predictors. When starting a new task $k$, we reset each copy $alg^{(g)}_H$ and redo its learning.
 
-At step s in task k, we sample a representation gk,s according to some distribution Gk,s of algG, followed by sampling a predictor hk,s according to some distri-
-bution H(gk,s) of alg(gk,s) (each distribution can focus k,s H
-all the measure on one element if the algorithm is deter- ministic). The joint action we play is (gk,s,hk,s), and the loss we suffer is lk,s(gk,s,hk,s). Then we update the distribution of algG using the loss function on g defined as
+At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution $\mathcal{G}_{k,s}$, followed by sampling a predictor $h_{k,s}$ according to some distribution $\mathcal{H}^{(g_{k,s})}_{k,s}$. The joint action we play is $(g_{k,s}, h_{k,s})$, and the loss we suffer is $\ell_{k,s}(g_{k,s}, h_{k,s})$. 
+
+Then we update the distribution of algG using the loss function on g defined as
 lˆ (g)= E [l (g,h)], k,s k,s
 h∼H(g) k,s
 and update the distribution of each copy alg(g) using H
