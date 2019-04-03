@@ -52,11 +52,11 @@ while relearning the representation results in regret of
 
 First of all, our bound prevents the number of tasks from affecting the learning of representations. That is to say, the regret of learning the representations doesn't grow with the number of tasks (for a fixed $T$). Since $\mathcal{G}$ is usually large, this benefit makes our bound attractive for large $K$.
 
-Moreover, as learning the representations is typically much more costly than learning predictors in lifelong learning, if under some conditions it is possible to identify the best representation $g^{*}$ for all tasks at some step $t<T$, this would allow us to learn new tasks faster by saving the time for learning the representation.
+Moreover, as learning the representations is typically much more costly than learning predictors in lifelong learning, if under some conditions it is possible to identify the best representation $g^{\*}$ for all tasks at some step $t<T$, this would allow us to learn new tasks faster by saving the time for learning the representation.
 
 # First Challenge
 
-In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what the best representation $g^{*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when **a good representation may look bad if we choose a bad predictor to go with it**? A sensible choice seems to be accompanying it with its **best predictor in a task**. Take the full-information adversarial setting for example.
+In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what the best representation $g^{\*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when **a good representation may look bad if we choose a bad predictor to go with it**? A sensible choice seems to be accompanying it with its **best predictor in a task**. Take the full-information adversarial setting for example.
 
 
 ## Full-Information Adversarial Setting
@@ -85,7 +85,7 @@ Recall that tasks are related as they share some common representation, but they
 For finite representations, we describe our solution via a generic algorithm. We take $alg_G$ to learn the representation and have it update continuously through time across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_{H}$ for learning the accompanying predictors. When starting a new task $k$, reset each copy $alg^{(g)}_H$ and redo its learning. The resulting regret bound guaranteed by the choose of these two algorithms.
 
 
-At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution \\( \mathcal{G}_{k,s} \\) of \\( alg_G \\), followed by sampling a predictor \\( h_{k,s} \\) according to some distribution \\( \mathcal{H}^{(g_{k,s})}_{k,s} \\) of \\( alg_H^{g_{k,s}} \\). The joint action we play is \( (g_{k,s}, h_{k,s}) \). Then we update the distribution of \( alg_G \) using the loss function on \( g \) defined as
+At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution $\mathcal{G}_{k,s}$ of $alg_{G}$, followed by sampling a predictor $h_{k,s}$ according to some distribution $\mathcal{H}^{(g_{k,s})}_{k,s}$ of  $alg_{H}^{g_{k,s}}$. The joint action we play is $(g_{k,s}, h_{k,s})$. Then we update the distribution of $alg_{G}$ using the loss function on $g$ defined as
 
 $$\hat{\ell}(g)=\mathbb{E}_{h\sim \mathcal{H}_{k,s}^{(g_{k,s})}}\left[\ell_{k,s}(g,h) \right] $$
 
