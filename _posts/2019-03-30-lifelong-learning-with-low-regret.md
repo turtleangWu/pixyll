@@ -61,7 +61,7 @@ In learning problems, we always guide the learning by losses. However, here the 
 
 ## Full-Information Adversarial Setting
 
-In full-information setting, the whole loss fuction at each step is revealed. We can measure a representation $g$ in task $k$ by $\hat{L}_k (g)$, where
+In full-information setting, the whole loss fuction at each step is revealed. A sensible choice to measure a representation $g$ in task $k$ is $\hat{L}_k (g)$, where
 
 $$ 
 \hat{L}_k(g)=\min_h \sum\limits_{s=1}^{T_k} \ell_{k,s}(h, g). 
@@ -82,9 +82,14 @@ To achieve our regret bound, we have to construct appropriate loss functions so 
 Recall that tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation. Therefore, we hope to learn the representations continuously through time using all the data across different tasks, while we still have to relearn predictors for different tasks. To do that, we would like to decouple the learning of representations from that of predictors, for them to have different loss functions and different learning schedules.
 
 
-For finite representations, we describe our solution via a generic algorithm, which can use *any algorithm $alg_G$ for learning representations* and *any algorithm $alg_H$ for learning predictors*, with the resulting regret bound guaranteed by those of these two algorithms.
+For finite representations, we describe our solution via a generic algorithm. We take $alg_G$ to learn the representation and have it update continuously through time across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_{H}$ for learning the accompanying predictors. The resulting regret bound guaranteed by the use of these two algorithms.
 
-For learning the representation, we take a single copy of $alg_G$ and have it update continuously through time, across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_H$ for learning the accompanying predictors. When starting a new task $k$, we reset each copy $alg^{(g)}_H$ and redo its learning.
+
+
+
+, which can use *any algorithm $alg_G$ for learning representations* and *any algorithm $alg_H$ for learning predictors*, with the resulting regret bound guaranteed by those of these two algorithms.
+
+ When starting a new task $k$, we reset each copy $alg^{(g)}_H$ and redo its learning.
 
 At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution $\mathcal{G}_{k,s}$, followed by sampling a predictor $h_{k,s}$ according to some distribution $\mathcal{H}^{(g_{k,s})}_{k,s}$. The joint action we play is $(g_{k,s}, h_{k,s})$, and the loss we suffer is $\ell_{k,s}(g_{k,s}, h_{k,s})$. 
 
