@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-{% if page.use_math %}
-      {% include mathjax.html %}
-{% endif %}
+{% include mathjax.html %}
 {% include head.html %}
 <body class="site{% if site.animated %} animated fade-in-down{% endif %}">
   {% if site.google_tag_manager %}
