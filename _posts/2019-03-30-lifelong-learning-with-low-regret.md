@@ -77,19 +77,19 @@ Everything goes well so far. Nevertheless, the above method only provides us wit
 
 To achieve our regret bound, we have to construct appropriate loss functions so as to update representations more often (we actually update them at every step). 
 
-### Construct Loss Functions for Full-Information Adversarial Setting
+### Learning Schedule for Full-Information Adversarial Setting
 
-Recall that tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation. Therefore, we hope to learn the representations continuously through time using all the data across different tasks, while we still have to relearn predictors for different tasks. To do that, we would like to decouple the learning of representations from that of predictors, for them to have different loss functions and different learning schedules.
+Recall that tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation. Therefore, we hope to learn the representations continuously through time, while we still have to relearn predictors for different tasks. To do that, we would like to decouple the learning of representations from that of predictors, for them to have different loss functions and different learning schedules.
 
 
 For finite representations, we describe our solution via a generic algorithm. We take $alg_G$ to learn the representation and have it update continuously through time across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_{H}$ for learning the accompanying predictors. When starting a new task $k$, reset each copy $alg^{(g)}_H$ and redo its learning. The resulting regret bound guaranteed by the choose of these two algorithms.
 
 
-At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution $ G_{k,s} $ of $ alg_{G} $, followed by sampling a predictor $h_{k,s}$ according to some distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{g_{k,s}}$. The joint action we play is $(g_{k,s}, h_{k,s})$. Then we update the distribution of $alg_{G}$ using the loss function on $g$ defined as
+At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution $ G_{k,s} $ of $ alg_{G} $, followed by sampling a predictor $h_{k,s}$ according to some distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{(g_{k,s})}$. The joint action we play is $(g_{k,s}, h_{k,s})$ and the loss function is $\ell_{k,s}$. Then we update $alg_{G}$ using the loss function on $g$ defined as
 
-$$\hat{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g_{k,s})}}\left[\ell_{k,s}(g,h) \right] $$
+$$\hat{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[\ell_{k,s}(g,h) \right] $$
 
-and update the distribution of each copy $alg_{H}^{(g)}$ using $\ell_{k,s}\left( g,\cdot \right)$ as the loss function on predictors.
+and update each copy $alg_{H}^{(g)}$ using $\ell_{k,s}\left( g,\cdot \right)$ as the loss function on predictors.
 
 
 
