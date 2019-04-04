@@ -87,7 +87,7 @@ For finite representations, we describe our solution via a generic algorithm. We
 
 At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution $ G_{k,s} $ of $ alg_{G} $, followed by sampling a predictor $h_{k,s}$ according to some distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{g_{k,s}}$. The joint action we play is $(g_{k,s}, h_{k,s})$. Then we update the distribution of $alg_{G}$ using the loss function on $g$ defined as
 
-$$\hat{\ell}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g_{k,s})}}\left[\ell_{k,s}(g,h) \right] $$
+$$\hat{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g_{k,s})}}\left[\ell_{k,s}(g,h) \right] $$
 
 and update the distribution of each copy $alg_{H}^{(g)}$ using $\ell_{k,s}\left( g,\cdot \right)$ as the loss function on predictors.
 
