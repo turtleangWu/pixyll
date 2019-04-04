@@ -95,12 +95,13 @@ and update the distribution of each copy $alg_{H}^{(g)}$ using $\ell_{k,s}\left(
 >**Theorem :**
 >Suppose the $t$-step regret bounds of $alg_G$ and $alg_H$ are $reg_{G}(t)$ and $reg_{H}(t)$, respectively. Then the $T$-step regret bound of our algorithm is at most $reg_G\left(T\right) +\sum\limits_{k=1}^{K} reg_H\left(T_k \right)$.
 
-By the theorem and based on multiplicative update (MU) algorithm, there is a corollary, which is also our result for above example:
+By the theorem and use multiplicative update (MU) algorithm as $alg_G$ and $alg_H$, there is a corollary, which is also our result for above example:
 
 >**Corollary :**
 >For the case that $|\mathcal{G}|$ and $|\mathcal{H}|$ are finite but the loss functions are arbitrary, we provide an efficient algorithm achieving a regret of 
 $\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$
 
+For other cases such as $|\mathcal{G}|$ and $|\mathcal{H}|$ are infinite but with some other assumptions, we can divide them into small partitions and apply suitable algorithms as $alg_G$ and $alg_H$ to obtain the regret bound.
 
 
 
