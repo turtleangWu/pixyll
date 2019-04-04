@@ -86,14 +86,14 @@ Recall that tasks are related as they share some common representation, but they
 We take $alg_G$ to learn the representation and have it update continuously through time across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_{H}$ for learning the accompanying predictors. When starting a new task $k$, reset each copy $alg^{(g)}_H$ and redo its learning. The resulting regret bound guaranteed by the choose of these two algorithms.
 
 
-At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution $G_{k,s}$ of $alg_{G}$, followed by sampling a predictor $h_{k,s}$ according to some distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{(g_{k,s})}$. The joint action we play is $(g_{k,s}, h_{k,s})$ and the loss function is $\ell_{k,s}$. Then we update $alg_{G}$ using the loss function on $g$ defined as
+At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some distribution $G_{k,s}$ of $alg_{G}$, followed by sampling a predictor $h_{k,s}$ according to some distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{(g_{k,s})}$. The joint action we play is $(g_{k,s}, h_{k,s})$ and the loss function is $\ell_{k,s}$. Then we update the distribution of $alg_{G}$ using the loss function on $g$ defined as
 
 $$\hat{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[\ell_{k,s}(g,h) \right] $$
 
-and update each copy $alg_{H}^{(g)}$ using $\ell_{k,s}\left( g,\cdot \right)$ as the loss function on predictors. That is, the loss of $g$ at step $s$ in task $k$ is defined to be the average performance of it with its predictors.
+and update the distribution of each copy $alg_{H}^{(g)}$ using $\ell_{k,s}\left( g,\cdot \right)$ as the loss function on predictors. That is, the loss of $g$ at step $s$ in task $k$ is defined to be the average performance of it with its predictors.
 
 >**Theorem :**
->Suppose the $t$-step regret bounds of $alg_G$ and $alg_H$ are $reg_{G}(t)$ and $reg_{H}(t)$, respectively. Then the $T$-step regret bound of our algorithm is at most $reg_G\left(T\right) + 􏰆\sum\limits_{k=1}^{K} reg_H\left(T_k \right)$, where $T_k$ denotes the number of steps in task $k$.
+>Suppose the $t$-step regret bounds of $alg_G$ and $alg_H$ are $reg_{G}(t)$ and $reg_{H}(t)$, respectively. Then the $T$-step regret bound of our algorithm is at most $reg_G\left(T\right) +\sum\limits_{k=1}^{K} reg_H\left(T_k \right)$, where $T_k$ denotes the number of steps in task $k$.
 
 
 
