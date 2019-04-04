@@ -89,7 +89,7 @@ At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to some 
 
 $$\hat{\ell}(g)=\mathbb{E}_{h\sim \mathcal{H}_{k,s}^{(g_{k,s})}}\left[\ell_{k,s}(g,h) \right] $$
 
-and update the distribution of each copy $alg^{(g)}_{H}$ using $\ell_{k,s}( g,\cdot )$ as the loss function on predictors.
+and update the distribution of each copy $alg_{H}^{(g)}$ using $\ell_{k,s}\left( g,\cdot \right)$ as the loss function on predictors.
 
 
 
