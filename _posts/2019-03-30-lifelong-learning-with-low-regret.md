@@ -113,10 +113,12 @@ Here we consider the bandit setting, in which the feedback information is the lo
 Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms. A natural estimator for $\ell_{k,s}\left( g, h \right)$ is the following:
 
 $$
-\bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{G_{k,s}(g)\cdot H_{k,s}^{(g)}(h)}.
+\bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{G_{k,s}(g)\cdot H_{k,s}^{(g)}(h)}\mathds{1}_{g=g_{k,s},h=h_{k,s}},
 $$
 
-\mathds{1}_{g=g_{k,s},h=h_{k,s}}
+where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$ respectively.
+
+
 
 
 There were some empirical studies on the possibility of evolving the network structures over different tasks to do lifelong learning (Rusu et al., 2016; Lee et al., 2017). For theoretical studies, we, and most prior works as well, focused on learning with fixed architectures. That is, the representation and the predictor spaces are fixed before receiving samples. 
