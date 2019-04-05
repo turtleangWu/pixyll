@@ -108,9 +108,13 @@ For other cases such as $\mathcal{G}$ and $\mathcal{H}$  are infinite but with s
 
 ## Second Challenge -- Bandit Setting
 
-Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that with less information, we do not have the whole loss function to guide the learning.
+Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning.
 
-Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms.
+Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms. A natural estimator for $\elll_{k,s}\left( g, h \right)$ is the following:
+
+$$
+\bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{\G_{k,s}(g)\cdot \HH_{k,s}^{(g)}(h)}\mathds{1}_{g=g_{k,s},h=h_{k,s}}.
+$$
 
 
 
