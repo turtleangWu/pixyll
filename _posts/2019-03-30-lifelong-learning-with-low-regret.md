@@ -122,7 +122,7 @@ $$
 $$
 
 
-where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $\bar{\ell_{k,s}}$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$.
+where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $\bar{\ell_{k,s}}$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$. However, $\bar{\ell_{k,s}}$ could be very large and lead to bad regret bound. This is because if a representation is chosen with a low probability, we rarely has the chance to receive the needed feedbacks to learn its accompanying predictors well. Moreover, without learning the predictors well, we cannot choose the representations appropriately since how good a representation is actually depends on its accompanying predictor.
 
 
 
