@@ -103,7 +103,7 @@ Now for adversarial cases, if we use multiplicative update (MU) algorithm as $al
 $\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$
 
 
-For other cases such as $|\mathcal{G}|$ and $|\mathcal{H}|$ are infinite but with some other assumptions, we can divide them into small partitions and apply suitable algorithms as $alg_G$ and $alg_H$ to obtain the regret bound.
+For other cases such as \(|\mathcal{G}|\) and \(|\mathcal{H}|\) are infinite but with some other assumptions, we can divide them into small partitions and apply suitable algorithms as $alg_G$ and $alg_H$ to obtain the regret bound.
 
 
 ## Bandit Adversarial Setting
