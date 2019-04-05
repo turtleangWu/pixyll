@@ -108,7 +108,10 @@ For other cases such as $\mathcal{G}$ and $\mathcal{H}$ are infinite but with so
 
 ## Second Challenge -- Bandit Setting
 
-Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning. Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms. 
+Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning. 
+
+Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms. An appropriate estimator should be unbiased. That is, conditioned on all previous randomness, the expected value of it is exactly the true loss function. 
+
 
 ### Solution 1
 
@@ -118,7 +121,10 @@ $$
 \bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{G_{k,s}(g)\cdot H_{k,s}^{(g)}(h)}\mathbf{1}_{g=g_{k,s},h=h_{k,s}},
 $$
 
-where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. Note that conditioned on all previous randomness before step $s$ of task $k$, the expected value of $\bar{\ell}_{k,s}$, over the sampling of $g_{k,s}$ and $h_{k,s}$ is exactly ${\ell}_{k,s}$, for any $g$ and $h$. This means that $\bar{\ell}_{k,s}$ is indeed an unbiased estimator for the true loss function ${\ell}_{k,s}$.
+
+where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. Note that conditioned on all previous randomness before step $s$ of task $k$, the expected value of $\bar{\ell_{k,s}}$, over the sampling of $g_{k,s}$ and $h_{k,s}$ is exactly $\ell_{k,s}$, for any $g$ and $h$. This means that $\bar{\ell_{k,s}}$ is indeed an unbiased estimator for the true loss function $\ell_{k,s}$.
+
+
 
 
 
