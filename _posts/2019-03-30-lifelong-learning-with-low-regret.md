@@ -110,13 +110,13 @@ For other cases such as $\mathcal{G}$ and $\mathcal{H}$  are infinite but with s
 
 Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning.
 
-Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms. A natural estimator for $\elll_{k,s}\left( g, h \right)$ is the following:
+Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms. A natural estimator for $\ell_{k,s}\left( g, h \right)$ is the following:
 
 $$
-\bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{\G_{k,s}(g)\cdot \HH_{k,s}^{(g)}(h)}\mathds{1}_{g=g_{k,s},h=h_{k,s}}.
+\bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{G_{k,s}(g)\cdot H_{k,s}^{(g)}(h)}.
 $$
 
-
+\mathds{1}_{g=g_{k,s},h=h_{k,s}}
 
 
 There were some empirical studies on the possibility of evolving the network structures over different tasks to do lifelong learning (Rusu et al., 2016; Lee et al., 2017). For theoretical studies, we, and most prior works as well, focused on learning with fixed architectures. That is, the representation and the predictor spaces are fixed before receiving samples. 
