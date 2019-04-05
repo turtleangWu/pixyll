@@ -110,7 +110,9 @@ For other cases such as $\mathcal{G}$ and $\mathcal{H}$ are infinite but with so
 
 Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning. 
 
-Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms. An appropriate estimator should be unbiased. That is, conditioned on all previous randomness, the expected value of it is exactly the true loss function. 
+Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** $\bar{\ell_{k,s}}$, which would be specified later, and feed the estimator to update appropriate full-information algorithms. An appropriate estimator should be unbiased. That is, conditioned on all previous randomness, the expected value of it is exactly the true loss function. 
+
+Another problem is to make sure that distributions $G_{k,s}$ and $H_{k,s}^{(g)}$ for all $g$ would be update often. This is because if a representation is chosen with a low probability, we rarely has the chance to receive the needed feedbacks to learn its accompanying predictors well. Moreover, without learning the predictors well, we cannot choose the representations appropriately. This could results in large $\bar{\ell_{k,s}}$ and consequently bad regret bound.
 
 
 ### Solution 1
@@ -122,8 +124,7 @@ $$
 $$
 
 
-where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $\bar{\ell_{k,s}}$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$. However, $\bar{\ell_{k,s}}$ could be very large and lead to bad regret bound. This is because if a representation is chosen with a low probability, we rarely has the chance to receive the needed feedbacks to learn its accompanying predictors well. Moreover, without learning the predictors well, we cannot choose the representations appropriately since how good a representation is actually depends on its accompanying predictor.
-
+where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $\bar{\ell_{k,s}}$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$.
 
 
 
