@@ -118,8 +118,7 @@ $$
 \bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{G_{k,s}(g)\cdot H_{k,s}^{(g)}(h)}\mathbf{1}_{g=g_{k,s},h=h_{k,s}},
 $$
 
-where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$ respectively.
-
+where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. Note that conditioned on all previous randomness before step $s$ of task $k$, the expected value of $\bar{\ell}_{k,s}$, over the sampling of $g_{k,s}$ and $h_{k,s}$ is exactly ${\ell}_{k,s}$, for any $g$ and $h$. This means that $\bar{\ell}_{k,s}$ is indeed an unbiased estimator for the true loss function ${\ell}_{k,s}$.
 
 
 
