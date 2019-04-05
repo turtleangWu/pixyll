@@ -113,7 +113,7 @@ Here we consider the bandit setting, in which the feedback information is the lo
 Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms. A natural estimator for $\ell_{k,s}\left( g, h \right)$ is the following:
 
 $$
-\bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{G_{k,s}(g)\cdot H_{k,s}^{(g)}(h)}\mathbbm{1}_{g=g_{k,s},h=h_{k,s}},
+\bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{G_{k,s}(g)\cdot H_{k,s}^{(g)}(h)}\mathbf{1}_{g=g_{k,s},h=h_{k,s}},
 $$
 
 where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$ respectively.
