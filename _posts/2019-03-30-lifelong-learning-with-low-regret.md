@@ -25,6 +25,7 @@ In this paper, we consider the following learning problem:
 
 * representation space : $\mathcal{G}$ (usually very large)
 * predictor space : $\mathcal{H}$
+- to be simple, we consider both $\mathcal{G}$ and $\mathcal{H}$ are finite in this post
 * number of tasks : $K$
 * number of samples in each task : $T_k, \forall k\in [K]$ and $\sum T_k =T$
 * loss functions are $[0,1]$-valued
@@ -41,8 +42,7 @@ Regret(T)=\sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_
 
 
 Before going to details, here we give a simple example to show possible advantages of lifelong learning over relearning tasks.
-We start from the case that $|\mathcal{G}|$ and $|\mathcal{H}|$ are finite but the loss functions are arbitrary. 
-For this, we provide an efficient algorithm achieving a regret of 
+For the case that $|\mathcal{G}|$ and $|\mathcal{H}|$ are finite but the loss functions are arbitrary, we provide an efficient algorithm achieving a regret of 
 $\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$,
 while relearning the representation results in regret of
 
@@ -103,14 +103,16 @@ Now for adversarial cases, if we use multiplicative update (MU) algorithm as $al
 >$\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$
 
 
-For other cases such as $\mathcal{G}$ and $\mathcal{H}$  are infinite but with some other assumptions, we can divide them into small partitions and apply suitable algorithms as $alg_G$ and $alg_H$ to obtain the regret bound. You can check the paper for further details.
+For other cases such as $\mathcal{G}$ and $\mathcal{H}$ are infinite but with some other assumptions, we can divide them into small partitions and apply suitable algorithms as $alg_G$ and $alg_H$ to obtain the regret bound. You can check the paper for further details.
 
 
 ## Second Challenge -- Bandit Setting
 
-Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning.
+Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning. Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms. 
 
-Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** and feed these estimators to update appropriate full-information algorithms. A natural estimator for $\ell_{k,s}\left( g, h \right)$ is the following:
+### Solution 1
+
+A natural estimator for $\ell_{k,s}\left( g, h \right)$ is the following:
 
 $$
 \bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{G_{k,s}(g)\cdot H_{k,s}^{(g)}(h)}\mathbf{1}_{g=g_{k,s},h=h_{k,s}},
@@ -121,7 +123,6 @@ where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $
 
 
 
-There were some empirical studies on the possibility of evolving the network structures over different tasks to do lifelong learning (Rusu et al., 2016; Lee et al., 2017). For theoretical studies, we, and most prior works as well, focused on learning with fixed architectures. That is, the representation and the predictor spaces are fixed before receiving samples. 
 
 
 
