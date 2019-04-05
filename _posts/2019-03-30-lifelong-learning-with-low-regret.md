@@ -25,7 +25,7 @@ In this paper, we consider the following learning problem:
 
 * representation space : $\mathcal{G}$ (usually very large)
 * predictor space : $\mathcal{H}$
-- to be simple, we consider both $\mathcal{G}$ and $\mathcal{H}$ are finite in this post
+  * to be simple, we consider both $\mathcal{G}$ and $\mathcal{H}$ are finite in this post
 * number of tasks : $K$
 * number of samples in each task : $T_k, \forall k\in [K]$ and $\sum T_k =T$
 * loss functions are $[0,1]$-valued
