@@ -97,6 +97,7 @@ and update the distribution of each copy $alg_{H}^{(g)}$ using $\ell_{k,s}\left(
 
 Now for adversarial cases, if we use multiplicative update (MU) algorithm as $alg_G$ and $alg_H$, there is a corollary, which is also our result for above example:
 
+
 >**Corollary :**
 >For the case that $|\mathcal{G}|$ and $|\mathcal{H}|$ are finite but the loss functions are arbitrary, we provide an efficient algorithm achieving a regret of 
 $\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$
