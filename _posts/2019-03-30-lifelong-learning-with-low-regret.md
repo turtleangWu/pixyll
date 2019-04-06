@@ -35,7 +35,7 @@ Both the tasks and their samples arrive sequentially so that in each time step, 
 To measure the performance of a learning algorithm, different settings have their own natural choices. Since the samples of each task arrive one after one, an often adopted measure is the **regret**. Furthermore, to capture the assumption above, we measure the regret by comparing against an offline algorithm which must use a fixed representation for all the tasks but is allowed to use different predictors for different tasks.
 
 \[ 
-Regret(T)=\sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_K}\sum\limits_{k,s}\ell_{k,s}(g, h_k) 
+Regret(T)=\sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_K}\sum\limits_{k,s}\ell_{k,s}(g, h_k) -- (1)
 \]
 
 ## Example
@@ -47,7 +47,7 @@ $\mathcal{O}\left(\sqrt{T\log G}+\sqrt{TK\log H}\right)$,
 while relearning the representation results in regret of
 
 
-\[\sum\limits_{k=1}^{K}\mathcal{O}\left(\sqrt{T_{k}\log G}+\sqrt{T_{k}\log H}\right)\leq\mathcal{O}\left(\sqrt{KT\log G}+\sqrt{KT\log H}\right) -- (1) \]
+\[\sum\limits_{k=1}^{K}\mathcal{O}\left(\sqrt{T_{k}\log G}+\sqrt{T_{k}\log H}\right)\leq\mathcal{O}\left(\sqrt{KT\log G}+\sqrt{KT\log H}\right) \]
 
 
 First of all, our bound prevents the number of tasks from affecting the learning of representations. That is to say, the regret of learning the representations doesn't grow with the number of tasks (for a fixed $T$). Since $G$ is usually large, this benefit makes our bound attractive for large $K$.
@@ -165,6 +165,10 @@ we take a different approach, by reducing our problem to the following **"expert
 
 
 
+This algorithm obtained a better regret bound.
 
-
+>**Theorem 2 :** 
+>For the problem with finite $G$ and $H$ and arbitrary loss functions, our bandit algorithm achieves a regret of
+>$\mathcal{O}\left(\sqrt{TGH\log (GH^K)}\right)$
+ O(􏰈TGH log(GHK)).
 
