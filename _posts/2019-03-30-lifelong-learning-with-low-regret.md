@@ -156,7 +156,7 @@ The regret bound has the order of $2/3$ dependency on $T$. However, we provides 
 
 >**Theorem 3 :**
 >The problem with finite $G$ and $H$ and arbitrary loss functions in the bandit setting has a regret lower bound of
->$\sigma \left( \sqrt{TGH} + \sqrt{TKH} \right) $
+>$\Omega \left( \sqrt{TGH} + \sqrt{TKH} \right) $
 
 ### Algorithm 3
 
