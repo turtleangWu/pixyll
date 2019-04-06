@@ -122,12 +122,12 @@ $$
 $$
 
 
-where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $\bar{\ell_{k,s}}$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$. We can then define $$\tilde{\ell_{k,s}}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[ \bar{\ell_{k,s}}(g,h) \right] $$ and $$\hat{\ell_{k,s}}(g,h) = \bar{\ell_{k,s}}\left( g,h \right)$$ as in full-information setting.
+where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $\bar{\ell_{k,s}}$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$. We can then define $$\tilde{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[ \bar{\ell}_{k,s}(g,h) \right] $$ and $$\hat{\ell}_{k,s}(g,h) = \bar{\ell_{k,s}}\left( g,h \right)$$ as in full-information setting.
 
 
 # Second Challenge -- Low Sampling Probability in Bandit Setting
 
-In bandit setting, a problem is how to make sure that all $g$ would be sampled often. This is because if a representation is chosen with a low probability, we rarely has the chance to receive the needed feedbacks to learn its accompanying predictors well. Also, without learning the predictors well, we cannot choose the representations appropriately. Moreover, low sampling probability of $g$  could results in large $\bar{\ell_{k,s}}$ and consequently bad regret bound.
+Nevertheless, in bandit setting, a problem is how to make sure that all $g$ would be sampled often. This is because if a representation is chosen with a low probability, we rarely has the chance to receive the needed feedbacks to learn its accompanying predictors well. Also, without learning the predictors well, we cannot choose the representations appropriately. Moreover, low sampling probability of $g$  could results in large $$\bar{\ell}_{k,s}$$ and consequently bad regret bound.
 
 
 ### Solution 1
