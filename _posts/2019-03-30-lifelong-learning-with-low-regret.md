@@ -144,7 +144,7 @@ to update some distribution $$q_{k,s}(g)$$ according to the MU algorithm. In add
 $$G_{k,s}(g) = \rho \cdot (1/G) + (1 − \rho) \cdot q_{k,s}(g).$$
 
 <center class="half">
-  <img src="/images/lifelong/Algorithm2.png" width="600" height="600" />
+  <img src="/images/lifelong/Algorithm2.png" width="600" height="500" />
 </center>
 
 This algorithm results in the following theorem.
