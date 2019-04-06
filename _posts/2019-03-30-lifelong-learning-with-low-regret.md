@@ -59,7 +59,7 @@ Moreover, as learning the representations is typically much more costly than lea
 In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what the best representation $g^{\*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when **a good representation may look bad if we choose a bad predictor to go with it**? A sensible choice seems to be accompanying it with its **best predictor in a task**. Take the full-information adversarial setting for example.
 
 
-### Full-Information Adversarial Setting
+### Naive Choice for Full-Information Adversarial Setting
 
 In full-information setting, the whole loss fuction at each step is revealed. A sensible choice to measure a representation $g$ in task $k$ is $\hat{L}_k (g)$, where
 
@@ -86,7 +86,7 @@ Recall that tasks are related as they share some common representation, but they
 We take $alg_G$ to learn the representation and have it update continuously through time across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_{H}$ for learning the accompanying predictors. When starting a new task $k$, reset each copy $alg^{(g)}_H$ and redo its learning.
 
 
-At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to the distribution $G_{k,s}$ of $alg_{G}$, followed by sampling a predictor $h_{k,s}$ according to the distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{(g_{k,s})}$. The joint action we play is $(g_{k,s}, h_{k,s})$ and suffer the loss $\ell_{k,s}(g_{k,s}, h_{k,s})$. Then we update the distribution of $alg_{G}$ using the loss function $\tilde{\ell_{k,s}}(g)$ defined on representation $g$ while update $alg_{H}^{(g)}$  for each $g$ using the loss function $\hat{\ell_{k,s}}(g,h)$ defined on $h$ with respect to a specific $g$. The loss functions would be specified later for different settings accordingly.
+At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to the distribution $G_{k,s}$ of $alg_{G}$, followed by sampling a predictor $h_{k,s}$ according to the distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{(g_{k,s})}$. The joint action we play is $(g_{k,s}, h_{k,s})$ and suffer the loss $\ell_{k,s}(g_{k,s}, h_{k,s})$. Then we update the distribution of $alg_{G}$ using some loss function $\tilde{\ell}_{k,s}(g)$ defined on representation $g$ while update $alg_{H}^{(g)}$  for each $g$ using some loss function $\hat{\ell}_{k,s}(g,h)$ defined on $h$ with respect to a specific $g$. The loss functions would be specified later for different settings accordingly.
 
 
 
