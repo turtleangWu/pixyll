@@ -54,12 +54,12 @@ First of all, our bound prevents the number of tasks from affecting the learning
 
 Moreover, as learning the representations is typically much more costly than learning predictors in lifelong learning, if under some conditions it is possible to identify the best representation $g^{\*}$ for all tasks at some step $t<T$, this would allow us to learn new tasks faster by saving the time for learning the representation.
 
-# First Challenge
+# First Challenge -- construct losses
 
 In learning problems, we always guide the learning by losses. However, here the losses $\ell_{k,s}(g_{k,s}, h_{k,s})$ depend on both the representation and the predictor. This makes learning harder. If we already know what the best representation $g^{\*}$ is, it remains to learn predictors for each task. However, how can we estimate how good a representation is when **a good representation may look bad if we choose a bad predictor to go with it**? A sensible choice seems to be accompanying it with its **best predictor in a task**. Take the full-information adversarial setting for example.
 
 
-## Full-Information Adversarial Setting
+### Full-Information Adversarial Setting
 
 In full-information setting, the whole loss fuction at each step is revealed. A sensible choice to measure a representation $g$ in task $k$ is $\hat{L}_k (g)$, where
 
@@ -77,16 +77,21 @@ Everything goes well so far. Nevertheless, the above method only provides us wit
 
 To achieve our regret bound, we have to construct appropriate loss functions so as to update representations more often (we actually update them at every step). 
 
-### Idea for Full-Information Adversarial Setting
+## Idea to Update Representations Often
 
 Recall that tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation. Therefore, we hope to **learn the representations continuously through time**, while we still have to **relearn predictors for different tasks**. To do that, we would like to decouple the learning of representations from that of predictors, for them to have different loss functions and different learning schedules. For finite representations, we describe our solution via a generic algorithm.
 
-### Algorithm
+### Algorithm 1
 
 We take $alg_G$ to learn the representation and have it update continuously through time across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_{H}$ for learning the accompanying predictors. When starting a new task $k$, reset each copy $alg^{(g)}_H$ and redo its learning.
 
 
-At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to the distribution $G_{k,s}$ of $alg_{G}$, followed by sampling a predictor $h_{k,s}$ according to the distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{(g_{k,s})}$. The joint action we play is $(g_{k,s}, h_{k,s})$ and the loss function is $\ell_{k,s}$. Then we update the distribution of $alg_{G}$ using the loss function on $g$ defined as
+At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to the distribution $G_{k,s}$ of $alg_{G}$, followed by sampling a predictor $h_{k,s}$ according to the distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{(g_{k,s})}$. The joint action we play is $(g_{k,s}, h_{k,s})$ and suffer the loss $\ell_{k,s}(g_{k,s}, h_{k,s})$. Then we update the distribution of $alg_{G}$ using the loss function $\tilde{\ell_{k,s}}(g)$ defined on representation $g$ while update $alg_{H}^{(g)}$  for each $g$ using the loss function $\hat{\ell_{k,s}}(g,h)$ defined on $h$ with respect to a specific $g$. The loss functions would be specified later for different settings accordingly.
+
+
+
+
+defined as
 
 $$\hat{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[\ell_{k,s}(g,h) \right] $$
 
@@ -106,11 +111,11 @@ Now for adversarial cases, if we use multiplicative update (MU) algorithm as $al
 For other cases such as $\mathcal{G}$ and $\mathcal{H}$ are infinite but with some other assumptions, we can divide them into small partitions and apply suitable algorithms as $alg_G$ and $alg_H$ to obtain the regret bound. You can check the paper for further details.
 
 
-## Second Challenge -- Bandit Setting
+# Second Challenge -- Bandit Setting
 
 Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning. 
 
-Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions** $\bar{\ell_{k,s}}$, which would be specified later, and feed the estimator to update appropriate full-information algorithms. An appropriate estimator should be unbiased. That is, conditioned on all previous randomness, the expected value of it is exactly the true loss function. 
+Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions**, $\bar{\ell_{k,s}}$, which would be specified later, and feed the estimator to update appropriate full-information algorithms. An appropriate estimator should be unbiased. That is, conditioned on all previous randomness, the expected value of it is exactly the true loss function. 
 
 Another problem is to make sure that distributions $G_{k,s}$ and $H_{k,s}^{(g)}$ for all $g$ would be update often. This is because if a representation is chosen with a low probability, we rarely has the chance to receive the needed feedbacks to learn its accompanying predictors well. Moreover, without learning the predictors well, we cannot choose the representations appropriately. This could results in large $\bar{\ell_{k,s}}$ and consequently bad regret bound.
 
