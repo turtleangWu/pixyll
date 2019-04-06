@@ -113,7 +113,8 @@ For other cases such as $\mathcal{G}$ and $\mathcal{H}$ are infinite but with so
 
 ### Bandit Adversarial Setting
 
-Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. $$|\mathcal{G}|$$ and $$|\mathcal{H}|$$ are again set to be finite. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning.  We would like to see if the above algorithm can also deal with bandit adversarial setting.
+Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. $\mathcal{G}$ and $\mathcal{H}$ are again set to be finite. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning.  We would like to see if the above algorithm can also deal with bandit adversarial setting.
+
 
 Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions**, $$\bar{\ell}_{k,s}$$, which would be specified later, and feed the estimator to update appropriate full-information algorithms. An appropriate estimator should be unbiased. That is, conditioned on all previous randomness, the expected value of it is exactly the true loss function. A natural estimator for $\ell_{k,s}\left( g, h \right)$ is the following:
 
