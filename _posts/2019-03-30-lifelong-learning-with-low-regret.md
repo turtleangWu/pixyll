@@ -47,7 +47,7 @@ $\mathcal{O}\left(\sqrt{T\log G}+\sqrt{TK\log H}\right)$,
 while relearning the representation results in regret of
 
 
-\[\sum\limits_{k=1}^{K}\mathcal{O}\left(\sqrt{T_{k}\log G}+\sqrt{T_{k}\log H}\right)\leq\mathcal{O}\left(\sqrt{KT\log G}+\sqrt{KT\log H}\right)\]
+\[\sum\limits_{k=1}^{K}\mathcal{O}\left(\sqrt{T_{k}\log G}+\sqrt{T_{k}\log H}\right)\leq\mathcal{O}\left(\sqrt{KT\log G}+\sqrt{KT\log H}\right) -- (1) \]
 
 
 First of all, our bound prevents the number of tasks from affecting the learning of representations. That is to say, the regret of learning the representations doesn't grow with the number of tasks (for a fixed $T$). Since $G$ is usually large, this benefit makes our bound attractive for large $K$.
@@ -152,14 +152,15 @@ This algorithm results in the following theorem.
 >$\mathcal{O}\left(\sqrt{TG\log G}+ (T^{2}KGH \log H)^{2/3}\right)$
 
 
-The regret bound has the order of $2/3$ dependency on $T$. However, we provides a lower bound for the problem for only the order of $1/2$ dependency on $T$. Algorithm 2 is obviously not good enough.
+The regret bound has the order of $2/3$ dependency on $T$. However, we provides a lower bound for the problem for only the order of $1/2$ dependency on $T$. Therefore, Algorithm 2 is obviously not good enough.
 
 >**Theorem 3 :**
 >The problem with finite $G$ and $H$ and arbitrary loss functions in the bandit setting has a regret lower bound of
->$\Sigma \left( \sqrt{TGH} + \sqrt{TKH} \right) $
+>$\sigma \left( \sqrt{TGH} + \sqrt{TKH} \right) $
 
 ### Algorithm 3
 
+we take a different approach, by reducing our problem to the following **"experts over actions" problem**. In this new problem, there is a set $$\mathcal{G} \times \mathcal{H}^K$$ of experts. Each expert is indexed by some $(g, \vec{h})$, with $g\in \mathcal{G}$ and $\vec{h} = \left( h_1, h_2,\cdots , h_K \right)$, who in every step $s$ of task $k$ plays the action $\left( g, h_k\right)$, which has the loss value $\ell_{k,s}\left( g,h_k \right)$. Now what an online algorithm can do at each step is to choose an expert and play his/her action, and the regret is measured against the total loss of the best expert, which in fact is the same as the regret defined in Eq.(1). Therefore, we can use any online algorithm for this new problem to solve our initial problem. In particular, we would like to run the EXP3 algorithm Auer et al. (2002b) on the experts and apply its regret analysis.
 
 
 
