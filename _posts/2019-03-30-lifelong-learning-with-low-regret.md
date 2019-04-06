@@ -23,9 +23,9 @@ In this paper, we consider the following learning problem:
 
 # Notations and Settings
 
-* representation space : $\mathcal{G}$ (usually very large)
-* predictor space : $\mathcal{H}$
-  * to be simple, we consider both $\mathcal{G}$ and $\mathcal{H}$ are finite in this post
+* representation space : $\mathcal{G}$ of size $G$ (usually very large)
+* predictor space : $\mathcal{H}$ of size $H$
+  * to be simple, we consider both $G$ and $H$ are finite in this post
 * number of tasks : $K$
 * number of samples in each task : $T_k, \forall k\in [K]$ and $\sum T_k =T$
 * loss functions are $[0,1]$-valued
@@ -42,15 +42,15 @@ Regret(T)=\sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_
 
 
 Before going to details, here we give a simple example to show possible advantages of lifelong learning over relearning tasks.
-For the case that $|\mathcal{G}|$ and $|\mathcal{H}|$ are finite but the loss functions are arbitrary, we provide an efficient algorithm achieving a regret of 
-$\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$,
+For the case that $G$ and $H$ are finite but the loss functions are arbitrary, we provide an efficient algorithm achieving a regret of 
+$\mathcal{O}\left(\sqrt{T\log G}+\sqrt{TK\log H}\right)$,
 while relearning the representation results in regret of
 
 
-\[\sum\limits_{k=1}^{K}\mathcal{O}\left(\sqrt{T_{k}\log \mathcal{G}}+\sqrt{T_{k}\log \mathcal{H}}\right)\leq\mathcal{O}\left(\sqrt{KT\log \mathcal{G}}+\sqrt{KT\log \mathcal{H}}\right)\]
+\[\sum\limits_{k=1}^{K}\mathcal{O}\left(\sqrt{T_{k}\log G}+\sqrt{T_{k}\log H}\right)\leq\mathcal{O}\left(\sqrt{KT\log G}+\sqrt{KT\log H}\right)\]
 
 
-First of all, our bound prevents the number of tasks from affecting the learning of representations. That is to say, the regret of learning the representations doesn't grow with the number of tasks (for a fixed $T$). Since $\mathcal{G}$ is usually large, this benefit makes our bound attractive for large $K$.
+First of all, our bound prevents the number of tasks from affecting the learning of representations. That is to say, the regret of learning the representations doesn't grow with the number of tasks (for a fixed $T$). Since $G$ is usually large, this benefit makes our bound attractive for large $K$.
 
 Moreover, as learning the representations is typically much more costly than learning predictors in lifelong learning, if under some conditions it is possible to identify the best representation $g^{\*}$ for all tasks at some step $t<T$, this would allow us to learn new tasks faster by saving the time for learning the representation.
 
@@ -105,15 +105,15 @@ Now for full-information adversarial cases, if we use multiplicative update (MU)
 
 
 >**Corollary :**
->For the case that $|\mathcal{G}|$ and $|\mathcal{H}|$ are finite but the loss functions are arbitrary, we provide an efficient algorithm achieving a regret of 
->$\mathcal{O}\left(\sqrt{T\log |\mathcal{G}|}+\sqrt{TK\log |\mathcal{H}|}\right)$
+>For the case that $G$ and $H$ are finite but the loss functions are arbitrary, we provide an efficient algorithm achieving a regret of 
+>$\mathcal{O}\left(\sqrt{T\log G}+\sqrt{TK\log H}\right)$
 
 
-For other cases such as $\mathcal{G}$ and $\mathcal{H}$ are infinite but with some other assumptions, we can divide them into small partitions and apply suitable algorithms as $alg_G$ and $alg_H$ to obtain the regret bound. You can check the paper for further details.
+For other cases such as $G$ and $H$ are infinite but with some other assumptions, we can divide them into small partitions and apply suitable algorithms as $alg_G$ and $alg_H$ to obtain the regret bound. You can check the paper for further details.
 
 ### Bandit Adversarial Setting
 
-Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. $\mathcal{G}$ and $\mathcal{H}$ are again set to be finite. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning.  We would like to see if the above algorithm can also deal with bandit adversarial setting.
+Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. $G$ and $H$ are again set to be finite. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning.  We would like to see if the above algorithm can also deal with bandit adversarial setting.
 
 
 Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions**, $$\bar{\ell}_{k,s}$$, which would be specified later, and feed the estimator to update appropriate full-information algorithms. An appropriate estimator should be unbiased. That is, conditioned on all previous randomness, the expected value of it is exactly the true loss function. A natural estimator for $\ell_{k,s}\left( g, h \right)$ is the following:
@@ -149,8 +149,8 @@ $$G_{k,s}(g) = \rho \cdot (1/G) + (1 − \rho) \cdot q_{k,s}(g).$$
 
 This algorithm results in the following theorem.
 
->For bandit adversarial setting with finite $\mathcal{G}$ and $\mathcal{H}$, our algorithm achieves a regret of
->$\mathcal{O}\left(\sqrt{T\mathcal{G}\log \mathcal{G}}+ (T^{2}K\mathcal{G} \mathcal{H} \log \mathcal{H})^{2/3}\right)$
+>For bandit adversarial setting with finite $G$ and $H$, our algorithm achieves a regret of
+>$\mathcal{O}\left(\sqrt{TG\log G}+ (T^{2}KGH \log H)^{2/3}\right)$
 
 
 
