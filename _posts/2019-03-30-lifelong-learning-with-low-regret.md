@@ -170,5 +170,3 @@ This algorithm obtained a better regret bound.
 >**Theorem 2 :** 
 >For the problem with finite $G$ and $H$ and arbitrary loss functions, our bandit algorithm achieves a regret of
 >$\mathcal{O}\left(\sqrt{TGH\log (GH^K)}\right)$
- O(􏰈TGH log(GHK)).
-
