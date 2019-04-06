@@ -86,21 +86,22 @@ Recall that tasks are related as they share some common representation, but they
 We take $alg_G$ to learn the representation and have it update continuously through time across different tasks. For each possible representation $g$, we have a separate copy of $alg^{(g)}_{H}$ for learning the accompanying predictors. When starting a new task $k$, reset each copy $alg^{(g)}_H$ and redo its learning.
 
 
-At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to the distribution $G_{k,s}$ of $alg_{G}$, followed by sampling a predictor $h_{k,s}$ according to the distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{(g_{k,s})}$. The joint action we play is $(g_{k,s}, h_{k,s})$ and suffer the loss $\ell_{k,s}(g_{k,s}, h_{k,s})$. Then we update the distribution of $alg_{G}$ using some loss function $\tilde{\ell}_{k,s}(g)$ defined on representation $g$ while update $alg_{H}^{(g)}$  for each $g$ using some loss function $\hat{\ell}_{k,s}(g,h)$ defined on $h$ with respect to a specific $g$. The loss functions would be specified later for different settings accordingly.
+At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to the distribution $G_{k,s}$ of $alg_{G}$, followed by sampling a predictor $h_{k,s}$ according to the distribution $H_{k,s}^{(g_{k,s})}$ of $alg_{H}^{(g_{k,s})}$. The joint action we play is $(g_{k,s}, h_{k,s})$ and suffer the loss $\ell_{k,s}(g_{k,s}, h_{k,s})$. Then we update the distribution of $alg_{G}$ using some loss function $\tilde{\ell_{k,s}}(g)$ defined on representation $g$ while update $alg_{H}^{(g)}$  for each $g$ using some loss function $\hat{\ell_{k,s}}(g,h)$ defined on $h$ with respect to a specific $g$. The loss functions would be specified later for different settings accordingly.
 
+### Full-Information Adversarial Setting
 
+Recall that in full-information setting, the whole loss fuction at each step is revealed. Here we define $\tilde{\ell}_{k,s}(g)$ as
 
-
-defined as
 
 $$\hat{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[\ell_{k,s}(g,h) \right] $$
 
-and update the distribution of each copy $alg_{H}^{(g)}$ using $\ell_{k,s}\left( g,\cdot \right)$ as the loss function on predictors. That is, the loss of $g$ at each step is defined to be the average loss of $g$ with its predictors. With this algorithm, we have the following theorem.
+
+and define the loss $\hat{\ell}_{k,s}(g,h)$ as $\ell_{k,s}\left( g,h \right)$ as the loss function on predictors. That is, the loss of $g$ at each step is defined to be the average loss of $g$ with its predictors, while the loss of predictors should be defined with respect to a specific $g$. With this algorithm, we have the following theorem.
 
 >**Theorem :**
->Suppose the $t$-step regret bounds of $alg_G$ and $alg_H$ are $reg_{G}(t)$ and $reg_{H}(t)$, respectively. Then the $T$-step regret bound of our algorithm is at most $reg_G\left(T\right) +\sum\limits_{k=1}^{K} reg_H\left(T_k \right)$.
+>Suppose the $t$-step regret bounds of $alg_G$ and $alg_H$ are $reg_{G}(t)$ and $reg_{H}(t)$, respectively. Then the $T$-step regret bound of our algorithm with the defined losses is at most $reg_G\left(T\right) +\sum\limits_{k=1}^{K} reg_H\left(T_k \right)$.
 
-Now for adversarial cases, if we use multiplicative update (MU) algorithm as $alg_G$ and $alg_H$ we can obtain our result for above example:
+Now for full-information adversarial cases, if we use multiplicative update (MU) algorithm as $alg_G$ and $alg_H$ we can obtain our result for above example:
 
 
 >**Corollary :**
