@@ -96,7 +96,7 @@ Recall that in full-information setting, the whole loss fuction at each step is 
 $$\tilde{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[\ell_{k,s}(g,h) \right] $$
 
 
-and define the loss $\hat{\ell}_{k,s}(g,h) = \ell_{k,s}\left( g,h \right)$ to be the loss function on predictors. That is, the loss of $g$ at each step is defined to be the average loss of $g$ with its predictors, while the loss of predictors should be defined with respect to a specific $g$. With this algorithm, we have the following theorem.
+and define the loss $\hat{\ell_{k,s}}(g,h) = \ell_{k,s}\left( g,h \right)$ to be the loss function on predictors. That is, the loss of $g$ at each step is defined to be the average loss of $g$ with its predictors, while the loss of predictors should be defined with respect to a specific $g$. With this algorithm, we have the following theorem.
 
 >**Theorem :**
 >Suppose the $t$-step regret bounds of $alg_G$ and $alg_H$ are $reg_{G}(t)$ and $reg_{H}(t)$, respectively. Then the $T$-step regret bound of our algorithm with the defined losses is at most $reg_G\left(T\right) +\sum\limits_{k=1}^{K} reg_H\left(T_k \right)$.
@@ -122,15 +122,21 @@ $$
 $$
 
 
-where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $\bar{\ell_{k,s}}$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$.
+where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $\bar{\ell_{k,s}}$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$. 
 
 
 # Second Challenge -- Low Sampling Probability in Bandit Setting
 
-Another problem is to make sure that distributions $G_{k,s}$ and $H_{k,s}^{(g)}$ for all $g$ would be update often. This is because if a representation is chosen with a low probability, we rarely has the chance to receive the needed feedbacks to learn its accompanying predictors well. Moreover, without learning the predictors well, we cannot choose the representations appropriately. This could results in large $\bar{\ell_{k,s}}$ and consequently bad regret bound.
+Another problem is to make sure that all $g$ would be sampled often. This is because if a representation is chosen with a low probability, we rarely has the chance to receive the needed feedbacks to learn its accompanying predictors well. Moreover, without learning the predictors well, we cannot choose the representations appropriately. This could results in large $\bar{\ell_{k,s}}$ and consequently bad regret bound.
 
 
 ### Solution 1
+
+To address this issue, a possible solution is to add an **additional exploration probability** to the distribution of representations, so that $G_{k,s}(g)$ is large enough for each $g$. Note that this part is not put in final version of our paper. However, it is still an idea worth mentioned.
+
+
+
+
 
 
 
