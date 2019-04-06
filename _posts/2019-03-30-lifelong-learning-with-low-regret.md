@@ -96,7 +96,7 @@ Recall that in full-information setting, the whole loss fuction at each step is 
 $$\hat{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[\ell_{k,s}(g,h) \right] $$
 
 
-and define the loss $\hat{\ell_{k,s}}(g,h)$ as $\ell_{k,s}\left( g,h \right)$ as the loss function on predictors. That is, the loss of $g$ at each step is defined to be the average loss of $g$ with its predictors, while the loss of predictors should be defined with respect to a specific $g$. With this algorithm, we have the following theorem.
+and define the loss $\hat{\ell_{k,s}}(g,h) = \ell_{k,s}\left( g,h \right)$ to be the loss function on predictors. That is, the loss of $g$ at each step is defined to be the average loss of $g$ with its predictors, while the loss of predictors should be defined with respect to a specific $g$. With this algorithm, we have the following theorem.
 
 >**Theorem :**
 >Suppose the $t$-step regret bounds of $alg_G$ and $alg_H$ are $reg_{G}(t)$ and $reg_{H}(t)$, respectively. Then the $T$-step regret bound of our algorithm with the defined losses is at most $reg_G\left(T\right) +\sum\limits_{k=1}^{K} reg_H\left(T_k \right)$.
@@ -111,19 +111,11 @@ Now for full-information adversarial cases, if we use multiplicative update (MU)
 
 For other cases such as $\mathcal{G}$ and $\mathcal{H}$ are infinite but with some other assumptions, we can divide them into small partitions and apply suitable algorithms as $alg_G$ and $alg_H$ to obtain the regret bound. You can check the paper for further details.
 
+### Bandit Adversarial Setting
 
-# Second Challenge -- Bandit Setting
+Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning.  We would like to see if the above algorithm can also deal with bandit adversarial setting.
 
-Here we consider the bandit setting, in which the feedback information is the loss value $\ell_{k,s}(g_{k,s}, h_{k,s})$ of our action $(g_{k,s}, h_{k,s})$, instead of the whole loss function $\ell_{k,s}\left(\cdot\right)$. This is obviously harder than full-information setting that we do not have the whole loss function to guide the learning. 
-
-Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions**, $\bar{\ell_{k,s}}$, which would be specified later, and feed the estimator to update appropriate full-information algorithms. An appropriate estimator should be unbiased. That is, conditioned on all previous randomness, the expected value of it is exactly the true loss function. 
-
-Another problem is to make sure that distributions $G_{k,s}$ and $H_{k,s}^{(g)}$ for all $g$ would be update often. This is because if a representation is chosen with a low probability, we rarely has the chance to receive the needed feedbacks to learn its accompanying predictors well. Moreover, without learning the predictors well, we cannot choose the representations appropriately. This could results in large $\bar{\ell_{k,s}}$ and consequently bad regret bound.
-
-
-### Solution 1
-
-A natural estimator for $\ell_{k,s}\left( g, h \right)$ is the following:
+Following previous works for bandit setting, our approach is to **construct appropriate estimators of the true loss functions**, $\bar{\ell_{k,s}}$, which would be specified later, and feed the estimator to update appropriate full-information algorithms. An appropriate estimator should be unbiased. That is, conditioned on all previous randomness, the expected value of it is exactly the true loss function. A natural estimator for $\ell_{k,s}\left( g, h \right)$ is the following:
 
 $$
 \bar{\ell}_{k,s}\left(g,h\right)=\frac{\ell_{k,s}(g,h)}{G_{k,s}(g)\cdot H_{k,s}^{(g)}(h)}\mathbf{1}_{g=g_{k,s},h=h_{k,s}},
@@ -131,6 +123,16 @@ $$
 
 
 where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $\bar{\ell_{k,s}}$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$.
+
+
+# Second Challenge -- Low Sampling Probability in Bandit Setting
+
+Another problem is to make sure that distributions $G_{k,s}$ and $H_{k,s}^{(g)}$ for all $g$ would be update often. This is because if a representation is chosen with a low probability, we rarely has the chance to receive the needed feedbacks to learn its accompanying predictors well. Moreover, without learning the predictors well, we cannot choose the representations appropriately. This could results in large $\bar{\ell_{k,s}}$ and consequently bad regret bound.
+
+
+### Solution 1
+
+
 
 
 
