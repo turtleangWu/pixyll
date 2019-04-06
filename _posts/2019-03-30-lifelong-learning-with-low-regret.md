@@ -98,7 +98,7 @@ $$\tilde{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[\ell_{k,s}(g,h) \r
 
 and define the loss $\hat{\ell_{k,s}}(g,h) = \ell_{k,s}\left( g,h \right)$ to be the loss function on predictors. That is, the loss of $g$ at each step is defined to be the average loss of $g$ with its predictors, while the loss of predictors should be defined with respect to a specific $g$. With this algorithm, we have the following theorem.
 
->**Theorem :**
+>**Theorem 1 :**
 >Suppose the $t$-step regret bounds of $alg_G$ and $alg_H$ are $reg_{G}(t)$ and $reg_{H}(t)$, respectively. Then the $T$-step regret bound of our algorithm with the defined losses is at most $reg_G\left(T\right) +\sum\limits_{k=1}^{K} reg_H\left(T_k \right)$.
 
 Now for full-information adversarial cases, if we use multiplicative update (MU) algorithm as $alg_G$ and $alg_H$ we can obtain our result for above example:
@@ -144,14 +144,14 @@ to update some distribution $$q_{k,s}(g)$$ according to the MU algorithm. In add
 $$G_{k,s}(g) = \rho \cdot (1/G) + (1 − \rho) \cdot q_{k,s}(g).$$
 
 <center class="half">
-  <img src="/images/lifelong/Algorithm2.png" width="600" height="500" />
+  <img src="/images/lifelong/Algorithm2.png" width="600" height="450" />
 </center>
 
-This algorithm results in the following theorem.
+This algorithm results in the following theorem. The regret bound is obviously not good enough for the order of $2/3$ dependency on $T$. 
 
+>**Theorem 2 :** 
 >For bandit adversarial setting with finite $G$ and $H$, our algorithm achieves a regret of
 >$\mathcal{O}\left(\sqrt{TG\log G}+ (T^{2}KGH \log H)^{2/3}\right)$
-
 
 
 
