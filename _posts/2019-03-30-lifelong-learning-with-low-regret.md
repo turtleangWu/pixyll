@@ -141,14 +141,16 @@ $$\tilde{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[ \bar{\ell}_{k,s}(
 
 to update some distribution $$q_{k,s}(g)$$ according to the MU algorithm. In addition, we introduce an additional exploration probability $\rho$ and update 
 
-$$G_{k,s}(g) = \rho \cdot (1/G) + (1 − \rho) \cdot q_{k,s}(g)$$.
+$$G_{k,s}(g) = \rho \cdot (1/G) + (1 − \rho) \cdot q_{k,s}(g).$$
 
 <center class="half">
   <img src="/images/lifelong/Algorithm2.png" width="600" height="600" />
 </center>
 
+This algorithm results in the following theorem.
 
-
+>For bandit adversarial setting with finite $\mathcal{G}$ and $\mathcal{H}$, our algorithm achieves a regret of
+>$\mathcal{O}\left(\sqrt{T\mathcal{G}\log \mathcal{G}}+ (T^{2}K\mathcal{G} \mathcal{H} \log \mathcal{H})^{2/3}\right)$
 
 
 
