@@ -93,10 +93,10 @@ At step $s$ in task $k$, we sample a representation $g_{k,s}$ according to the d
 Recall that in full-information setting, the whole loss fuction at each step is revealed. Here we define $\tilde{\ell}_{k,s}(g)$ as
 
 
-$$\hat{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[\ell_{k,s}(g,h) \right] $$
+$$\tilde{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[\ell_{k,s}(g,h) \right] $$
 
 
-and define the loss $\hat{\ell_{k,s}}(g,h) = \ell_{k,s}\left( g,h \right)$ to be the loss function on predictors. That is, the loss of $g$ at each step is defined to be the average loss of $g$ with its predictors, while the loss of predictors should be defined with respect to a specific $g$. With this algorithm, we have the following theorem.
+and define the loss $\hat{\ell}_{k,s}(g,h) = \ell_{k,s}\left( g,h \right)$ to be the loss function on predictors. That is, the loss of $g$ at each step is defined to be the average loss of $g$ with its predictors, while the loss of predictors should be defined with respect to a specific $g$. With this algorithm, we have the following theorem.
 
 >**Theorem :**
 >Suppose the $t$-step regret bounds of $alg_G$ and $alg_H$ are $reg_{G}(t)$ and $reg_{H}(t)$, respectively. Then the $T$-step regret bound of our algorithm with the defined losses is at most $reg_G\left(T\right) +\sum\limits_{k=1}^{K} reg_H\left(T_k \right)$.
