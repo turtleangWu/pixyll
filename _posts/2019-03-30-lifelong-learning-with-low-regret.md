@@ -139,19 +139,26 @@ To be specified, we use $$\hat{\ell}_{k,s}(g,h) = \bar{\ell}_{k,s}\left( g,h \ri
 
 $$\tilde{\ell}_{k,s}(g)=\mathbb{E}_{h\sim H_{k,s}^{(g)}}\left[ \bar{\ell}_{k,s}(g,h) \right]=\frac{\ell_{k,s}(g,h)}{G_{k,s}(g)}\mathbf{1}_{g=g_{k,s}} $$
 
-to update some distribution $$q_{k,s}(g)$$ according to the MU algorithm. In addition, we introduce an additional exploration probability $\rho$ and update 
-
-$$G_{k,s}(g) = \rho \cdot (1/G) + (1 − \rho) \cdot q_{k,s}(g).$$
+to update some distribution $$q_{k,s}(g)$$ according to the MU algorithm. In addition, we introduce an additional exploration probability $\rho$ and update $$G_{k,s}(g) = \rho \cdot (1/G) + (1 − \rho) \cdot q_{k,s}(g).$$ The algorithm is summarized below.
 
 <center class="half">
   <img src="/images/lifelong/Algorithm2.png" width="600" height="450" />
 </center>
 
-This algorithm results in the following theorem. The regret bound is obviously not good enough for the order of $2/3$ dependency on $T$. 
+This algorithm results in the following theorem. 
 
 >**Theorem 2 :** 
 >For bandit adversarial setting with finite $G$ and $H$, our algorithm achieves a regret of
 >$\mathcal{O}\left(\sqrt{TG\log G}+ (T^{2}KGH \log H)^{2/3}\right)$
+
+
+The regret bound has the order of $2/3$ dependency on $T$. However, we provides a lower bound for the problem for only the order of $1/2$ dependency on $T$. Algorithm 2 is obviously not good enough.
+
+>**Theorem 3 :**
+>The problem with finite $G$ and $H$ and arbitrary loss functions in the bandit setting has a regret lower bound of
+>$\Sigma \left( \sqrt{TGH} + \sqrt{TKH} \right) $
+
+### Algorithm 3
 
 
 
