@@ -15,4 +15,5 @@ I’m also enthralled by problems in several aspects of deep learning, and in pa
 This is my blog about some new research issues in machine learning. I insist on writing in Chinese as there are already a great amount of resources written in English. I wish more young students in Taiwan can also be interested in theoretical machine learning problems and know there is some guy who is willing to exchange ideas with them.
 
 Here is my personal e-mail : turtleangwu@iis.sinica.edu.tw
-My wordpress blog : angnotes.wordpress.com
+
+My wordpress blog : [angnotes.wordpress.com](https://angnotes.wordpress.com)
