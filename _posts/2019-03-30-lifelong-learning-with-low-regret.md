@@ -69,11 +69,8 @@ $$
 \hat{L}_k(g)=\min_h \sum\limits_{s=1}^{T_k} \ell_{k,s}(h, g). 
 $$
 
-The best representation throughout tasks is then nature to be 
+With $$\hat{L}_k (g)$$, we can update the learning of $g$ at the end of each task accordingly. When starting a new task $k$, choose a $g_k$ to serve every step in the task. Moreover, use the $g_k$ throughout task to learn $h_{k,s}$ at each step.
 
-$$
-\min_{g}\sum\limits_{k=1}^K \hat{L}_k (g).
-$$
 
 Everything goes well so far. Nevertheless, the above method only provides us with measurement at the end of tasks. When learning within a task, we do not know what the best predictor of a representation is as **the predictor which looks best so far may turn out to be bad at the end of the task in the adversarial setting**. This is perhaps one reason why Alquier et al. (2017) chose to update their representations only at the end of each task, where the best predictor of each representation in the task is ensured. This consequently requires a large number of tasks in order to have a good regret bound due to less update. 
 
