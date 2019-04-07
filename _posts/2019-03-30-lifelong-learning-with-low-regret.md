@@ -16,10 +16,12 @@ visible: True
 
 Machine learning algorithms can now solve many problems even better than humans. However, machines are still far from being intelligent that they typically need to relearn when facing new tasks, while humans are able to learn new things efficiently by ultilizing learned knowledge. This motivates the study called lifelong learning (Thrun and Pratt, 1998), which aims to perform better over time by **transferring** information learned from previously tasks to later ones, *under the belief that there are some commonalities across tasks*. 
 
-To formulate the commonalities across tasks, we assume that 
->Tasks are related as they share some common representation, but they are different as each requires a different predictor on top of the representation to form a classifier.
+To model that different tasks are related, we consider that 
 
-In this paper, we consider the following learning problem: 
+
+>There is some good representation which is shared by all tasks, but they are different as each requires a different predictor on top of the representation to form a classifier.
+
+In this paper, we consider the following setting: 
 
 # Notations and Settings
 
