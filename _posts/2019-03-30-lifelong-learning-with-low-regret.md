@@ -159,7 +159,7 @@ The regret bound has the order of $2/3$ dependency on $T$. However, we provides 
 
 ### Algorithm 3
 
-we take a different approach, by reducing our problem to the following **"experts over actions" problem**. In this new problem, there is a set $$\mathcal{G} \times \mathcal{H}^K$$ of experts. Each expert is indexed by some $(g, \vec{h})$, with $g\in \mathcal{G}$ and $\vec{h} = \left( h_1, h_2,\cdots , h_K \right)$, who in every step $s$ of task $k$ plays the action $\left( g, h_k\right)$, which has the loss value $\ell_{k,s}\left( g,h_k \right)$. Now what an online algorithm can do at each step is to choose an expert and play his/her action, and the regret is measured against the total loss of the best expert, which in fact is the same as the regret defined in Eq.(1). Therefore, we can run the EXP3 algorithm Auer et al. (2002b) on the experts and apply its regret analysis. This algorithm obtained a better regret bound.
+we take a different approach, by reducing our problem to the following **"experts over actions" problem**. In this new problem, there is a set $$\mathcal{G} \times \mathcal{H}^K$$ of experts. Each expert is indexed by some $(g, \vec{h})$, with $g\in \mathcal{G}$ and $\vec{h} = \left( h_1, h_2,\cdots , h_K \right)$, who in every step $s$ of task $k$ plays the action $\left( g, h_k\right)$, which has the loss value $\ell_{k,s}\left( g,h_k \right)$. Now what an online algorithm can do at each step is to choose an expert and play his/her action, and the regret is measured against the total loss of the best expert, which in fact is the same as the regret defined in Eq.(1). Therefore, we can run the EXP3 algorithm (Auer et al. (2002b)) on the experts and apply its regret analysis. This algorithm obtained a better regret bound.
 
 >**Theorem 2 :** 
 >For the problem with finite $G$ and $H$ and arbitrary loss functions, our bandit algorithm achieves a regret of
@@ -168,16 +168,29 @@ we take a different approach, by reducing our problem to the following **"expert
 There is an apparent efficiency issue for maintaining $GH^K$ experts. We avoid this problem such that it suffices to be able to sample from the distribution of $GH$ actions played by the experts at each step. For more details, please refer to our paper.
 
 # Third Challenge -- Stochastic Setting
-In stochastic setting, we assume that the best representation $g$ in every task is the same, denoted as $g^{\*}$, which is what makes the tasks related. In stochastic setting,
-we hope that $g^*$ can be determined within a small number of iterations.
-For each task $k$, there is some fixed but unknown distribution that the loss function $\ell_{k,s}$ is sampled i.i.d. from it in a task, with mean $\mu_k(g,h)$ for any $(g,h)$. In addition, let $\mu_{k}(g) = \min_h \mu_{k}(g,h)$. We can define
+
+Consider that for each task $k$, there is some fixed but unknown distribution that the loss function $\ell_{k,s}$ is sampled i.i.d. from it in a task, with mean $\mu_k(g,h)$ for any $(g,h)$. To measure how good a representation $g$ is in task $k$, we let $\mu_{k}(g) = \min_h \mu_{k}(g,h)$.
+
+
+To make the tasks related, we assume that
+
+>The best representation $g$ in every task is the same, denoted as $g^{\*}$.
+
+Following previous works for the stochastic setting, we hope that $$g^{\*}$$ can be determined within a small number of iterations. In traditional single task problems, we use follow-the-leader algorithm and UCB (Auer et al. (2002a)) for full-information and bandit setting, respectively.
+
+However, the standard regret analysis of those algorithms rely crucially on the assumption that the mean of each arm’s loss does not change over time. In our case, the mean loss of a representation $g$ may keep changing when going into new tasks. The previous methods apparently fail.
+
+
+We can define
+
+$$
 \begin{eqnarray}
-\Delta &=& \min_k \min_{g \ne g^*} \left(\mu_k(g) - \mu_k(g^*)\right)  \mbox{  and  } \\
-\Delta_* &=& \min_k \min_{h \ne h^*_k} \left(\mu_k(g^*,h) - \mu_k(g^*)\right). 
+\Delta = \min_k \min_{g \ne g^{\*}} \left(\mu_k(g) - \mu_k(g^{\*})\right)  \mbox{  and  } \\
+\Delta_* = \min_k \min_{h \ne h^{\*}_k} \left(\mu_k(g^{\*},h) - \mu_k(g^{\*})\right). 
 \end{eqnarray}
-\vspace{-1.5em}
-\begin{description}
-	\item[Algorithm] Our algorithm works in two phases.
-\end{description}
-\vspace{-0.5em}
+$$
+
+Algorithm Our algorithm works in two phases.
+
+
 In the exploration phase, we run our adversarial algorithm until some iteration $\hat{T}$ when there is some representation $\hat{g}$ which dominates others. Then we enter the exploitation phase in which we always choose the representation $\hat{g}$. As there is no representation to learn, the problem of learning each task then reduces to the traditional single task problem. Therefore, we can use \underline{follow the leader} (UCB) algorithm for \underline{full-information} (bandit) setting to learn the accompanying predictors.
