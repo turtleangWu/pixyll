@@ -148,7 +148,7 @@ This algorithm results in the following theorem.
 
 >**Theorem 2 :** 
 >For bandit adversarial setting with finite $G$ and $H$, our algorithm achieves a regret of
->$\mathcal{O}\left(\sqrt{TG\log G}+ (T^{2}KGH \log H)^{2/3}\right)$
+>$\mathcal{O}\left(\sqrt{TG\log G}+ (T^{2}KGH \log H)^{1/3}\right)$
 
 
 The regret bound has the order of $2/3$ dependency on $T$. However, we provides a lower bound for the problem for only the order of $1/2$ dependency on $T$. Therefore, Algorithm 2 is obviously not good enough.
@@ -169,3 +169,20 @@ This algorithm obtained a better regret bound.
 >**Theorem 2 :** 
 >For the problem with finite $G$ and $H$ and arbitrary loss functions, our bandit algorithm achieves a regret of
 >$\mathcal{O}\left(\sqrt{TGH\log (GH^K)}\right)$
+
+
+
+
+Assume, which is what makes the tasks related. In stochastic setting,
+we hope that $g^*$ can be determined within a small number of iterations.
+For each task $k$, there is some fixed but unknown distribution that the loss function $\ell_{k,s}$ is sampled i.i.d. from it in a task, with mean $\mu_k(g,h)$ for any $(g,h)$. In addition, let $\mu_{k}(g) = \min_h \mu_{k}(g,h)$. We can define
+\begin{eqnarray}
+\Delta &=& \min_k \min_{g \ne g^*} \left(\mu_k(g) - \mu_k(g^*)\right)  \mbox{  and  } \\
+\Delta_* &=& \min_k \min_{h \ne h^*_k} \left(\mu_k(g^*,h) - \mu_k(g^*)\right). 
+\end{eqnarray}
+\vspace{-1.5em}
+\begin{description}
+	\item[Algorithm] Our algorithm works in two phases.
+\end{description}
+\vspace{-0.5em}
+In the exploration phase, we run our adversarial algorithm until some iteration $\hat{T}$ when there is some representation $\hat{g}$ which dominates others. Then we enter the exploitation phase in which we always choose the representation $\hat{g}$. As there is no representation to learn, the problem of learning each task then reduces to the traditional single task problem. Therefore, we can use \underline{follow the leader} (UCB) algorithm for \underline{full-information} (bandit) setting to learn the accompanying predictors.
