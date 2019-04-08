@@ -169,14 +169,14 @@ There is an apparent efficiency issue for maintaining $GH^K$ experts. We avoid t
 
 # Third Challenge -- Stochastic Setting
 
-Consider that for each task $k$, there is some fixed but unknown distribution that the loss function $\ell_{k,s}$ is sampled i.i.d. from it in a task, with mean $\mu_k(g,h)$ for any $(g,h)$. To measure how good a representation $g$ is in task $k$, we let $\mu_{k}(g) = \min_h \mu_{k}(g,h)$.
+Consider that for each task $k$, there is some fixed but unknown distribution that the loss function $\ell_{k,s}$ is sampled i.i.d. from it in a task, with mean $\mu_k(g,h)$ for any $(g,h)$. To measure how good a representation $g$ is in task $k$, we let $$\mu_{k}(g) = \min_h \mu_{k}(g,h)$$.
 
 
 To make the tasks related, we assume that
 
 >The best representation $g$ in every task is the same, denoted as $g^{\*}$.
 
-Following previous works for the stochastic setting, we hope that $$g^{\*}$$ can be determined within a small number of iterations. In traditional single task problems, we use follow-the-leader algorithm and UCB (Auer et al. (2002a)) for full-information and bandit setting, respectively.
+Following previous works for the stochastic setting, we hope that $g^{*}$ can be determined within a small number of iterations. In traditional single task problems, we use follow-the-leader algorithm and UCB (Auer et al. (2002a)) for full-information and bandit setting, respectively.
 
 However, the standard regret analysis of those algorithms rely crucially on the assumption that the mean of each arm’s loss does not change over time. In our case, the mean loss of a representation $g$ may keep changing when going into new tasks. The previous methods apparently fail.
 
@@ -185,8 +185,8 @@ We can define
 
 $$
 \begin{eqnarray}
-\Delta = \min_k \min_{g \ne g^{\*}} \left(\mu_k(g) - \mu_k(g^{\*})\right)  \mbox{  and  } \\
-\Delta_* = \min_k \min_{h \ne h^{\*}_k} \left(\mu_k(g^{\*},h) - \mu_k(g^{\*})\right). 
+\Delta = \min_k \min_{g \ne g^{*}} \left(\mu_k(g) - \mu_k(g^{*})\right)  \mbox{  and  } \\
+\Delta_* = \min_k \min_{h \ne h^{*}_k} \left(\mu_k(g^{*},h) - \mu_k(g^{*})\right). 
 \end{eqnarray}
 $$
 
