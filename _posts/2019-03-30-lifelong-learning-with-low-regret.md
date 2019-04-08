@@ -122,7 +122,7 @@ $$
 $$
 
 
-where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $\bar{\ell_{k,s}}$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$.
+where $G_{k,s}(g)$ and $H_{k,s}^{(g)}(h)$ denote the probabilities of choosing $g$ and $h$, respectively. It is not hard to check that $$\bar{\ell}_{k,s}$$ is an unbiased estimator of $\ell_{k,s}$ for any $g$ and $h$.
 
 
 # Second Challenge -- Low Sampling Probability in Bandit Setting
@@ -159,21 +159,16 @@ The regret bound has the order of $2/3$ dependency on $T$. However, we provides 
 
 ### Algorithm 3
 
-we take a different approach, by reducing our problem to the following **"experts over actions" problem**. In this new problem, there is a set $$\mathcal{G} \times \mathcal{H}^K$$ of experts. Each expert is indexed by some $(g, \vec{h})$, with $g\in \mathcal{G}$ and $\vec{h} = \left( h_1, h_2,\cdots , h_K \right)$, who in every step $s$ of task $k$ plays the action $\left( g, h_k\right)$, which has the loss value $\ell_{k,s}\left( g,h_k \right)$. Now what an online algorithm can do at each step is to choose an expert and play his/her action, and the regret is measured against the total loss of the best expert, which in fact is the same as the regret defined in Eq.(1). Therefore, we can use any online algorithm for this new problem to solve our initial problem. In particular, we would like to run the EXP3 algorithm Auer et al. (2002b) on the experts and apply its regret analysis.
-
-
-
-
-This algorithm obtained a better regret bound.
+we take a different approach, by reducing our problem to the following **"experts over actions" problem**. In this new problem, there is a set $$\mathcal{G} \times \mathcal{H}^K$$ of experts. Each expert is indexed by some $(g, \vec{h})$, with $g\in \mathcal{G}$ and $\vec{h} = \left( h_1, h_2,\cdots , h_K \right)$, who in every step $s$ of task $k$ plays the action $\left( g, h_k\right)$, which has the loss value $\ell_{k,s}\left( g,h_k \right)$. Now what an online algorithm can do at each step is to choose an expert and play his/her action, and the regret is measured against the total loss of the best expert, which in fact is the same as the regret defined in Eq.(1). Therefore, we can run the EXP3 algorithm Auer et al. (2002b) on the experts and apply its regret analysis. This algorithm obtained a better regret bound.
 
 >**Theorem 2 :** 
 >For the problem with finite $G$ and $H$ and arbitrary loss functions, our bandit algorithm achieves a regret of
 >$\mathcal{O}\left(\sqrt{TGH\log (GH^K)}\right)$
 
+There is an apparent efficiency issue for maintaining $GH^K$ experts. We avoid this problem such that it suffices to be able to sample from the distribution of $GH$ actions played by the experts at each step. For more details, please refer to our paper.
 
-
-
-Assume, which is what makes the tasks related. In stochastic setting,
+# Third Challenge -- Stochastic Setting
+In stochastic setting, we assume that the best representation $g$ in every task is the same, denoted as $g^{\*}$, which is what makes the tasks related. In stochastic setting,
 we hope that $g^*$ can be determined within a small number of iterations.
 For each task $k$, there is some fixed but unknown distribution that the loss function $\ell_{k,s}$ is sampled i.i.d. from it in a task, with mean $\mu_k(g,h)$ for any $(g,h)$. In addition, let $\mu_{k}(g) = \min_h \mu_{k}(g,h)$. We can define
 \begin{eqnarray}
