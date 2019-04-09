@@ -204,4 +204,17 @@ Our algorithm works in two phases.
   
 * Exploitation phase
   * We always choose the representation $\hat{g}$ in this phase. As there is no representation to learn, the problem of learning each task then reduces to the traditional single task problem. Therefore, we can use this single task algorithms to learn the accompanying predictors.
+  
+  
+$$\mbox{Full-Information : }\mathcal{O}\left(\frac{1}{\Delta}\log\frac{G}{\Delta\delta} + \frac{1}{\Delta}K\log H + \frac{1}{\vartriangle_*}K\log\frac{TH}{\delta} \right).$$
+
+$$\mbox{Bandit : }\mathcal{O}\left(\frac{GH\log (GH^K)}{\Delta} + \frac{KH\log T}{\vartriangle_*}\right)$$
+  
+ 
+# References
+
+* Thrun, S. and Pratt, L., editors (1998). Learning to Learn.
+* Alquier, P., Mai, T. T., and Pontil, M. (2017). Regret bounds for lifelong learning.
+* Auer, P., Cesa-Bianchi, N., and Fischer, P. (2002a). Finite-time analysis of the multiarmed bandit problem.
+* Auer, P., Cesa-Bianchi, N., Freund, Y., and Schapire, R. E. (2002b). The nonstochastic multiarmed bandit problem.
 
