@@ -36,9 +36,9 @@ Both the tasks and their samples arrive sequentially so that in each time step, 
 
 To measure the performance of a learning algorithm, different settings have their own natural choices. Since the samples of each task arrive one after one, an often adopted measure is the **regret**. Furthermore, to capture the assumption above, we measure the regret by comparing against an offline algorithm which must use a fixed representation for all the tasks but is allowed to use different predictors for different tasks.
 
-\[ 
-Regret(T)=\mathbb{E}\left[\sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_K}\sum\limits_{k,s}\ell_{k,s}(g, h_k)\right] -- (1)
-\]
+$$ 
+Regret(T)=\mathbb{E}\left[ \sum\limits_{k,s}\ell_{k,s}(g_{k,s}, h_{k,s})-\min_{g, h_1, \cdots, h_K}\sum\limits_{k,s}\ell_{k,s}(g, h_k) \right] -- (1)
+$$
 
 ## Example
 
