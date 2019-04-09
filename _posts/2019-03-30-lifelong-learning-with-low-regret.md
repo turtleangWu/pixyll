@@ -169,7 +169,14 @@ There is an apparent efficiency issue for maintaining $GH^K$ experts. We avoid t
 
 # Third Challenge -- Stochastic Setting
 
-Consider that for each task $k$, there is some fixed but unknown distribution that the loss function $\ell_{k,s}$ is sampled i.i.d. from it in a task, with mean $\mu_k(g,h)$ for any $(g,h)$. To measure how good a representation $g$ is in task $k$, we let $$\mu_{k}(g) = \min_h \mu_{k}(g,h)$$.
+Consider that for each task $k$, there is some fixed but unknown distribution that the loss function $\ell_{k,s}$ is sampled i.i.d. from it in a task, with mean $\mu_k(g,h)$ for any $(g,h)$. To measure how good a representation $g$ is in task $k$, we let $$\mu_{k}(g) = \min_h \mu_{k}(g,h)$$. Also, we can define
+
+$$
+\begin{eqnarray}
+\Delta = \min_k \min_{g \ne g^{*}} \left(\mu_k(g) - \mu_k(g^{*})\right)  \mbox{  and  } \\
+\Delta_* = \min_k \min_{h \ne h^{*}_k} \left(\mu_k(g^{*},h) - \mu_k(g^{*})\right). 
+\end{eqnarray}
+$$
 
 
 To make the tasks related, we assume that
@@ -178,17 +185,24 @@ To make the tasks related, we assume that
 
 Following previous works for the stochastic setting, we hope that $g^{*}$ can be determined within a small number of iterations. In traditional single task problems, we use follow-the-leader algorithm and UCB (Auer et al. (2002a)) for full-information and bandit setting, respectively.
 
-However, the standard regret analysis of those algorithms rely crucially on the assumption that the mean of each arm’s loss does not change over time. In our case, the mean loss of a representation $g$ may keep changing when going into new tasks. The previous methods apparently fail.
+UCB guarantees that an arm with gap $\Delta$,  is likely to be distinguished for about $1/\Delta^2$ iterations, and each such iteration contributes $\Delta$ to the total regret. The single task problem of total $T$ steps with $GH$ arms achieves regret of 
+
+$$Regret(T)=\frac{GH\log T}{\Delta} $$
+
+However, the standard regret analysis of those algorithms rely crucially on the assumption that the mean of each arm’s loss does not change over time. In our case, the mean loss of a representation $g$ may keep changing when going into new tasks. The previous methods apparently fail. Obviously, it requires to design a new algorithm for this problem. 
+
+If we simply relearn all tasks by UCB, we obtain the regret of
+
+$$Regret(T)=\frac{KGH\log T}{\Delta} $$
+
+How can we do better than that?
 
 
-We can define
 
-$$
-\begin{eqnarray}
-\Delta = \min_k \min_{g \ne g^{*}} \left(\mu_k(g) - \mu_k(g^{*})\right)  \mbox{  and  } \\
-\Delta_* = \min_k \min_{h \ne h^{*}_k} \left(\mu_k(g^{*},h) - \mu_k(g^{*})\right). 
-\end{eqnarray}
-$$
+
+
+
+
 
 Algorithm Our algorithm works in two phases.
 
