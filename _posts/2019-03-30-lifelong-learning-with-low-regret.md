@@ -185,26 +185,23 @@ To make the tasks related, we assume that
 
 Following previous works for the stochastic setting, we hope that $g^{*}$ can be determined within a small number of iterations. In traditional single task problems, we use follow-the-leader algorithm and UCB (Auer et al. (2002a)) for full-information and bandit setting, respectively.
 
-UCB guarantees that an arm with gap $\Delta$,  is likely to be distinguished for about $1/\Delta^2$ iterations, and each such iteration contributes $\Delta$ to the total regret. The single task problem of total $T$ steps with $GH$ arms achieves regret of 
+UCB guarantees that an arm with gap $\Delta$,  is likely to be distinguished for about $1/\Delta^2$ iterations, and each such iteration contributes $\Delta$ to the total regret. Consequently, the single task problem of total $T$ steps with $GH$ arms achieves regret of 
 
 $$Regret(T)=\frac{GH\log T}{\Delta} $$
 
-However, the standard regret analysis of those algorithms rely crucially on the assumption that the mean of each arm’s loss does not change over time. In our case, the mean loss of a representation $g$ may keep changing when going into new tasks. The previous methods apparently fail. Obviously, it requires to design a new algorithm for this problem. 
+However, the standard regret analysis of those algorithms rely crucially on the assumption that the mean of each arm’s loss does not change over time. In our case, the mean loss of a representation $g$ may keep changing when going into new tasks. The previous methods apparently fail. If we simply relearn all tasks by UCB, we obtain the regret of
 
-If we simply relearn all tasks by UCB, we obtain the regret of
-
-$$Regret(T)=\frac{KGH\log T}{\Delta} $$
+$$Regret(T)=\mathcal{O}\left( \frac{KGH\log T}{\Delta} \right) $$
 
 How can we do better than that?
 
+### Algorithm
 
+Our algorithm works in two phases.
 
+* Exploration phase
+  * We run our adversarial algorithm until some iteration $\hat{T}$ when there is some representation $\hat{g}$ which dominates others.
+  
+* Exploitation phase
+  * We always choose the representation $\hat{g}$ in this phase. As there is no representation to learn, the problem of learning each task then reduces to the traditional single task problem. Therefore, we can use this single task algorithms to learn the accompanying predictors.
 
-
-
-
-
-Algorithm Our algorithm works in two phases.
-
-
-In the exploration phase, we run our adversarial algorithm until some iteration $\hat{T}$ when there is some representation $\hat{g}$ which dominates others. Then we enter the exploitation phase in which we always choose the representation $\hat{g}$. As there is no representation to learn, the problem of learning each task then reduces to the traditional single task problem. Therefore, we can use \underline{follow the leader} (UCB) algorithm for \underline{full-information} (bandit) setting to learn the accompanying predictors.
