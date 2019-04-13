@@ -93,7 +93,6 @@ $$\tilde{p}_{t}\rightarrow \tilde{p}_{t+1}$$
 給了一堆不嚴謹的解釋後，筆者只是想引出 FTRL 演算法一個可能的解釋方向。而它的演算法：
 
 > $$\tilde{p}_{t}=arg\min_p\sum\limits_{\tau=1}^{t-1}\ell_{\tau}(p)+R(p) -- (3)$$
-
 > 其中 $R:\mathcal{S}\rightarrow \mathbb{R}$ 是一個 strongly-convex function。
 
 ### Analysis of FTRL
@@ -112,7 +111,7 @@ $$\leq \frac{1}{2\eta}\|u\|_2^2+\eta TL^2  -- \mbox{ if }\ell_t \mbox{ is }L_t-
 
 ### 說明：
 
-* (5) 式來自於上面所說：跑 FTL 演算法時當時間 $t$ ，玩 $p_{t+1}$ 其實最好。 
+**(5) 式來自於上面所說：跑 FTL 演算法時當時間 $t$ ，玩 $p_{t+1}$ 其實最好。**
 
 從 (3) 式可以看出，$\tilde{p}_1=arg\min_p R(p)$ 這就像是 FTL 跑在一個「從 $t=0$ 開始的序列。也就是說如果現在 FTL 演算法是跑在某個 loss sequence $\ell_0,\ell_1,\ell_2,\cdots$，那麼 $\tilde{p}_1=p_1,\mbox{ if } R=\ell_0$。所以也可以使用上面的 Lemma，得到
 
@@ -120,7 +119,7 @@ $$R(\tilde{p}_1)+\sum\limits_{t=1}^T \ell_t(\tilde{p}_{t+1})\leq \sum\limits_{t=
 
 左右整理一下，再兩邊同時加上 FTRL 的 total loss $\sum\limits_{t=1}^T\ell_t(\tilde{p}_t)$ 就得到第 (5) 式。
 
-* (6) 式從 convex function 的定義得到。
+**(6) 式從 convex function 的定義得到。**
 
 $$\ell_t(\tilde{p}_t)+ \langle \tilde{p}_{t+1}-\tilde{p}_t,z_t\rangle \leq \ell_t(\tilde{p}_{t+1})$$
 
@@ -130,7 +129,7 @@ $$\tilde{p}_t=arg\min_p\sum\limits_{\tau=1}^{t-1}\langle z_{\tau},p \rangle+R(p)
 
 其中 $$\forall \tau, z_{\tau}\in \partial \ell_{\tau}(\tilde{p}_{\tau})$$。也就是說在時間 $t$，一旦根據以前的資料預測了 $$ \tilde{p}_t$$，這個預測的 loss 就被 $$\ell_t$$ 在 $$\tilde{p}_t$$ 點的 sub-gradient 決定了。這在程序上是沒有問題的，因為 loss function 本來就可以是看了 $$\tilde{p}_t$$ 後根據它決定。
 
-* (7) 式來自於Online Linear Optimization with $ R(x)=\frac{1}{2\eta}\|x\|_2^2$。
+**(7) 式來自於Online Linear Optimization with $ R(x)=\frac{1}{2\eta}\|x\|_2^2$。**
 因為
 
 $$\tilde{p}_{t+1}=arg\min_p\sum\limits_{\tau=1}^t \langle z_{\tau},p\rangle+\frac{1}{2\eta}\|p\|_2^2$$
@@ -140,10 +139,9 @@ $$\tilde{p}_{t+1}=arg\min_p\sum\limits_{\tau=1}^t \langle z_{\tau},p\rangle+\fra
 $$\tilde{p}_{t+1}=-\eta\sum\limits_{\tau=1}^t z_{\tau}=\tilde{p}_t-\eta z_t$$
 
 因此，$$\langle \tilde{p}_t-\tilde{p}_{t+1},z_t\rangle=\eta\|z_t\|_2^2$$。
+最後，要使得這個 regret bound 是 finite，除了 $u\in \mathcal{S}$ 要是 bounded 以外，$ z_t$ 也都要是 bounded，因此假設 loss function $\ell_t$ is $L_t$-Lipschitz。
 
-* 最後，要使得這個 regret bound 是 finite，除了 $u\in \mathcal{S}$ 要是 bounded 以外，$ z_t$ 也都要是 bounded，因此假設 loss function $\ell_t$ is $L_t$-Lipschitz。
-
-### Conclusion
+# Conclusion
 
 這個分析幾乎是將整個 FTRL 的分析模組化了，無論如何，任何 OCO 問題都可以藉由 sub-gradient 簡化成 OLO 問題，而配上不同的 Regularizer 或是不用 $\ell_2$-norm 而是用其他的 norm，那形成的 regret bound 就會不同，不過分析都可以藉由同一個脈絡。
 
