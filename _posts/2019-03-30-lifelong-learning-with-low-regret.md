@@ -200,19 +200,27 @@ How can we do better than that?
 Our algorithm works in two phases.
 
 * Exploration phase
-  * We run our adversarial algorithm until some iteration $\hat{T}$ when there is some representation $\hat{g}$ which dominates others.
+  * We run our adversarial algorithm until some iteration $\hat{T}$ when there is **some representation $\hat{g}$ which dominates others**. 
   
+
 * Exploitation phase
   * We always choose the representation $\hat{g}$ in this phase. As there is no representation to learn, the problem of learning each task then reduces to the traditional single task problem. Therefore, we can use this single task algorithms to learn the accompanying predictors.
   
   
-$$\mbox{Full-Information : }\mathcal{O}\left(\frac{1}{\Delta}\log\frac{G}{\Delta\delta} + \frac{1}{\Delta}K\log H + \frac{1}{\vartriangle_*}K\log\frac{TH}{\delta} \right).$$
-
-$$\mbox{Bandit : }\mathcal{O}\left(\frac{GH\log (GH^K)}{\Delta} + \frac{KH\log T}{\vartriangle_*}\right)$$
+The idea is basically the same as that of UCB: to identify the best arm (representation) and then play it after $\hat{T}$. The only difference is how we distinguish $g^{*}$. For full-information setting, since the loss functions are given, we can maintain some statistics and look for the optimal representation. For bandit setting, by adversarial algorithm, which gives us a small regret bound, the best arm should be played for enough number of iterations. Therefore, we can rely on this observation, and choose the representation which has been played most to be our $\hat{g}$. Please refer to our paper for further details.
   
- 
+>**Theorem**
+For stochastic settings, we obtain regret bound of
+
+$$\mbox{Full-Information : }\mathcal{O}\left(\frac{1}{\Delta}\log\frac{G}{\Delta\delta} + \frac{1}{\Delta}K\log H + \frac{1}{\Delta_*}K\log\frac{TH}{\delta} \right).$$
+
+$$\mbox{Bandit : }\mathcal{O}\left(\frac{GH\log (GH^K)}{\Delta} + \frac{KH\log T}{\Delta_*}\right)$$
+  
+
+
 # References
 
+* Yi-Shan Wu, Po-An Wang, Chi-Jen Lu (2019). Lifelong Optimization with Low Regret.
 * Thrun, S. and Pratt, L., editors (1998). Learning to Learn.
 * Alquier, P., Mai, T. T., and Pontil, M. (2017). Regret bounds for lifelong learning.
 * Auer, P., Cesa-Bianchi, N., and Fischer, P. (2002a). Finite-time analysis of the multiarmed bandit problem.
