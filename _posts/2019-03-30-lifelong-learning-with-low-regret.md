@@ -211,10 +211,8 @@ The idea is basically the same as that of UCB: to identify the best arm (represe
   
 >**Theorem**
 For stochastic settings, we obtain regret bound of
-
-$$\mbox{Full-Information : }\mathcal{O}\left(\frac{1}{\Delta}\log\frac{G}{\Delta\delta} + \frac{1}{\Delta}K\log H + \frac{1}{\Delta_*}K\log\frac{TH}{\delta} \right).$$
-
-$$\mbox{Bandit : }\mathcal{O}\left(\frac{GH\log (GH^K)}{\Delta} + \frac{KH\log T}{\Delta_*}\right)$$
+>$$\mbox{Full-Information : }\mathcal{O}\left(\frac{1}{\Delta}\log\frac{G}{\Delta\delta} + \frac{1}{\Delta}K\log H + \frac{1}{\Delta_*}K\log\frac{TH}{\delta} \right).$$
+>$$\mbox{Bandit : }\mathcal{O}\left(\frac{GH\log (GH^K)}{\Delta} + \frac{KH\log T}{\Delta_*}\right)$$
   
 
 
