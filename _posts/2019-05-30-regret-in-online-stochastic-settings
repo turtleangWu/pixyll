@@ -1,0 +1,26 @@
+---
+layout: post
+title: Regret in Online Stochastic Settings
+date: 2019-05-30 12:00
+summary: Providing a sublinear regret bound is the primary method to show that an online learning algorithm actually works. Although most works focus on worst-case settings (adversarial settings), there are still a lot of interests in stochastic cases. Here are some frequently used arguments to obtain low regret bound for stochastic settings.
+categories: online learning
+author: Yi-Shan Wu
+visible: True
+---
+
+# Introduction
+
+Providing a sublinear regret bound is the primary method to show that an online learning algorithm actually works. Although most works focus on worst-case settings (adversarial settings), there are still a lot of interests in stochastic cases. Here are some frequently used arguments to obtain low regret bound for stochastic settings.
+
+
+
+
+
+
+# 參考資料
+
+1. [On the optimality of the Hedge algorithm in the stochastic regime](https://arxiv.org/abs/1809.01382)
+1. [One Practical Algorithm for Both Stochastic and Adversarial Bandits (ICML 2014)](http://proceedings.mlr.press/v32/seldinb14.html)
+
+
+
