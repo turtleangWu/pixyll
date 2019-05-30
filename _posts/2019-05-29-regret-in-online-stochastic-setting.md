@@ -12,6 +12,8 @@ visible: True
 
 Providing a sublinear regret bound is the primary method to show that an online learning algorithm actually works. Although most works focus on worst-case settings (adversarial settings), there are still a lot of interests in stochastic cases. Here are some frequently used arguments to obtain low regret bound for stochastic settings.
 
+We take the basic multiarmed stochastic bandit setting into consideration.
+
 
 
 
