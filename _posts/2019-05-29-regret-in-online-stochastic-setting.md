@@ -29,8 +29,8 @@ where $N_T(i)$ is the number of times we play arm $i$ within $T$ steps.
 
 Note that the best arm is better than other arms with certain gaps. If it is possible that we can identify the best arm in small  time steps, then the number of times we play the ''wrong'' arms would be small and thus results in low regret. Although proof in different papers may be formulated in different ways, the idea is quite similar. Let's first take a look at the classic algorithm for stochastic bandit problem.
 
-## UCB \[1\]
-Upper Confidence Bound(UCB) is proposed in 2002. 
+## UCB
+Upper Confidence Bound(UCB) is proposed in 2002(ref.1). The proof shows that after about $\tau_0=\mathcal{O}\left(\frac{\log T}{\Delta_i^2}\right)$ steps, 
 
 
 The proof shows that $\mathbb{E}\left[N_T(i)\right]\leq \mathcal{O}\left(\frac{\log T}{\Delta_i^2}\right)$.
