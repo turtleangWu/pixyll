@@ -27,7 +27,9 @@ where $N_T(i)$ is the number of times we play arm $i$ within $T$ steps.
 
 # Ideas
 
-Since the best arm is better than other arms with certain gaps, if it is possible that we can identify the best arm in short time, then 
+Note that the best arm is better than other arms with certain gaps. If it is possible that we can identify the best arm in small  time steps, then the number of times we play the ''wrong'' arms would be small and thus results in low regret. Although proof in different papers may be formulated in different ways, the idea is quite similar. Let's first take a look at the classic algorithm for stochastic bandit problem.
+
+## UCB (2002)
 
 
 
