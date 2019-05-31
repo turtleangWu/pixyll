@@ -16,11 +16,11 @@ In the most basic formulation of $K$-armed stochastic bandit setting problem, at
 
 The pseudo regret is often used for stochastic setting. Therefore, for a total $T$ steps game, the total regret is defined to be
 
-$$ \bar{Reg_T}=\mathbb{E}\left\sum\limits_{t=1}^T \ell_t(I_t)-\ell_t(i^{\*}) \right]$$
+$$ \bar{Reg_T}=\mathbb{E}\left[\sum\limits_{t=1}^T \ell_t(I_t)-\ell_t(i^{\*}) \right]$$
 
 which can be further written as
 
-$$ \sum\limits_{i\neq i^{\*}}\Delta_i\mathbb{E}\left[N_T(i)\right]  $$
+$$ \sum\limits_{i\neq i^{\*} }\Delta_i\mathbb{E}\left[N_T(i)\right]  $$
 
 where $N_T(i)$ is the number of times we play arm $i$ within $T$ steps.
 
