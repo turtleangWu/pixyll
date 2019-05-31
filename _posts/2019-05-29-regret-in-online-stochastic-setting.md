@@ -12,7 +12,7 @@ visible: True
 
 Providing a sublinear regret bound is the primary method to show that an online learning algorithm actually works. Although most works focus on worst-case settings (adversarial settings), there are still a lot of interests in stochastic cases. Here are some frequently used arguments to obtain low regret bound for stochastic settings.
 
-In the most basic formulation of $K$-armed stochastic bandit setting problem, let $\ell_t(i)$ denote the loss of arm $i$ at step $t$. The losses of playing the arm $i$, are sampled i.i.d. from some unknown mean $\mu_i$. That is, for all $t\in \mathbb{N}$ and $i\in [K]$, $\mathbb{E}\left[\ell_t(i)\right]=\mu_i$. Furthermore, let $$ i^{\*}=arg\min_i \mu_i$$ be the best arm which is considerably better than other arms with some gap $\Delta_i=\mu_i-\mu_{i^\*}$, respectively. 
+In the most basic formulation of $K$-armed stochastic bandit setting problem, let $\ell_t(i)$ denote the loss of arm $i$ at step $t$. The losses of playing the arm $i$, are sampled i.i.d. from some unknown mean $\mu_i$. That is, for all $t\in \mathbb{N}$ and $i\in [K]$, $\mathbb{E}\left[\ell_t(i)\right]=\mu_i$. Furthermore, let $ i^{\*}=arg\min_i \mu_i$ be the best arm which is considerably better than other arms with some gap $\Delta_i=\mu_i-\mu_{i^\*}$, respectively. 
 
 
 
