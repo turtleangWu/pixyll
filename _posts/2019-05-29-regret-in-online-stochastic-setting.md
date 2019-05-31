@@ -12,7 +12,22 @@ visible: True
 
 Providing a sublinear regret bound is the primary method to show that an online learning algorithm actually works. Although most works focus on worst-case settings (adversarial settings), there are still a lot of interests in stochastic cases. Here are some frequently used arguments to obtain low regret bound for stochastic settings.
 
-In the most basic formulation of $K$-armed stochastic bandit setting problem, let $\ell_t(i)$ denote the loss of arm $i$ at step $t$. The losses of playing the arm $i$, are sampled i.i.d. from some unknown mean $\mu_i$. That is, for all $t\in \mathbb{N}$ and $i\in [K]$, $\mathbb{E}\left[\ell_t(i)\right]=\mu_i$. Furthermore, let $i^{\*}=arg\min_i \mu_i$ be the best arm which is considerably better than other arms with some gap $\Delta_i=\mu_i-\mu_{i^\*}$, respectively. 
+In the most basic formulation of $K$-armed stochastic bandit setting problem, at each step $t$, we play an arm $I_t\in [K]$ and receive the loss $\ell_t(I_t)$, where $\ell_t$ is the loss function at step $t$. The losses of playing the arm $i$, are sampled i.i.d. from some unknown mean $\mu_i$. That is, for all $t\in \mathbb{N}$ and $i\in [K]$, $\mathbb{E}\left[\ell_t(i)\right]=\mu_i$. Furthermore, let $i^{\*}=arg\min_i \mu_i$ be the unique best arm which is considerably better than other arms with some gap $\Delta_i=\mu_i-\mu_{i^\*}$, respectively.
+
+The pseudo regret is often used for stochastic setting. Therefore, for a total $T$ steps game, the total regret is defined to be
+
+$$\bar{Reg_T}=\mathbb{E}\left\sum\limits_{t=1}^T \ell_t(I_t)-\ell_t(i^{\*}) \right]$$
+
+which can be further written as
+
+$$\sum\limits_{i\neq i^{\*}}\Delta_i\mathbb{E}\left[N_T(i)\right]  $$
+
+where $N_T(i)$ is the number of times we play arm $i$ within $T$ steps.
+
+
+# Ideas
+
+Since the best arm is better than other arms with certain gaps, if it is possible that we can identify the best arm in short time, then 
 
 
 
