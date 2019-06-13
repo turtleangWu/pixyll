@@ -25,7 +25,7 @@ This algorithm is proposed in $(ref.2)$ and you can find some of theorems and pr
 
 $$f^*(y)=max_{x\in \mathbb{R}^K}\left\{\langle x,y \rangle -f(x) \right\}. $$
 
-In online learning problems, our decision sets are often constrained. Therefore, for constrained convex set $A\subset \mathbb{R}^K$, we define
+In online learning problems, our decision sets are often constrained (probability simplex in this post). Therefore, for constrained convex set $A\subset \mathbb{R}^K$, we define
 
 $$(f+\mathcal{I}_A)^*(y)=max_{x\in A}\left\{\langle x,y \rangle -f(x) \right\}. $$
 
@@ -33,10 +33,11 @@ Furthermore, by standard results from convex analysis,  for differentiable and c
 
 $$\nabla(f+\mathcal{I}_A)^*(y)=arg\max_{x\in A}\left\{\langle x,y \rangle -f(x) \right\}\in A. $$
 
-Therefore, we could design our algorithm as
+Therefore, authors design the GBPA algorithm as
 
-<center><img src="/images/online/GBPA.png" width="600" height="300" /></center>
+<center><img src="/images/online/GBPA.png" width="630" height="300" /></center>
 
+First of all, the function $\psi(w)$ serves both as the regularizer in FTRL algorithm and as the specific function for its conjugate $\Phi$. The regularizer $psi(w)$ plays a central role in the algorithm for controlling the ''smoothness''. Also, the algorithm is implementable only when the regularizer is well chosen.
 
 
 
