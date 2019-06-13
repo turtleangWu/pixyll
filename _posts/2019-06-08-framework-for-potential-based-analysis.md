@@ -60,7 +60,7 @@ $$\mathbb{E}\left[\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L
 
 Here we introduce a key lemma.
 
-> Key lemma:
+> Lemma:
 > $$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\hat{\ell}_t(i_T^*)\big)\leq \sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})$$
 
 With the key lemma, the regret can be bounded by 
@@ -81,9 +81,7 @@ Owing to $$\hat{L}_0=0$$, we have
 
 $$\sum\limits_{t=1}^T\left(\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)\right) \leq \langle w_{T+1}, \hat{L}_T\rangle + \sum\limits_{t=1}^T\big(-\psi_t(w_t)+\psi_t(w_{t+1})\big)$$
 
-Also, $$w_{T+1}$$ can be naturally chosen as $$e_{i_T^{*}}$$. Thus, $$\langle e_{i_T^*}, \hat{L}_T\rangle$$  cancels out the  summation $$\sum\limits_{t=1}^T -\hat{\ell}_t(i_T^*)$$. 
-
-We then complete the proof.
+Also, $$w_{T+1}$$ can be naturally chosen as $$e_{i_T^{*}}$$. Thus, $$\langle e_{i_T^*}, \hat{L}_T\rangle$$  cancels out the  summation $$\sum\limits_{t=1}^T -\hat{\ell}_t(i_T^*)$$. We then complete the proof.
 
 # Conclusion
 
