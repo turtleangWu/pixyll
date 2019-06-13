@@ -14,9 +14,9 @@ Roughly Speaking, online algorithms can often be written in Online Mirror Descen
 
 In the most basic formulation of $K$-armed bandit problem, at each step $t$, we play an arm $I_t\in [K]$ according to some distribution $w_t$ over arms, and receive the loss $\ell_t(I_t)$, where $\ell_t$ is the loss function at step $t$. The losses, which could be either adversarial or stochastic, are determined by environment. In bandit problems, people usually construct unbiased losses for update. That is, let 
 
-$$\hat{\ell}_t(i)=\frac{\ell_t(i)}{w_t(i)}\mathbf{1}_{i=I_t}, \forall i\in [K] $$
+$$\hat{\ell}_t(i)=\frac{\ell_t(i)}{w_t(i)}\mathbf{1}_{i=I_t}, \forall i\in [K], $$
 
-, where $\ell_t(i)=\ell_t(I_t)$ as $i=I_t$; otherwise, $\ell_i$ (and thus $\ell_t(i)$) is zero.
+where $\ell_t(i)=\ell_t(I_t)$ as $i=I_t$; otherwise, $\ell_i$ (and thus $\ell_t(i)$) is zero.
 
 
 # Potential function techniques
@@ -46,7 +46,7 @@ It is known that the (expected) regret can be written as
 
 $$\mathbb{E}\left[\sum\limits_{t=1}^T\ell_t(I_t)-\sum\limits_{t=1}^T\ell_t(i_T^*)\right],$$
 
-where $i_T^*$ is defined as the best arm in expectation in hindsight. Since 
+where $i_T^*$ is defined as the best arm in expectation in hindsight. Note that
 
 $$ \ell_t(I_t)= \langle w_t, \hat{\ell}_t \rangle =  \langle \nabla\Phi_t(-\hat{L}_{t-1}), \hat{L}_t-\hat{L}_{t-1} \rangle, $$
 
@@ -54,7 +54,7 @@ where the last equality comes from the definition of $w_t$. By the definition of
 
 $$ \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)+D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1}). $$
 
-The regret becomes
+The regret then becomes
 
 $$\mathbb{E}\left[\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\hat{\ell}_t(i_T^*)\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big) \right]. $$
 
@@ -68,7 +68,7 @@ $$\mathbb{E}\left[\sum\limits_{t=1}^T \big(-\psi_t(w_t)+\psi_t(w_{t+1})\big) +\s
 
 Thus, we can bound the two summation adapted to different cases.
 
-# Proof of the key lemma
+## Proof of the key lemma
 
 Since 
 
