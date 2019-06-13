@@ -16,9 +16,22 @@ In the most basic formulation of $K$-armed bandit problem, at each step $t$, we 
 
 $$\hat{\ell}_t(i)=\frac{\ell_t(i)}{w_t(i)}\mathbf{1}_{i=I_t}, \forall i\in [K] $$
 
+, where $\ell_t(i)=\ell_t(I_t)$ as $i=I_t$; otherwise, $\ell_i$ (and thus $\ell_t(i)$) is zero.
 
 
+# Potential function techniques
 
+This algorithm comes from the usual properties of convex analysis. Recall that the convex conjugate of a function $f:\mathbb{R}^K\rightarrow \mathbb{R}$ is
+
+$$f^*(y)=max_{x\in \mathbb{R}^K}\left\{\langle x,y \rangle -f(x) \right\}. $$
+
+In online learning problems, our decision sets are often constrained. Therefore, for constrained convex set $A\subset \mathbb{R}^K$, we define
+
+$$(f+\mathcal{I}_A)^*(y)=max_{x\in A}\left\{\langle x,y \rangle -f(x) \right\}. $$
+
+Furthermore, by standard results from convex analysis,  for differentiable and convex $f$ with invertible gradient $(\nabla f)^{-1}$ it holds that
+
+$$\nabla(f+\mathcal{I}_A)^*(y)=arg\max_{x\in A}\left\{\langle x,y \rangle -f(x) \right\}\in A. $$
 
 
 
