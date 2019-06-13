@@ -35,7 +35,7 @@ $$\nabla(f+\mathcal{I}_A)^*(y)=arg\max_{x\in A}\left\{\langle x,y \rangle -f(x) 
 
 Therefore, we could design our algorithm as
 
-<center><img src="/images/online/GBPA.png" width="400" height="200" /></center>
+<center><img src="/images/online/GBPA.png" width="600" height="300" /></center>
 
 
 
