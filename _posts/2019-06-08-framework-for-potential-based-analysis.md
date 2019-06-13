@@ -14,7 +14,7 @@ Roughly Speaking, online algorithms can often be written in Online Mirror Descen
 
 In the most basic formulation of $K$-armed bandit problem, at each step $t$, we play an arm $I_t\in [K]$ according to some distribution $w_t$ over arms, and receive the loss $\ell_t(I_t)$, where $\ell_t$ is the loss function at step $t$. The losses, which could be either adversarial or stochastic, are determined by environment. In bandit problems, people usually construct unbiased losses for update. That is, let 
 
-$$\hat{\ell}_t(i)=\frac{\ell_t(i)}{w_t(i)}\mathds{1}_{i=I_t}, \forall i\in [K] $$
+$$\hat{\ell}_t(i)=\frac{\ell_t(i)}{w_t(i)}\mathbf{1}_{i=I_t}, \forall i\in [K] $$
 
 
 
