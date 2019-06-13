@@ -10,7 +10,7 @@ visible: True
 
 # Introduction
 
-EXP3 algorithm is proposed in 2002$(ref.2)$. It is shown that EXP3 algorithm can achieve $$\mathcal{O}\left(\sqrt{KT\log K}\right)$$, where $K$ is the number of arms in expectation.
+EXP3 algorithm is proposed in 2002$(ref.2)$. It is shown that EXP3 algorithm can achieve $$\mathcal{O}\left(\sqrt{KT\log K}\right)$$  in-expectation regret bound in the adversarial setting, where $K$ is the number of arms, but no high-probability statement. 
 
 In the most basic formulation of $K$-armed stochastic bandit setting problem, at each step $t$, we play an arm $I_t\in [K]$ and receive the loss $\ell_t(I_t)$, where $\ell_t$ is the loss function at step $t$. The losses of playing the arm $i$, are sampled i.i.d. from some unknown mean $\mu_i$. That is, for all $t\in \mathbb{N}$ and $i\in [K]$, $\mathbb{E}\left[\ell_t(i)\right]=\mu_i$. Furthermore, let $i^{\*}=arg\min_i \mu_i$ be the unique best arm which is considerably better than other arms with some gap $\Delta_i=\mu_i-\mu_{i^\*}$, respectively.
 
