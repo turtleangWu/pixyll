@@ -50,23 +50,24 @@ where $i_T^*$ is defined as the best arm in expectation in hindsight. Note that
 
 $$ \ell_t(I_t)= \langle w_t, \hat{\ell}_t \rangle =  \langle \nabla\Phi_t(-\hat{L}_{t-1}), \hat{L}_t-\hat{L}_{t-1} \rangle, $$
 
-where the last equality comes from the definition of $w_t$. By the definition of Bregman divergence, it also equals
+where the last equality comes from the definition of $w_t$. By the definition of Bregman divergence,
 
-$$ \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)+D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1}). $$
+$$  \nabla\Phi_t(-\hat{L}_{t-1})=\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)+D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1}). $$
 
 The regret then becomes
 
 $$\mathbb{E}\left[\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\hat{\ell}_t(i_T^*)\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big) \right]. $$
 
-Here we introduce a key lemma in this post.
+Here we introduce a key lemma.
 
+> Key lemma:
 > $$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\hat{\ell}_t(i_T^*)\big)\leq \sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})$$
 
 With the key lemma, the regret can be bounded by 
 
 $$\mathbb{E}\left[\sum\limits_{t=1}^T \big(-\psi_t(w_t)+\psi_t(w_{t+1})\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big) \right] $$
 
-Thus, we can bound the two summation adapted to different cases.
+Thus, we can bound the two summation adapted to different cases (different $\psi_t$). I will give an example in the next post.
 
 ## Proof of the key lemma
 
@@ -76,13 +77,17 @@ $$\Phi_t(-\hat{L}_{t-1}) = \langle w_t, -\hat{L}_{t-1}\rangle -\psi_t(w_t), \mbo
 
 $$\Phi_t(-\hat{L}_{t}) = \max_w \langle w, -\hat{L}_{t}\rangle - \psi_t(w)\geq  \langle w_{t+1}, -\hat{L}_{t}\rangle -\psi_t(w_{t+1}),$$
 
-we have
+Owing to $$\hat{L}_0=0$$, we have
 
-$$\sum\limits_{t=1}^T\left(\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)\right) \leq  \sum\limits_{t=1}^T \left(\langle w_t, -\hat{L}_{t-1} \rangle - \langle w_{t+1}, -\hat{L}_t \rangle \right) + \sum\limits_{t=1}^T \big(-\psi_t(w_t)+\psi_t(w_{t+1})$$
+$$\sum\limits_{t=1}^T\left(\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)\right) \leq \langle w_{T+1}, \hat{L}_T\rangle + \sum\limits_{t=1}^T\big(-\psi_t(w_t)+\psi_t(w_{t+1})\big)$$
 
-$$=\langle w_{T+1}, \hat{L}_T\rangle + \sum\limits_{t=1}^T\big(-\psi_t(w_t)+\psi_t(w_{t+1})\big)$$
+Also, $$w_{T+1}$$ can be naturally chosen as $$e_{i_T^{*}}$$. Thus, $$\langle e_{i_T^*}, \hat{L}_T\rangle$$  cancels out the  summation $$\sum\limits_{t=1}^T -\hat{\ell}_t(i_T^*)$$. 
 
-$$w_{T+1}$$ can be naturally chosen as $$e_{i_T^{*}}$$. Thus, $$\langle e_{i_T^*}, \hat{L}_T\rangle$$  cancels out the  summation $$\sum\limits_{t=1}^T -\hat{\ell}_t(i_T^*)$$. 
+We then complete the proof.
+
+# Conclusion
+
+In this post, we briefly summarize the method of GBPA and a general proof for the regret bound. In the next post, we will adapt it to EXP3 algorithm.
 
 
 
