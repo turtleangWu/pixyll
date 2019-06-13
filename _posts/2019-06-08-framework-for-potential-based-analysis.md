@@ -33,6 +33,11 @@ Furthermore, by standard results from convex analysis,  for differentiable and c
 
 $$\nabla(f+\mathcal{I}_A)^*(y)=arg\max_{x\in A}\left\{\langle x,y \rangle -f(x) \right\}\in A. $$
 
+Therefore, we could design our algorithm as
+
+
+
+
 
 
 
