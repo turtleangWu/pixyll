@@ -55,12 +55,12 @@ $$  \nabla\Phi_t(-\hat{L}_{t-1})=\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)+D_{\P
 
 The regret then becomes
 
-$$\mathbb{E}\left[\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\hat{\ell}_t(i_T^*)\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big) \right]. $$
+$$\mathbb{E}\left[\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\ell_t(i_T^*)\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big) \right]. $$
 
 Here we introduce a key lemma.
 
 > Lemma:
-> $$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\hat{\ell}_t(i_T^*)\big)\leq \sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})$$
+> $$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\ell_t(i_T^*)\big)\leq \sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})$$
 
 With the key lemma, the regret can be bounded by 
 
@@ -74,9 +74,14 @@ Since
 
 $$\Phi_t(-\hat{L}_{t-1}) = \langle w_t, -\hat{L}_{t-1}\rangle -\psi_t(w_t), \mbox{and}$$
 
-$$\Phi_t(-\hat{L}_{t}) = \max_w \langle w, -\hat{L}_{t}\rangle - \psi_t(w)\geq  \langle w_{t+1}, -\hat{L}_{t}\rangle -\psi_t(w_{t+1}),$$
+$$\Phi_t(-\hat{L}_{t}) = \max_w \langle w, -\hat{L}_{t}\rangle - \psi_t(w)\geq  \langle \tilde{w}, -\hat{L}_{t}\rangle -\psi_t(\tilde{w}).$$
 
-Owing to $$\hat{L}_0=0$$, we have
+We can take $\tilde{w}=w_{t+1}$ for $t\in \left[1,T-1\right]$, while $\tilde{w}=e_{i_T^*}$ for $t=T$. Thus,
+
+$$\sum\limits_{t=1}^T\left(\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)\right) \leq \langle e_{i_T^*}, \hat{L}_T\rangle + \sum\limits_{t=1}^T-\psi_t(w_t)+\sum\limits_{t=1}^{T-1}\psi_t(w_{t+1})+\psi_T(e_{i_T^*})$$
+
+
+
 
 $$\sum\limits_{t=1}^T\left(\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)\right) \leq \langle w_{T+1}, \hat{L}_T\rangle + \sum\limits_{t=1}^T\big(-\psi_t(w_t)+\psi_t(w_{t+1})\big)$$
 
