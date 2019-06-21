@@ -10,14 +10,13 @@ visible: True
 
 # Introduction
 
-Roughly Speaking, online algorithms can often be written in Online Mirror Descent (OMD) or Follow-the-Regularized-Leader (FTRL) type. Since the posts in the future would mostly be in FTRL type, here we provide a general framework for analyzing regret. Actually, there is no big difference in their analysis, but sometimes one is easier than the other. Anyway, I'm just writing this post for my next one.
+Roughly Speaking, online algorithms can often be written in Online Mirror Descent (OMD) or Follow-the-Regularized-Leader (FTRL) type. Since the posts in the future would mostly be in FTRL type, here we provide a general framework for analyzing regret. Actually, there is no big difference in their analysis, but sometimes one is easier than the other. Anyway, I'm just writing this post as a module for further analysis.
 
-In the most basic formulation of $K$-armed bandit problem, at each step $t$, we play an arm $I_t\in [K]$ according to some distribution $w_t$ over arms, and receive the loss $\ell_t(I_t)$, where $\ell_t$ is the loss function at step $t$. The losses, which could be either adversarial or stochastic, are determined by environment. In bandit problems, people usually construct unbiased losses for update. That is, let 
+In the most basic formulation of $K$-armed bandit problem, at each step $t$, we play an arm $I_t\in [K]$ according to some distribution $w_t$ over arms, and receive the loss $\ell_t(I_t)$, where $\ell_t$ is the loss function at step $t$. Note that in bandit settings, the feedback is restricted that we only have loss value of the action, $\ell_t(I_t)$, rather than the loss function, $\ell_t$. The losses, which could be either adversarial or stochastic, are determined by environment. In bandit problems, people usually construct unbiased losses for update. That is, let 
 
-$$\hat{\ell}_t(i)=\frac{\ell_t(i)}{w_t(i)}\mathbf{1}_{i=I_t}, \forall i\in [K], $$
+$$\hat{\ell}_t(i)=\frac{\ell_t(i)}{w_t(i)}\mathbf{1}_{i=I_t}, \forall i\in [K]. $$
 
-where $\ell_t(i)=\ell_t(I_t)$ as $i=I_t$; otherwise, $\ell_i$ (and thus $\ell_t(i)$) is zero.
-
+The losses are said to be unbiased if $$\mathbb{E}_{I_t\sim w_t}\left[\hat{\ell}_t(i)\right]=\ell_t(i)$$.
 
 # Potential function techniques
 
