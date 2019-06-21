@@ -24,7 +24,7 @@ This algorithm is proposed in $(ref.2)$ and you can find some of theorems and pr
 
 $$f^*(y)=max_{x\in \mathbb{R}^K}\left\{\langle x,y \rangle -f(x) \right\}. $$
 
-In online learning problems, our decision sets are often constrained (probability simplex in this post). Therefore, for constrained convex set $A\subset \mathbb{R}^K$, we define
+In online learning problems, the decision sets are often constrained (probability simplex in this post). Therefore, for constrained convex set $A\subset \mathbb{R}^K$, we can define
 
 $$(f+\mathcal{I}_A)^*(y)=max_{x\in A}\left\{\langle x,y \rangle -f(x) \right\}. $$
 
@@ -45,7 +45,7 @@ It is known that the (expected) regret can be written as
 
 $$\mathbb{E}\left[\sum\limits_{t=1}^T\ell_t(I_t)-\sum\limits_{t=1}^T\ell_t(i_T^*)\right],$$
 
-where $i_T^*$ is defined as the best arm in expectation in hindsight. Note that
+where $i_T^*$ is defined as the best arm in hindsight and the expectation is taken over the possible randomness of the algorithm and loss generation model. Also,
 
 $$ \ell_t(I_t)= \langle w_t, \hat{\ell}_t \rangle =  \langle \nabla\Phi_t(-\hat{L}_{t-1}), \hat{L}_t-\hat{L}_{t-1} \rangle, $$
 
