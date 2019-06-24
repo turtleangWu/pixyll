@@ -76,9 +76,9 @@ $$\Phi_t(-\hat{L}_{t-1}) = \langle w_t, -\hat{L}_{t-1}\rangle -\psi_t(w_t), \mbo
 
 $$\Phi_t(-\hat{L}_{t}) = \max_w \langle w, -\hat{L}_{t}\rangle - \psi_t(w)\geq  \langle \tilde{w}, -\hat{L}_{t}\rangle -\psi_t(\tilde{w}).$$
 
-We can take $\tilde{w}=w_{t+1}$ for $t\in \left[1,T-1\right]$, while $\tilde{w}=e_{i_T^*}$ for $t=T$. Thus,
+We can take $\tilde{w}=w_{t+1}$ for $t\in \left[1,T-1\right]$ and $\tilde{w}=e_{i_T^*}$ for $t=T$. Thus,
 
-$$\sum\limits_{t=1}^T\left(\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)\right) \leq \langle e_{i_T^*}, \hat{L}_T\rangle + \sum\limits_{t=1}^T-\psi_t(w_t)+\sum\limits_{t=1}^{T-1}\psi_t(w_{t+1})+\psi_T(e_{i_T^*})$$
+$$\sum\limits_{t=1}^T\left(\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)\right) \leq \langle e_{i_T^*}, \hat{L}_T\rangle + \sum\limits_{t=1}^T\left(-\psi_t(w_t)\right)+\sum\limits_{t=1}^{T-1}\left(\psi_t(w_{t+1})\right)+\psi_T(e_{i_T^*})$$
 
 
 
