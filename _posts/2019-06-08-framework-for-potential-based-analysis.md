@@ -47,7 +47,7 @@ Therefore, authors design the GBPA algorithm as
 
 Recall that the form of basic FTRL algorithm:
 
-$$w_{t+1}=arg\min_w \langle w, \sum\limits_{i=1}^t f_i(w) \rangle + R(w), $$
+$$w_{t+1}=arg\min_w \sum\limits_{i=1}^t f_i(w) + R(w), $$
 
 where $f_i(\cdot)$ are losses and $R(\cdot)$ is the regularizer. Thus, the GBPA algorithm can be seen to be extended from basic FTRL algorithm, and the analysis developed in the following sections can be used to analyze ordinary FTRL algorithm.
 
@@ -56,10 +56,11 @@ To summarize, the function $\psi_t(w)$ serves both as the regularizer in FTRL al
 
 # Regret Analysis
 
+Since $$w_t= \nabla\Phi_t(-\hat{L}_{t-1})$$ by algorithm, the first term of the regret is
 
-$$ \ell_t(I_t)= \langle w_t, \hat{\ell}_t \rangle =  \langle \nabla\Phi_t(-\hat{L}_{t-1}), \hat{L}_t-\hat{L}_{t-1} \rangle, $$
+$$ \langle w_t, \hat{\ell}_t \rangle =  \langle \nabla\Phi_t(-\hat{L}_{t-1}), \hat{L}_t-\hat{L}_{t-1} \rangle, $$
 
-where the last equality comes from the definition of $w_t$. By the definition of Bregman divergence,
+Also, by the definition of Bregman divergence,
 
 $$  \nabla\Phi_t(-\hat{L}_{t-1})=\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)+D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1}). $$
 
