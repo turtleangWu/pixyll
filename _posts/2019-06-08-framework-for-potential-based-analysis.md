@@ -16,7 +16,16 @@ In the most basic formulation of $K$-armed bandit problem, at each step $t$, we 
 
 $$\hat{\ell}_t(i)=\frac{\ell_t(i)}{w_t(i)}\mathbf{1}_{i=I_t}, \forall i\in [K]. $$
 
-The losses are said to be unbiased if $$\mathbb{E}_{I_t\sim w_t}\left[\hat{\ell}_t(i)\right]=\ell_t(i)$$.
+The losses are said to be unbiased if $$\mathbb{E}_{I_t\sim w_t}\left[\hat{\ell}_t(i)|I_1, \cdots, I_{t-1}\right]=\ell_t(i)$$.
+
+It is known that the (expected) regret is defined as
+
+$$\mathbb{E}\left[\sum\limits_{t=1}^T\ell_t(I_t)-\sum\limits_{t=1}^T\ell_t(i_T^*)\right],$$
+
+where $i_T^*$ is the best arm in hindsight and the expectation is taken over the possible randomness of the algorithm and loss generation model. It can further be changed into the form related to the estimation losses $\hat{\ell}$.
+
+$$Regret_T= \mathbb{E}\left[\sum\limits_{t=1}^T\langle w_t, \hat{\ell}_t \rangle-\sum\limits_{t=1}^T\mathbb{E}_{I_t}\left[\hat{\ell}_t(i_T^*)|I_1, I_2, \cdots I_{t-1}\right]\right]$$
+
 
 # Potential function techniques
 
@@ -41,13 +50,6 @@ First of all, the function $\psi_t(w)$ serves both as the regularizer in FTRL al
 
 # Regret Analysis
 
-It is known that the (expected) regret can be written as
-
-$$\mathbb{E}\left[\sum\limits_{t=1}^T\ell_t(I_t)-\sum\limits_{t=1}^T\ell_t(i_T^*)\right],$$
-
-where $i_T^*$ is defined as the best arm in hindsight and the expectation is taken over the possible randomness of the algorithm and loss generation model. It can further be changed into the form related to the estimation losses $\hat{\ell}$.
-
-$$Regret_T= \mathbb{E}\left[\sum\limits_{t=1}^T\langle w_t, \hat{\ell}_t \rangle-\sum\limits_{t=1}^T\mathbb{E}_{I_t}\left[\hat{\ell}_t(i_T^*)|I_1, I_2, \cdots I_{t-1}\right]\right]$$
 
 $$ \ell_t(I_t)= \langle w_t, \hat{\ell}_t \rangle =  \langle \nabla\Phi_t(-\hat{L}_{t-1}), \hat{L}_t-\hat{L}_{t-1} \rangle, $$
 
