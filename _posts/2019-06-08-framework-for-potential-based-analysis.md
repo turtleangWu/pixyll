@@ -71,13 +71,14 @@ $$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\mathbb{E}
 We explicitly decomposite the regret into two summations amd we will bound them separately later. To make the proof clean, we simply use **First** to denote the first summation and **Second** to denote the second summation. Here we introduce a key lemma.
 
 > Lemma:
-> $$\mathbb{E}\left[**First**\right]\leq \mathbb{E}\left[\sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})\right]$$
+> $$\mathbb{E}\left[
+mathbf{First}\right]\leq \mathbb{E}\left[\sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})\right]$$
 
 With the key lemma, the regret can be bounded by 
 
 $$\mathbb{E}\left[\sum\limits_{t=1}^T \big(-\psi_t(w_t)+\psi_t(w_{t+1})\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big) \right] $$
 
-Thus, we can bound the two summation adapted to different cases (different $\psi_t$). I will give an example in the next post.
+It is much clear now that the regret highly depends on how good are the chosen $\psi_t$s. That is, the regularizer in FTRL algorithms are often strongly convex; therefore, the corresponding conjugates are strongly smooth. To obtain sublinear regret bound,  By I will give an example in the next post.
 
 ## Proof of the key lemma
 
@@ -87,7 +88,7 @@ $$\Phi_t(-\hat{L}_{t-1}) = \langle w_t, -\hat{L}_{t-1}\rangle -\psi_t(w_t), \mbo
 
 $$\Phi_t(-\hat{L}_{t}) = \max_w \langle w, -\hat{L}_{t}\rangle - \psi_t(w)\geq  \langle \tilde{w}, -\hat{L}_{t}\rangle -\psi_t(\tilde{w}).$$
 
-We can take $\tilde{w}=w_{t+1}$ for $t\in \left[1,T-1\right]$ and $\tilde{w}=e_{i_T^*}$ for $t=T$. To make the proof clean, we abuse the notation to denote $w_{T+1}$ as $e_{i^*}$ in our proof. However, please keep in mind that all the $w_{T+1}$ in this proof is not the one played by the algorithm, but a one hot vector. Thus,
+We can take $\tilde{w}=w_{t+1}$ for $t\in \left[1,T-1\right]$ and $$\tilde{w}=e_{i_T^*}$$ for $t=T$. To make the proof clean, we abuse the notation to denote $w_{T+1}$ as $$e_{i^*}$$ in our proof. However, please keep in mind that all the $w_{T+1}$ in this proof is not the one played by the algorithm, but a one hot vector. Thus,
 
 $$\sum\limits_{t=1}^T\left(\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)\right) \leq \langle w_{T+1}, \hat{L}_T\rangle + \sum\limits_{t=1}^T\big(-\psi_t(w_t)+\psi_t(w_{t+1})\big)$$
 
