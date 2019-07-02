@@ -22,9 +22,11 @@ It is known that the (expected) regret is defined as
 
 $$\mathbb{E}\left[\sum\limits_{t=1}^T\ell_t(I_t)-\sum\limits_{t=1}^T\ell_t(i_T^*)\right],$$
 
-where $i_T^*$ is the best arm in hindsight and the expectation is taken over the possible randomness of the algorithm and loss generation model. It can further be changed into the form related to the estimation losses $\hat{\ell}$.
+where $i^*$ is the best arm in hindsight and the expectation is taken over the possible randomness of the algorithm and loss generation model. It can further be changed into the form related to the estimation losses $\hat{\ell}$.
 
 $$Regret_T= \mathbb{E}\left[\sum\limits_{t=1}^T\langle w_t, \hat{\ell}_t \rangle-\sum\limits_{t=1}^T\mathbb{E}_{I_t}\left[\hat{\ell}_t(i_T^*)|I_1, I_2, \cdots I_{t-1}\right]\right]$$
+
+In this post, we consider the regret to be compared with the best arm in expectation. That is, we skip the non-oblivious adversarial case and only consider stochastic setting and oblivious adversarial setting.
 
 
 # Potential function techniques
@@ -72,13 +74,13 @@ We explicitly decomposite the regret into two summations amd we will bound them 
 
 > Lemma:
 > $$\mathbb{E}\left[
-mathbf{First}\right]\leq \mathbb{E}\left[\sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})\right]$$
+\mathbf{First}\right]\leq \mathbb{E}\left[\sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})\right]$$
 
 With the key lemma, the regret can be bounded by 
 
 $$\mathbb{E}\left[\sum\limits_{t=1}^T \big(-\psi_t(w_t)+\psi_t(w_{t+1})\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big) \right] $$
 
-It is much clear now that the regret highly depends on how good are the chosen $\psi_t$s. That is, the regularizer in FTRL algorithms are often strongly convex; therefore, the corresponding conjugates are strongly smooth. To obtain sublinear regret bound,  By I will give an example in the next post.
+It is much clear now that the regret highly depends on how good are the chosen $\psi_t$s. That is, the regularizer in FTRL algorithms are often strongly convex; therefore, the corresponding conjugates are strongly smooth. To obtain sublinear regret bound, it is essential to have good regularizer that balance between them.
 
 ## Proof of the key lemma
 
