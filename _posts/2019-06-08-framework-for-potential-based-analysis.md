@@ -58,20 +58,20 @@ To summarize, the function $\psi_t(w)$ serves both as the regularizer in FTRL al
 
 Since $$w_t= \nabla\Phi_t(-\hat{L}_{t-1})$$ by algorithm, the first term of the regret is
 
-$$ \langle w_t, \hat{\ell}_t \rangle =  \langle \nabla\Phi_t(-\hat{L}_{t-1}), \hat{L}_t-\hat{L}_{t-1} \rangle, $$
+$$ \langle w_t, \hat{\ell}_t \rangle =  \langle \nabla\Phi_t(-\hat{L}_{t-1}), \hat{L}_t-\hat{L}_{t-1} \rangle.$$
 
-Also, by the definition of Bregman divergence,
+Also, by the definition of Bregman divergence, it also equals to
 
-$$  \langle \nabla\Phi_t(-\hat{L}_{t-1}), \hat{L}_t-\hat{L}_{t-1} \rangle=\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)+D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1}). $$
+$$ \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)+D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1}). $$
 
-The regret then becomes
+The regret inside the expectation then becomes
 
-$$\mathbb{E}\left[\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\ell_t(i_T^*)\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big) \right]. $$
+$$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\mathbb{E}_{I_t\sim w_t}\left[\hat{\ell}_t(i^*_T)\right]\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big). $$
 
 Here we introduce a key lemma.
 
 > Lemma:
-> $$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\ell_t(i_T^*)\big)\leq \sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})$$
+> $$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\mathbb{E}_{I_t\sim w_t}\left[\hat{\ell}_t(i^*_T)\right]\big)\leq \sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})$$
 
 With the key lemma, the regret can be bounded by 
 
