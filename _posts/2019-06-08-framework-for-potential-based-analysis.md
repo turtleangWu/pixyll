@@ -71,7 +71,7 @@ $$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\mathbb{E}
 We explicitly decomposite the regret into two summations amd we will bound them separately later. To make the proof clean, we simply use **First** to denote the first summation and **Second** to denote the second summation. Here we introduce a key lemma.
 
 > Lemma:
-> $$\mathbb{E}\left**First**\right]\leq \mathbb{E}\left[\sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})\right]$$
+> $$\mathbb{E}\left[**First**\right]\leq \mathbb{E}\left[\sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})\right]$$
 
 With the key lemma, the regret can be bounded by 
 
