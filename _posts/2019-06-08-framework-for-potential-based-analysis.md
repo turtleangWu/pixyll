@@ -66,12 +66,12 @@ $$ \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)+D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-
 
 The regret inside the expectation then becomes
 
-$$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\mathbb{E}_{I_t\sim w_t}\left[\hat{\ell}_t(i^*_T)\right]\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big). $$
+$$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\mathbb{E}_{I_t}\left[\hat{\ell}_t(i^*)\right]\big) +\sum\limits_{t=1}^T\big(D_{\Phi_t}(-\hat{L}_t, -\hat{L}_{t-1})\big). $$
 
-Here we introduce a key lemma.
+We explicitly decomposite the regret into two summations amd we will bound them separately later. To make the proof clean, we simply use **First** to denote the first summation and **Second** to denote the second summation. Here we introduce a key lemma.
 
 > Lemma:
-> $$\sum\limits_{t=1}^T\big( \Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t) -\mathbb{E}_{I_t\sim w_t}\left[\hat{\ell}_t(i^*_T)\right]\big)\leq \sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})$$
+> $$\mathbb{E}\left**First**\right]\leq \mathbb{E}\left[\sum\limits_{t=1}^T-\psi_t(w_t)+\psi_t(w_{t+1})\right]$$
 
 With the key lemma, the regret can be bounded by 
 
@@ -87,16 +87,11 @@ $$\Phi_t(-\hat{L}_{t-1}) = \langle w_t, -\hat{L}_{t-1}\rangle -\psi_t(w_t), \mbo
 
 $$\Phi_t(-\hat{L}_{t}) = \max_w \langle w, -\hat{L}_{t}\rangle - \psi_t(w)\geq  \langle \tilde{w}, -\hat{L}_{t}\rangle -\psi_t(\tilde{w}).$$
 
-We can take $\tilde{w}=w_{t+1}$ for $t\in \left[1,T-1\right]$ and $\tilde{w}=e_{i_T^*}$ for $t=T$. Thus,
-
-$$\sum\limits_{t=1}^T\left(\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)\right) \leq \langle e_{i_T^*}, \hat{L}_T\rangle + \sum\limits_{t=1}^T\left(-\psi_t(w_t)\right)+\sum\limits_{t=1}^{T-1}\left(\psi_t(w_{t+1})\right)+\psi_T(e_{i_T^*})$$
-
-
-
+We can take $\tilde{w}=w_{t+1}$ for $t\in \left[1,T-1\right]$ and $\tilde{w}=e_{i_T^*}$ for $t=T$. To make the proof clean, we abuse the notation to denote $w_{T+1}$ as $e_{i^*}$ in our proof. However, please keep in mind that all the $w_{T+1}$ in this proof is not the one played by the algorithm, but a one hot vector. Thus,
 
 $$\sum\limits_{t=1}^T\left(\Phi_t(-\hat{L}_{t-1})-\Phi_t(-\hat{L}_t)\right) \leq \langle w_{T+1}, \hat{L}_T\rangle + \sum\limits_{t=1}^T\big(-\psi_t(w_t)+\psi_t(w_{t+1})\big)$$
 
-Also, $$w_{T+1}$$ can be naturally chosen as $$e_{i_T^{*}}$$. Thus, $$\langle e_{i_T^*}, \hat{L}_T\rangle$$  cancels out the  summation $$\sum\limits_{t=1}^T -\hat{\ell}_t(i_T^*)$$. We then complete the proof.
+After taking the expectation, $$\mathbb{E}\left[\langle e_{i_T^*}, \hat{L}_T\rangle\right]$$  cancels out the  summation $$\mathbb{E}\left[\sum\limits_{t=1}^T -\mathbb{E}_{I_t}\left[\hat{\ell}_t(i^*)\right]\right]$$. We then complete the proof.
 
 # Conclusion
 
