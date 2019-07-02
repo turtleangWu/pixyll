@@ -45,7 +45,9 @@ It is known that the (expected) regret can be written as
 
 $$\mathbb{E}\left[\sum\limits_{t=1}^T\ell_t(I_t)-\sum\limits_{t=1}^T\ell_t(i_T^*)\right],$$
 
-where $i_T^*$ is defined as the best arm in hindsight and the expectation is taken over the possible randomness of the algorithm and loss generation model. Also,
+where $i_T^*$ is defined as the best arm in hindsight and the expectation is taken over the possible randomness of the algorithm and loss generation model. It can further be changed into the form related to the estimation losses $\hat{\ell}$.
+
+$$Regret_T= \mathbb{E}\left[\sum\limits_{t=1}^T\langle w_t, \hat{\ell}_t \rangle-\sum\limits_{t=1}^T\mathbb{E}_{I_t}\left[\hat{\ell}_t(i_T^*)|I_1, I_2, \cdots I_{t-1}\right]\right]$$
 
 $$ \ell_t(I_t)= \langle w_t, \hat{\ell}_t \rangle =  \langle \nabla\Phi_t(-\hat{L}_{t-1}), \hat{L}_t-\hat{L}_{t-1} \rangle, $$
 
