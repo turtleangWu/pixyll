@@ -45,7 +45,13 @@ Therefore, authors design the GBPA algorithm as
 
 <center><img src="/images/online/GBPA.png" width="630" height="300" /></center>
 
-First of all, the function $\psi_t(w)$ serves both as the regularizer in FTRL algorithm and as the specific function for its conjugate $\Phi_t$. The regularizer $\psi_t(w)$ plays a central role in the algorithm for controlling the ''smoothness''. Also, the algorithm is implementable only when the regularizer is well chosen. In general, $\psi_t(w)$ can be different at different time $t$, although in some cases a good regret bound can be obtained by choosing the same regularizer for all $t$. 
+Recall that the form of basic FTRL algorithm:
+
+$$w_{t+1}=arg\min_w \langle w, \sum\limits_{i=1}^t f_i(w) \rangle + R(w) $$
+
+, where $f_i(\cdot)$ are losses and $R(\cdot)$ is the regularizer. Thus, the GBPA algorithm can be seen to be extended from basic FTRL algorithm, and the analysis developed in the following sections can be used to analyze ordinary FTRL algorithm.
+
+To summarize, the function $\psi_t(w)$ serves both as the regularizer in FTRL algorithm and as the specific function for its conjugate $\Phi_t$. The regularizer $\psi_t(w)$ plays a central role in the algorithm for controlling the ''smoothness''. Also, the algorithm is implementable only when the regularizer is well chosen. In general, $\psi_t(w)$ can be different at different time $t$, although in some cases a good regret bound can be obtained by choosing the same regularizer for all $t$.  We will provide an example in the next post.
 
 
 # Regret Analysis
