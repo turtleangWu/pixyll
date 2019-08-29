@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Short Introduction to Lifelong Learning
-date: 2019-06-10 12:00
+date: 2019-08-29 12:00
 summary: Lifelong Machine Learning (LML) is a paradigm to make the machine reach close to the human level of intelligence.
-categories: Online-Learning
+categories: Lifelong-Learning
 author: Yi-Shan Wu
 visible: True
 ---
